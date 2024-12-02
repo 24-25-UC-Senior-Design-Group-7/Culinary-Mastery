@@ -20,13 +20,14 @@
    - [Project Summary](#project-summary)  
    - [Problem Statement](#problem-statement)  
    - [Solution](#solution)  
-   - [Contact Information](#contact-information)  
+   - [Contributor Information](#contributor-information)  
    - [Sponsor Information](#sponsor-information)  
    - [Project Source](#project-source)  
    - [Project Objectives/Goals](#project-objectivesgoals)  
    - [Team Members and Responsibilities](#team-members-and-responsibilities)  
    - [Project Scope](#project-scope)  
-   - [Quick Project Timeline](#quick-project-timeline)  
+   - [Fall 2024 Timeline](#fall-2024-timeline)
+   - [Spring 2025 Timeline](#spring-2025-timeline)  
    - [Technologies Used](#technologies-used)  
    - [Ethical Considerations](#ethical-considerations)  
 3. [Team Rules](#team-rules)  
@@ -119,7 +120,7 @@ The Culinary Mastery app aims to revolutionize cooking education by providing a 
 
 The app will enable users to learn fundamental cooking concepts through short, simple, asynchronous courses. Courses will include step-by-step instructions, videos, vocabulary, techniques, safety information, quizzes, and personalized feedback.
 
-### Quick Project Timeline
+### Fall 2024 Timeline
 
 | Task # | Task Name       | Duration | Start Date | End Date    | Sprint |
 |--------|-----------------|----------|------------|-------------|--------|
@@ -132,6 +133,24 @@ The app will enable users to learn fundamental cooking concepts through short, s
 | 7      | Design           | 4 Days   | 11-04-2024 | 11-10-2024 | 2      |
 | 8      | Deployment       | 5 Days   | 11-25-2024 | 12-01-2024 | 3      |
 | 9      | Presentation     | 7 Days   | 12-02-2024 | 12-08-2024 | 3      |
+
+### Spring 2025 Timeline
+| Task # | Task Name            | Duration | Start Date   | End Date     | Sprint |
+|--------|----------------------|----------|--------------|--------------|--------|
+| 1      | Review & Kickoff     | 5 Days   | 1-13-2025    | 1-19-2025    | 4      |
+| 2      | IT Expo Prep         | 6 Days   | 1-20-2025    | 1-26-2025    | 4      |
+| 3      | Poster Drafting      | 7 Days   | 1-27-2025    | 2-02-2025    | 4      |
+| 4      | Pitch Sessions       | 6 Days   | 2-03-2025    | 2-09-2025    | 5      |
+| 5      | Abstract Submission  | 7 Days   | 2-10-2025    | 2-16-2025    | 5      |
+| 6      | Startup Discussion   | 6 Days   | 2-17-2025    | 2-23-2025    | 5      |
+| 7      | IT Expo Prep II      | 7 Days   | 2-24-2025    | 3-02-2025    | 6      |
+| 8      | Booth & Judging      | 7 Days   | 3-03-2025    | 3-09-2025    | 6      |
+| 9      | Spring Break         | 7 Days   | 3-10-2025    | 3-16-2025    | N/A    |
+| 10     | Final Presentations  | 7 Days   | 3-24-2025    | 3-30-2025    | 7      |
+| 11     | IT Expo Event        | 6 Days   | 3-31-2025    | 4-06-2025    | 7      |
+| 12     | Wrap-up & Evaluation | 7 Days   | 4-14-2025    | 4-20-2025    | 8      |
+| 13     | Final Report         | 6 Days   | 4-21-2025    | 4-27-2025    | 8      |
+
 
 ### Technologies Used
 
