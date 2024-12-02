@@ -135,21 +135,24 @@ The app will enable users to learn fundamental cooking concepts through short, s
 | 9      | Presentation     | 7 Days   | 12-02-2024 | 12-08-2024 | 3      |
 
 ### Spring 2025 Timeline
-| Task # | Task Name            | Duration | Start Date   | End Date     | Sprint |
-|--------|----------------------|----------|--------------|--------------|--------|
-| 1      | Review & Kickoff     | 5 Days   | 1-13-2025    | 1-19-2025    | 4      |
-| 2      | IT Expo Prep         | 6 Days   | 1-20-2025    | 1-26-2025    | 4      |
-| 3      | Poster Drafting      | 7 Days   | 1-27-2025    | 2-02-2025    | 4      |
-| 4      | Pitch Sessions       | 6 Days   | 2-03-2025    | 2-09-2025    | 5      |
-| 5      | Abstract Submission  | 7 Days   | 2-10-2025    | 2-16-2025    | 5      |
-| 6      | Startup Discussion   | 6 Days   | 2-17-2025    | 2-23-2025    | 5      |
-| 7      | IT Expo Prep II      | 7 Days   | 2-24-2025    | 3-02-2025    | 6      |
-| 8      | Booth & Judging      | 7 Days   | 3-03-2025    | 3-09-2025    | 6      |
-| 9      | Spring Break         | 7 Days   | 3-10-2025    | 3-16-2025    | N/A    |
-| 10     | Final Presentations  | 7 Days   | 3-24-2025    | 3-30-2025    | 7      |
-| 11     | IT Expo Event        | 6 Days   | 3-31-2025    | 4-06-2025    | 7      |
-| 12     | Wrap-up & Evaluation | 7 Days   | 4-14-2025    | 4-20-2025    | 8      |
-| 13     | Final Report         | 6 Days   | 4-21-2025    | 4-27-2025    | 8      |
+| Task # | Task Name                  | Duration | Start Date   | End Date     | Sprint |
+|--------|----------------------------|----------|--------------|--------------|--------|
+| 1      | Review & Kickoff           | 5 Days   | 1-13-2025    | 1-19-2025    | 4      |
+| 2      | Development Phase 1        | 6 Days   | 1-20-2025    | 1-26-2025    | 4      |
+| 3      | IT Expo Poster Drafting    | 7 Days   | 1-27-2025    | 2-02-2025    | 4      |
+| 4      | Development Phase 2        | 6 Days   | 2-03-2025    | 2-09-2025    | 5      |
+| 5      | Abstract & Refinement      | 7 Days   | 2-10-2025    | 2-16-2025    | 5      |
+| 6      | Startup/Monetization Plans | 6 Days   | 2-17-2025    | 2-23-2025    | 5      |
+| 7      | Development Phase 3        | 7 Days   | 2-24-2025    | 3-02-2025    | 6      |
+| 8      | Booth Prep & Judging Prep  | 7 Days   | 3-03-2025    | 3-09-2025    | 6      |
+| 9      | Spring Break               | 7 Days   | 3-10-2025    | 3-16-2025    | N/A    |
+| 10     | Development Phase 4        | 7 Days   | 3-17-2025    | 3-23-2025    | 7      |
+| 11     | Final Presentations Prep   | 7 Days   | 3-24-2025    | 3-30-2025    | 7      |
+| 12     | IT Expo Event              | 6 Days   | 3-31-2025    | 4-06-2025    | 7      |
+| 13     | Wrap-up & Final Evaluation | 7 Days   | 4-14-2025    | 4-20-2025    | 8      |
+| 14     | Final Development Sprint   | 6 Days   | 4-21-2025    | 4-27-2025    | 8      |
+| 15     | Final Report Submission    | 5 Days   | 4-28-2025    | 5-02-2025    | 8      |
+
 
 
 ### Technologies Used
