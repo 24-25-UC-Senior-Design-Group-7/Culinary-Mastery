@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "**University of Cincinnati**  \r **College of Education, Criminal Justice, and Human Services**  \r **School of Information Technology**",
   "main": "index.js",
-  "type": "module"
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/24-25-UC-Senior-Design-Group-7/Culinary-Mastery.git"
