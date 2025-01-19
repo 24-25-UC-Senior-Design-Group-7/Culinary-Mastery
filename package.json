@@ -1,17 +1,17 @@
 {
   "name": "culinary-mastery",
-  "version": "1.0.0",
-  "description": "**University of Cincinnati**  \r **College of Education, Criminal Justice, and Human Services**  \r **School of Information Technology**",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
   "type": "module",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/24-25-UC-Senior-Design-Group-7/Culinary-Mastery.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/24-25-UC-Senior-Design-Group-7/Culinary-Mastery/issues"
-  },
-  "homepage": "https://github.com/24-25-UC-Senior-Design-Group-7/Culinary-Mastery#readme"
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
+  }
 }
