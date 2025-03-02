@@ -3,12 +3,19 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+// Importing the ytvideo router
+const youtubeRouter = require('./routes/ytRouter');
+
+
+
 
 var app = express();
-
+// all routes in the router will be prefixed with '/api/youtube'
+app.use('/api/youtube', youtubeRouter);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
