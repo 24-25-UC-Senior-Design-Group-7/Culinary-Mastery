@@ -10837,6 +10837,8 @@ textarea.form-control-lg {
 #sidebar-wrapper .sidebar-heading {
   padding: 0.875rem 1.25rem;
   font-size: 1.2rem;
+  font-family: 'Dancing Script', 'Courier New', monospace;
+  text-align: center;
 }
 
 #sidebar-wrapper .list-group {
@@ -10849,6 +10851,22 @@ textarea.form-control-lg {
 
 body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   margin-left: 0;
+}
+
+#cooking, #baking, #preparing {
+  background-color: white;
+  text-align: center;
+  font-size: 16px 32px;
+  transition: 0.3s;
+}
+
+#cooking:hover, #baking:hover, #preparing:hover {
+  background-color: #EFC88B;
+  color: black; 
+}
+
+#title-main {
+  font-family: "Dancing Script", cursive, "Courier New";
 }
 
 @media (min-width: 768px) {
