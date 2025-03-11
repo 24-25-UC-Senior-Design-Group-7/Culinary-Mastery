@@ -28,6 +28,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 h1 {
@@ -52,6 +54,24 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+#cooking, #baking, #preparing {
+  background-color: white;
+  text-align: center;
+  font-size: 16px 32px;
+  transition: 0.3s;
+}
+
+#cooking:hover, #baking:hover, #preparing:hover {
+  background-color: #EFC88B;
+  color: black; 
+}
+
+.hero-section {
+  background-image: url('cooking-bg.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 @media (prefers-color-scheme: light) {
