@@ -1,7 +1,7 @@
 import './css/bootstrap.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Sidebar from './pages/Sidebar';
-import Home from './pages/Home.jsx';
+import Home from './pages/home.jsx';
 import Navbar from './components/Navbar';
 
 function App() {

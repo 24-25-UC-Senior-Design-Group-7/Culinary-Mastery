@@ -30,11 +30,11 @@ function Sidebar() {
       <div className={`border-end bg-white ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="sidebar-wrapper">
         <div className="sidebar-heading border-bottom bg-light">The Culinary Mastery</div>
         <div className="list-group list-group-flush">
-          <Link to="/cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
-          <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#Baking!">Baking</a>
-          <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#Preparing!">Preparing</a>
-          <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#Grilling!">Grilling</a>
-          <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#Broiling!">Broiling</a>
+          <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
+          <a id="baking" className="list-group-item list-group-item-action list-group-item-light p-3" href="#Baking!">Baking</a>
+          <a id="preparing" className="list-group-item list-group-item-action list-group-item-light p-3" href="#Preparing!">Preparing</a>
+          <a id="grilling" className="list-group-item list-group-item-action list-group-item-light p-3" href="#Grilling!">Grilling</a>
+          <a id="broiling" className="list-group-item list-group-item-action list-group-item-light p-3" href="#Broiling!">Broiling</a>
         </div>
       </div>
 
