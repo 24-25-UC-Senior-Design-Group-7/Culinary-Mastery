@@ -1,9 +1,23 @@
-var express = require('express');
-var router = express.Router();
+// https://learn.microsoft.com/en-us/azure/azure-sql/database/azure-sql-javascript-mssql-quickstart
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+import express from 'express';
+
+// Import App routes
+import person from './users.js';
+import openapi from './openapi.js';
+
+const port = process.env.PORT || 3000;
+
+const app = express();
+
+// Connect App routes
+app.use('/api-docs', openapi);
+app.use('/users', user);
+app.use('*', (_, res) => {
+  res.redirect('/api-docs');
 });
 
-module.exports = router;
+// Start the server
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});
