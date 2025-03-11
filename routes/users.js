@@ -4,8 +4,8 @@ import express from 'express';
 import { 
   passwordConfig as SQLAuthentication, 
   noPasswordConfig as PasswordlessConfig 
-} from './config.js';
-import { createDatabaseConnection } from './database.js';
+} from '../db/config.js';
+import { createDatabaseConnection } from '../db/config.js';
 
 const router = express.Router();
 router.use(express.json());
