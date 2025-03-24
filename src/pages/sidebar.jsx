@@ -3,26 +3,32 @@ import { Link } from 'react-router-dom';
 
 
 function Sidebar() {
-  // State to track whether the sidebar is toggled
-  const [isToggled, setIsToggled] = useState(false);
-
-  // Check if the sidebar toggle state is saved in localStorage
-  useEffect(() => {
-    const savedToggleState = localStorage.getItem('sb|sidebar-toggle');
-    if (savedToggleState === 'true') {
-      setIsToggled(true);
-    }
-  }, []);
-
-  // Function to toggle the sidebar
-  const toggleSidebar = () => {
-    setIsToggled(prevState => {
-      const newState = !prevState;
-      // Save the new state to localStorage
-      localStorage.setItem('sb|sidebar-toggle', newState);
-      return newState;
-    });
-  };
+      // State to track whether the sidebar is toggled
+      const [isToggled, setIsToggled] = useState(false);
+  
+      // Check if the sidebar toggle state is saved in localStorage
+      useEffect(() => {
+          const savedToggleState = localStorage.getItem('sb|sidebar-toggle');
+          if (savedToggleState === 'true') {
+              setIsToggled(true);
+          }
+      }, []);
+  
+      // Apply the sb-sidenav-toggled class to the body if the sidebar is toggled
+      useEffect(() => {
+          if (isToggled) {
+              document.body.classList.add('sb-sidenav-toggled');
+          } else {
+              document.body.classList.remove('sb-sidenav-toggled');
+          }
+          // Save the new state to localStorage
+          localStorage.setItem('sb|sidebar-toggle', isToggled);
+      }, [isToggled]);
+  
+      // Function to toggle the sidebar
+      const toggleSidebar = () => {
+          setIsToggled(prevState => !prevState);
+      };
 
   return (
     <div className={`d-flex ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="wrapper">

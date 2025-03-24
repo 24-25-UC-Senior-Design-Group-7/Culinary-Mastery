@@ -1,8 +1,34 @@
 // Cooking.jsx
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 
 function Sidebar() {
+        // State to track whether the sidebar is toggled
+        const [isToggled, setIsToggled] = useState(false);
+    
+        // Check if the sidebar toggle state is saved in localStorage
+        useEffect(() => {
+            const savedToggleState = localStorage.getItem('sb|sidebar-toggle');
+            if (savedToggleState === 'true') {
+                setIsToggled(true);
+            }
+        }, []);
+    
+        // Apply the sb-sidenav-toggled class to the body if the sidebar is toggled
+        useEffect(() => {
+            if (isToggled) {
+                document.body.classList.add('sb-sidenav-toggled');
+            } else {
+                document.body.classList.remove('sb-sidenav-toggled');
+            }
+            // Save the new state to localStorage
+            localStorage.setItem('sb|sidebar-toggle', isToggled);
+        }, [isToggled]);
+    
+        // Function to toggle the sidebar
+        const toggleSidebar = () => {
+            setIsToggled(prevState => !prevState);
+        };
   return (
     <div className="d-flex" id="wrapper">
       {/* Sidebar */}
@@ -22,7 +48,7 @@ function Sidebar() {
         {/* Top navigation */}
         <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
           <div className="container-fluid">
-            <button className="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
+            <button className="btn btn-primary" id="sidebarToggle" onClick={toggleSidebar}>Toggle Menu</button>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
