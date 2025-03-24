@@ -55,7 +55,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-#cooking, #baking, #preparing, #grilling, #broiling {
+#cooking, #produce, #sautee, #sear {
   background-color: rgba(239, 200, 139, 0.35);
   color: black;
   text-align: center;
@@ -63,7 +63,7 @@ button:focus-visible {
   transition: 0.3s;
 }
 
-#cooking:hover, #baking:hover, #preparing:hover, #grilling:hover, #broiling:hover {
+#cooking:hover, #produce:hover, #sautee:hover, #sear:hover, #broiling:hover {
   background-color: rgba(239, 200, 139, 0.8);
   text-decoration: underline;
   font-weight: bold;
@@ -88,4 +88,16 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.produceTitle {
+  text-align: center;
+  font-size: 2rem !important;
+}
+
+.ProduceImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  margin-left: 10px;
 }
