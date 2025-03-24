@@ -59,8 +59,15 @@ button:focus-visible {
   background-color: rgba(239, 200, 139, 0.35);
   color: black;
   text-align: center;
-  font-size: 24px;
-  transition: 0.3s;
+  font-size: 1.5rem;
+  transition: all 0.3s ease-in-out;
+  border-radius: 1.5rem;
+  margin-top: .5rem;
+  margin-left: 1rem;
+  max-width: 90%;
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
 }
 
 #cooking:hover, #produce:hover, #sautee:hover, #sear:hover, #broiling:hover {
@@ -100,4 +107,8 @@ button:focus-visible {
   height: 50px;
   border-radius: 10px;
   margin-left: 10px;
+}
+
+.produceLink {
+  text-emphasis: bold !important;
 }

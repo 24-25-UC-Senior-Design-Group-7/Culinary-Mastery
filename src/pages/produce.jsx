@@ -11,7 +11,7 @@ function Produce() {
         <div className="sidebar-heading border-bottom bg-light produceTitle">Produce<img className="ProduceImage" src={ProduceImage} alt='image of produce'/></div>
         <div className="list-group list-group-flush">
             <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
-            <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3">Produce</Link>
+            <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3 produceLink">Produce</Link>
             <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
             <Link to="/sear" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">Sear</Link>
           <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#Broiling!">Broiling</a>
