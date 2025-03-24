@@ -118,6 +118,7 @@ button:focus-visible {
   justify-content: flex-start;
   width: 100%;
   padding: 0; 
+  height: 4.9rem;
 }
 
 .sidebarTitle {
@@ -215,4 +216,8 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     margin-left: -15rem;
   }
+}
+
+.navbarContainer {
+  height: 4.3rem !important;
 }

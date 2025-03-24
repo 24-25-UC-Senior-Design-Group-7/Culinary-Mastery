@@ -51,7 +51,7 @@ function Sidebar() {
       {/* Page content wrapper */}
       <div id="page-content-wrapper">
         {/* Top navigation */}
-        <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom navbarContainer">
           <div className="container-fluid">
             <button className="hamburger-btn" id="sidebarToggle" onClick={toggleSidebar}>
               <div className={`hamburger ${!isToggled ? 'toggled' : ''}`}>
