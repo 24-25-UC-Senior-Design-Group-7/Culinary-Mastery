@@ -1,5 +1,5 @@
 // Sear.jsx
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/app.css';
 
@@ -50,9 +50,12 @@ function Sear() {
                 {/* Top navigation */}
                 <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div className="container-fluid">
-                        <button className="btn btn-primary" id="sidebarToggle" onClick={toggleSidebar}>Toggle Menu</button>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
+                        <button className="hamburger-btn" id="sidebarToggle" onClick={toggleSidebar}>
+                            <div className={`hamburger ${!isToggled ? 'toggled' : ''}`}>
+                                <div className="line line-1"></div>
+                                <div className="line line-2"></div>
+                                <div className="line line-3"></div>
+                            </div>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
