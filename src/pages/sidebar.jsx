@@ -1,41 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import sidebarImage from '../assets/house-icon.png';
 
 
 function Sidebar() {
-      // State to track whether the sidebar is toggled
-      const [isToggled, setIsToggled] = useState(false);
-  
-      // Check if the sidebar toggle state is saved in localStorage
-      useEffect(() => {
-          const savedToggleState = localStorage.getItem('sb|sidebar-toggle');
-          if (savedToggleState === 'true') {
-              setIsToggled(true);
-          }
-      }, []);
-  
-      // Apply the sb-sidenav-toggled class to the body if the sidebar is toggled
-      useEffect(() => {
-          if (isToggled) {
-              document.body.classList.add('sb-sidenav-toggled');
-          } else {
-              document.body.classList.remove('sb-sidenav-toggled');
-          }
-          // Save the new state to localStorage
-          localStorage.setItem('sb|sidebar-toggle', isToggled);
-      }, [isToggled]);
-  
-      // Function to toggle the sidebar
-      const toggleSidebar = () => {
-          setIsToggled(prevState => !prevState);
-      };
+  // State to track whether the sidebar is toggled
+  const [isToggled, setIsToggled] = useState(false);
+
+  // Check if the sidebar toggle state is saved in localStorage
+  useEffect(() => {
+    const savedToggleState = localStorage.getItem('sb|sidebar-toggle');
+    if (savedToggleState === 'true') {
+      setIsToggled(true);
+    }
+  }, []);
+
+  // Apply the sb-sidenav-toggled class to the body if the sidebar is toggled
+  useEffect(() => {
+    if (isToggled) {
+      document.body.classList.add('sb-sidenav-toggled');
+    } else {
+      document.body.classList.remove('sb-sidenav-toggled');
+    }
+    // Save the new state to localStorage
+    localStorage.setItem('sb|sidebar-toggle', isToggled);
+  }, [isToggled]);
+
+  // Function to toggle the sidebar
+  const toggleSidebar = () => {
+    setIsToggled(prevState => !prevState);
+  };
 
   return (
     <div className={`d-flex ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="wrapper">
       {/* Sidebar */}
       <div className={`border-end bg-white ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="sidebar-wrapper">
-        <div className="sidebar-heading border-bottom bg-light">The Culinary Mastery</div>
+        <div className="sidebarTitleContainer">
+          <div className="sidebar-heading border-bottom bg-light sidebarTitle">Course Home<img className="sidebarImage" src={sidebarImage} alt="icon image of a house" /></div>
+        </div>
         <div className="list-group list-group-flush">
+          <Link to="/sidebar" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3 sidebar sidebarLink">Course Home</Link>
           <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
           <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3">Produce</Link>
           <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
@@ -49,7 +53,7 @@ function Sidebar() {
         {/* Top navigation */}
         <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
           <div className="container-fluid">
-          <button className="hamburger-btn" id="sidebarToggle" onClick={toggleSidebar}>
+            <button className="hamburger-btn" id="sidebarToggle" onClick={toggleSidebar}>
               <div className={`hamburger ${!isToggled ? 'toggled' : ''}`}>
                 <div className="line line-1"></div>
                 <div className="line line-2"></div>

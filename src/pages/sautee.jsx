@@ -1,6 +1,7 @@
 // Sautee.jsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import SauteeImage from '../assets/saute-icon.png'
 
 function Sautee() {
     // State to track whether the sidebar is toggled
@@ -33,11 +34,12 @@ function Sautee() {
         <div className="d-flex" id="wrapper">
             {/* Sidebar */}
             <div className="border-end bg-white" id="sidebar-wrapper">
-                <div className="sidebar-heading border-bottom bg-light">Sautee</div>
+                <div className="sidebar-heading border-bottom bg-light sauteeTitle">Sautee<img className='sauteeImage' src={SauteeImage} alt='icon depicting sauteing'/></div>
                 <div className="list-group list-group-flush">
+                    <Link to="/sidebar" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3">Course Home</Link>
                     <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
                     <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3">Produce</Link>
-                    <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
+                    <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3 sautee sauteeLink">Sautee</Link>
                     <Link to="/sear" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">Sear</Link>
                     <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#Broiling!">Broiling</a>
                 </div>

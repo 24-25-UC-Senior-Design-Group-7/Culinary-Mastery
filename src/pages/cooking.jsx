@@ -1,6 +1,7 @@
 // Cooking.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import CookingImage from '../assets/cooking-icon.png'
 
 function Sidebar() {
     // State to track whether the sidebar is toggled
@@ -33,9 +34,10 @@ function Sidebar() {
         <div className="d-flex" id="wrapper">
             {/* Sidebar */}
             <div className="border-end bg-white" id="sidebar-wrapper">
-                <div className="sidebar-heading border-bottom bg-light">Cooking</div>
+                <div className="sidebar-heading border-bottom bg-light cookingTitle">Cooking<img className='cookingImage' src={CookingImage} alt='icon depicting someone cooking'/></div>
                 <div className="list-group list-group-flush">
-                    <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
+                    <Link to="/sidebar" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3">Course Home</Link>
+                    <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3 cooking cookingLink">Cooking</Link>
                     <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3">Produce</Link>
                     <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
                     <Link to="/sear" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">Sear</Link>

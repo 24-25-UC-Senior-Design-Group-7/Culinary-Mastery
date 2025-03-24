@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/app.css';
+import SearImage from '../assets/sear-icon.png';
 
 function Sear() {
 
@@ -35,12 +36,13 @@ function Sear() {
         <div className="d-flex" id="wrapper">
             {/* Sidebar */}
             <div className="border-end bg-white" id="sidebar-wrapper">
-                <div className="sidebar-heading border-bottom bg-light">Sear</div>
+                <div className="sidebar-heading border-bottom bg-light searTitle">Sear<img className='searImage' src={SearImage} alt='icon depicting searing'/></div>
                 <div className="list-group list-group-flush">
+                    <Link to="/sidebar" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3">Course Home</Link>
                     <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
                     <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3">Produce</Link>
                     <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
-                    <Link to="/sear" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">Sear</Link>
+                    <Link to="/sear" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3 sear searLink">Sear</Link>
                     <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#Broiling!">Broiling</a>
                 </div>
             </div>

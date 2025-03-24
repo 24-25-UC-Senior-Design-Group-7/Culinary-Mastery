@@ -55,7 +55,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-#cooking, #produce, #sautee, #sear {
+#cooking, #produce, #sautee, #sear, #sidebar {
   background-color: rgba(239, 200, 139, 0.35);
   color: black;
   text-align: center;
@@ -70,12 +70,17 @@ button:focus-visible {
   text-overflow: ellipsis;
 }
 
-#cooking:hover, #produce:hover, #sautee:hover, #sear:hover, #broiling:hover {
+#cooking:hover, #produce:hover, #sautee:hover, #sear:hover, #sidebar:hover {
   background-color: rgba(239, 200, 139, 0.8);
   text-decoration: underline;
   font-weight: bold;
   font-size: 26px;
   color: black; 
+}
+
+.produceLink, .cookingLink, .sauteeLink, .searLink, .sidebarLink {
+  font-weight: bold;
+  background-color: rgba(239, 200, 139, 0.8) !important;
 }
 
 .hero-section {
@@ -97,20 +102,43 @@ button:focus-visible {
   }
 }
 
-.produceTitle {
-  text-align: center;
+.produceTitle, .cookingTitle, .searTitle, .sauteeTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 2rem !important;
+  width: 100%;
+  margin: 0;
+  color: black;
 }
 
-.ProduceImage {
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
-  margin-left: 10px;
+.sidebarTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0; 
 }
 
-.produceLink {
-  text-emphasis: bold !important;
+.sidebarTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  font-size: 1.5rem !important;
+}
+
+.produceImage, .searImage, .sauteeImage, .cookingImage {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: .75rem;
+  flex-shrink: 0;
+}
+
+.sidebarImage {
+  width: 1.9rem;
+  height: 1.9rem;
+  margin-left: .75rem;
+  flex-shrink: 0;
 }
 
 .hamburger-btn {
@@ -146,4 +174,45 @@ button:focus-visible {
 
 .hamburger.toggled .line-3 {
   transform: translateY(-9px) rotate(-45deg);
+}
+
+#wrapper {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+  
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+  body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+    margin-left: -15rem;
+  }
 }
