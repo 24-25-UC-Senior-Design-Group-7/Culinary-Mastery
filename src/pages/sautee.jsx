@@ -36,7 +36,7 @@ function Sautee() {
             <div className="border-end bg-white" id="sidebar-wrapper">
                 <div className="sidebar-heading border-bottom bg-light sauteeTitle">Sautee<img className='sauteeImage' src={SauteeImage} alt='icon depicting sauteing' /></div>
                 <div className="list-group list-group-flush">
-                    <Link to="/sidebar" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3">Course Home</Link>
+                    <Link to="/course-home" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3">Course Home</Link>
                     <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
                     <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3">Produce</Link>
                     <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3 sautee sauteeLink">Sautee</Link>
@@ -58,7 +58,7 @@ function Sautee() {
                             </div>
                         </button>
                         <div className="navbarTitleContainer">
-                            <h1 className='mt-4 navbarTitle'>Culinary Mastery Courses</h1>
+                            <h1 className='mt-4 navbarTitle'><Link to="/" id="home" className="navbarTitleLink">Culinary Mastery Courses</Link></h1>
                         </div>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav ms-auto mt-2 mt-lg-0">

@@ -34,7 +34,7 @@ function Produce() {
             <div className={`border-end bg-white ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="sidebar-wrapper">
                 <div className="sidebar-heading border-bottom bg-light produceTitle">Produce<img className="produceImage" src={ProduceImage} alt="icon image of produce" /></div>
                 <div className="list-group list-group-flush">
-                    <Link to="/sidebar" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3">Course Home</Link>
+                    <Link to="/course-home" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3">Course Home</Link>
                     <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
                     <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3 produce produceLink">Produce</Link>
                     <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
@@ -56,7 +56,7 @@ function Produce() {
                             </div>
                         </button>
                         <div className="navbarTitleContainer">
-                            <h1 className='mt-4 navbarTitle'>Culinary Mastery Courses</h1>
+                            <h1 className='mt-4 navbarTitle'><Link to="/" id="home" className="navbarTitleLink">Culinary Mastery Courses</Link></h1>
                         </div>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav ms-auto mt-2 mt-lg-0">

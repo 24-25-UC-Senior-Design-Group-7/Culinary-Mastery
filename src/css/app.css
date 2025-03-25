@@ -61,7 +61,7 @@ button:focus-visible {
   color: black;
   text-align: center;
   font-size: 1.5rem;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.25s ease-in;
   border-radius: 1.5rem;
   margin-top: .5rem;
   margin-left: 1rem;
@@ -299,4 +299,9 @@ body.sb-sidenav-toggled #page-content-wrapper {
   margin: 0;
   margin-bottom: 1.2rem;
   color: black;
+}
+
+.navbarTitleLink {
+  color: inherit !important;
+  text-decoration: none !important;
 }
