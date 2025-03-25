@@ -6,6 +6,7 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  --sunset: rgba(239, 200, 139, 0.35);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -56,7 +57,7 @@ button:focus-visible {
 }
 
 #cooking, #produce, #sautee, #sear, #sidebar {
-  background-color: rgba(239, 200, 139, 0.35);
+  background-color: var(--sunset);
   color: black;
   text-align: center;
   font-size: 1.5rem;
@@ -187,7 +188,7 @@ button:focus-visible {
 #wrapper {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   overflow-x: hidden;
   transition: all 0.3s ease-out;
