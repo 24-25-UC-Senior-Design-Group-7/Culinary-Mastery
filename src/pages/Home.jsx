@@ -1,7 +1,64 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [intervalId, setIntervalId] = useState(null);
+
+  const slides = [
+    {
+      title: "The Culinary Mastery App",
+      description: "Master the art of cooking with high-quality tutorials and personalized learning paths",
+      image: null,
+    },
+    {
+      title: "About Culinary Mastery",
+      description: "The Culinary Mastery app is designed to teach foundational cooking skills, allowing users to confidently apply each learned skill to a variety of dishes. Our mission is to empower users to become proficient in the kitchen, regardless of their prior experience.",
+      image: "https://images.unsplash.com/photo-1514986888952-8cd320577b68?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+      title: "Features",
+      description: (
+        <ul>
+          <li>High-Quality Video Tutorials: Learn cooking techniques with step-by-step guidance.</li>
+          <li>Personalized Learning Paths: Tailor your learning experience based on your skill level.</li>
+          <li>Diverse & Accessible Content: Subtitles, closed captions, and multilingual support available.</li>
+          <li>Community Forums: Connect with other learners and share your culinary journey.</li>
+        </ul>
+      ),
+      image: "https://images.unsplash.com/photo-1518291344630-4857135fb581?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+  ];
+
+  const nextSlide = () => {
+    setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setActiveIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
+  };
+
+  const handleManualChange = (direction) => {
+    if (direction === "next") nextSlide();
+    if (direction === "prev") prevSlide();
+
+    clearInterval(intervalId);
+
+    const newIntervalId = setInterval(nextSlide, 8000);
+    setIntervalId(newIntervalId);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 8000);
+
+    setIntervalId(interval);
+
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div>
       {/* Navigation Bar */}
@@ -21,53 +78,44 @@ const Home = () => {
         </div>
       </nav>
 
-      {/* Hero Section with Slider */}
-      <div id="aboutFeaturesCarousel" className="carousel slide hero-section" data-bs-ride="carousel">
+      {/* Hero Section */}
+      <div
+        id="aboutFeaturesCarousel"
+        className="carousel slide hero-section"
+        data-bs-ride="carousel"
+      >
         <div className="hero-overlay"></div>
         <div className="carousel-inner">
-          <div className="carousel-item active">
-            <div className="container text-center">
-              <h1 className="display-3">The Culinary Mastery Application</h1>
-              <p className="lead">Master the art of cooking with high-quality tutorials and personalized learning paths</p>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <div className="container text-center">
-              <div className="row align-items-center">
-                <div className="col-md-6">
-                  <h2>About Culinary Mastery</h2>
-                  <p>The Culinary Mastery app is designed to teach foundational cooking skills...</p>
-                </div>
-                <div className="col-md-6">
-                  <img src="https://images.unsplash.com/photo-1514986888952-8cd320577b68?q=80&w=2076&auto=format&fit=crop" className="img-fluid rounded" alt="Cooking in action" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <div className="container text-center">
-              <div className="row align-items-center">
-                <div className="col-md-6">
-                  <h2>Features</h2>
-                  <ul>
-                    <li>High-Quality Video Tutorials</li>
-                    <li>Personalized Learning Paths</li>
-                    <li>Diverse & Accessible Content</li>
-                    <li>Community Forums</li>
-                  </ul>
-                </div>
-                <div className="col-md-6">
-                  <img src="https://images.unsplash.com/photo-1518291344630-4857135fb581?q=80&w=2069&auto=format&fit=crop" className="img-fluid rounded" alt="Features overview" />
+          {slides.map((slide, index) => (
+            <div
+              key={index}
+              className={`carousel-item ${activeIndex === index ? 'active' : ''} ${!slide.image ? 'no-image' : ''}`}
+            >
+              <div className="container">
+                <div className="row justify-content-center align-items-center">
+                  <div className={`col-md-${slide.image ? '6' : '12'} text-center`}>
+                    <h1 className="display-3 mb-4">{slide.title}</h1>
+                    <p className="lead">{slide.description}</p>
+                  </div>
+                  {slide.image && (
+                    <div className="col-md-6 d-flex justify-content-center align-items-center hero-image-container">
+                      <img
+                        src={slide.image}
+                        className="img-fluid hero-image"
+                        alt={slide.title}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
-        <button className="carousel-control-prev" type="button" data-bs-target="#aboutFeaturesCarousel" data-bs-slide="prev">
+        <button className="carousel-control-prev" type="button" onClick={() => handleManualChange("prev")}>
           <span className="carousel-control-prev-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Previous</span>
         </button>
-        <button className="carousel-control-next" type="button" data-bs-target="#aboutFeaturesCarousel" data-bs-slide="next">
+        <button className="carousel-control-next" type="button" onClick={() => handleManualChange("next")}>
           <span className="carousel-control-next-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Next</span>
         </button>
