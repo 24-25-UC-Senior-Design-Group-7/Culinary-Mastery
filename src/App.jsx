@@ -15,7 +15,8 @@ function App() {
         {/* Define Routes using the updated Routes and Route components from React Router v6 */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/sidebar" element={<Sidebar />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/course-home" element={<Sidebar />} />
           <Route path="/cooking" element={<Cooking />} />
           <Route path="/produce" element={<Produce />} />
           <Route path="/sautee" element={<Sautee />} />

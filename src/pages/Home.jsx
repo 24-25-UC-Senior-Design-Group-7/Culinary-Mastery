@@ -27,7 +27,7 @@ const Home = () => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <div className="container text-center">
-              <h1 className="display-3">The Culinary Mastery App</h1>
+              <h1 className="display-3">The Culinary Mastery Application</h1>
               <p className="lead">Master the art of cooking with high-quality tutorials and personalized learning paths</p>
             </div>
           </div>
@@ -82,7 +82,7 @@ const Home = () => {
               <img src="https://images.unsplash.com/photo-1556911220-dabc1f02913a?q=80&w=2070&auto=format&fit=crop" className="card-img-top" alt="Basic Knife Skills" />
               <div className="card-body">
                 <h5 className="card-title">Basic Knife Skills</h5>
-                <Link to="/sidebar" className="btn btn-primary">Start Learning</Link>
+                <Link to="/course-home" className="btn btn-primary">Start Learning</Link>
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@ const Home = () => {
               <img src="https://images.unsplash.com/photo-1504693390394-c24671c3e8bb?q=80&w=2070&auto=format&fit=crop" className="card-img-top" alt="Sauce Making" />
               <div className="card-body">
                 <h5 className="card-title">Sauce Making</h5>
-                <Link to="/sidebar" className="btn btn-primary">Start Learning</Link>
+                <Link to="/course-home" className="btn btn-primary">Start Learning</Link>
               </div>
             </div>
           </div>
@@ -100,7 +100,7 @@ const Home = () => {
               <img src="https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?w=500&auto=format&fit=crop&q=60" className="card-img-top" alt="Baking Basics" />
               <div className="card-body">
                 <h5 className="card-title">Baking Basics</h5>
-                <Link to="/sidebar" className="btn btn-primary">Start Learning</Link>
+                <Link to="/course-home" className="btn btn-primary">Start Learning</Link>
               </div>
             </div>
           </div>
