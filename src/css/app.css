@@ -170,7 +170,7 @@ button:focus-visible {
   width: 100%;
   height: 4px;
   background-color: #333;  /* Set the color for the lines */
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.2s ease, opacity 0.3s ease;
 }
 
 .hamburger.toggled .line-1 {
