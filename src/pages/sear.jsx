@@ -36,7 +36,7 @@ function Sear() {
         <div className="d-flex" id="wrapper">
             {/* Sidebar */}
             <div className="border-end bg-white" id="sidebar-wrapper">
-                <div className="sidebar-heading border-bottom bg-light searTitle">Sear<img className='searImage' src={SearImage} alt='icon depicting searing'/></div>
+                <div className="sidebar-heading border-bottom bg-light searTitle">Sear<img className='searImage' src={SearImage} alt='icon depicting searing' /></div>
                 <div className="list-group list-group-flush">
                     <Link to="/sidebar" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3">Course Home</Link>
                     <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
@@ -59,6 +59,9 @@ function Sear() {
                                 <div className="line line-3"></div>
                             </div>
                         </button>
+                        <div className="navbarTitleContainer">
+                            <h1 className='mt-4 navbarTitle'>Culinary Mastery Courses</h1>
+                        </div>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
                                 <li className="nav-item active"><a className="nav-link" href="/">Home</a></li>
@@ -79,7 +82,7 @@ function Sear() {
 
                 {/* Page content */}
                 <div className="container-fluid">
-                    <h1 className="mt-4">Culinary Mastery Courses</h1>
+                    <h1 className="mt-4"></h1>
                     <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
                     <p>
                         Make sure to keep all page content within the

@@ -249,3 +249,22 @@ body.sb-sidenav-toggled #page-content-wrapper {
   height: 4.3rem !important;
   width: 100%;
 }
+
+.navbarTitleContainer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: max-content;
+}
+
+.navbarTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  margin-bottom: 1.2rem;
+  color: black;
+}
