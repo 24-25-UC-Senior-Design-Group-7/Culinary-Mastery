@@ -353,6 +353,7 @@ button:focus-visible {
   }
 }
 
+/* Sidebar Css */
 #wrapper {
   display: flex;
   flex-direction: row;
@@ -517,5 +518,31 @@ body.sb-sidenav-toggled #page-content-wrapper {
   #contact .col-lg-5,
   #contact .col-lg-7 {
     width: 100%;
+  }
+}
+
+/* Home Navbar */
+.homeNavbarContainer {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  box-sizing: border-box;
+}
+
+.homeNavbarContainer .navbar-brand {
+  padding-left: 1rem; 
+}
+
+.homeNavbarContainer .navbar-nav {
+  padding-right: 2rem; 
+}
+
+.homeNavbarContainer .navbar-toggler {
+  margin-right: 1rem;
+}
+
+@media (max-width: 768px) {
+  .homeNavbarContainer {
+    padding-left: 1rem; 
+    padding-right: 1rem;
   }
 }
