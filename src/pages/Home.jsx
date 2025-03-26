@@ -157,23 +157,33 @@ const Home = () => {
 
       {/* Contact Section */}
       <section id="contact" className="container mt-5">
-        <h2>Contact Us</h2>
-        <form>
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input type="text" className="form-control" id="name" placeholder="Enter your name" />
+        <div className="row align-items-center">
+          <div className="col-md-7">
+            <h2 className="contact-title">Contact Us</h2>
+            <p>If you have any questions or need assistance, feel free to reach out to us.</p>
+            <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" className="form-control" id="name" placeholder="Enter your name" />
+              </div>
+              <div className="form-group">
+                <label for="email">Email</label>
+                <input type="email" className="form-control" id="email" placeholder="Enter your email" />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea className="form-control" id="message" rows="4" placeholder="Your message"></textarea>
+              </div>
+              <button type="submit" className="btn btn-primary">Send Message</button>
+            </form>
           </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input type="email" className="form-control" id="email" placeholder="Enter your email" />
+          <div className="col-md-5 d-flex justify-content-end">
+            <img src="https://images.unsplash.com/photo-1586985564259-6211deb4c122?q=80&w=2029&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              className="contact-img img-fluid" alt="Contact us" />
           </div>
-          <div className="form-group">
-            <label htmlFor="message">Message</label>
-            <textarea className="form-control" id="message" rows="4" placeholder="Your message"></textarea>
-          </div>
-          <button type="submit" className="btn btn-primary">Send Message</button>
-        </form>
+        </div>
       </section>
+
 
       {/* Login Modal */}
       <div className="modal fade" id="loginModal" tabIndex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">

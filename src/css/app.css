@@ -442,3 +442,80 @@ body.sb-sidenav-toggled #page-content-wrapper {
   color: inherit !important;
   text-decoration: none !important;
 }
+
+/* Contact Section */
+#contact {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+#contact h2 {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+#contact .col-md-7 {
+  padding-right: 50px;
+  flex: 2; 
+}
+
+#contact .contact-title {
+  font-size: 2.5rem !important;
+}
+
+#contact .row {
+  display: flex;
+  align-items: center;
+}
+
+#contact .col-lg-5 {
+  flex: 1;
+  padding: 1rem;
+}
+
+#contact .form-group {
+  margin-bottom: 1rem;
+}
+
+#contact .form-group input,
+#contact .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+#contact button {
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  width: auto;
+}
+
+#contact label {
+  padding-bottom: 5px;
+}
+
+#contact .col-md-5 {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#contact .contact-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  #contact .row {
+    flex-direction: column;
+  }
+
+  #contact .col-lg-5,
+  #contact .col-lg-7 {
+    width: 100%;
+  }
+}
