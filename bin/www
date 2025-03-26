@@ -4,9 +4,20 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('culinary-mastery:server');
-var http = require('http');
+import app from '../app.js';
+import debugModule from 'debug';
+import http from 'http';
+import { Server } from 'socket.io';
+const debug = debugModule('culinary-mastery:server');
+
+
+
+const server = http.createServer(app);
+const io = new Server(server);
+
+// Now that app is defined, attach io to app.locals so routes can access it
+app.locals.io = io;
+
 
 /**
  * Get port from environment and store in Express.
@@ -19,7 +30,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+
 
 /**
  * Listen on provided port, on all network interfaces.
