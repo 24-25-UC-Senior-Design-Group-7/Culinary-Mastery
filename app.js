@@ -10,11 +10,10 @@ import youtubeRouter from './routes/ytRouter.js';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 
-var indexRouter = require('./api/routes/index');
-var dbRouter = require('./api/routes/dbRoutes');
+import indexRouter from './api/routes/index.js';
+import dbRouter from './api/routes/dbRoutes.js';
 // Importing the ytvideo router
-const youtubeRouter = require('./api/routes/ytRouter');
-
+import youtubeRouter from './api/routes/ytRouter.js';
 dotenv.config();
 const app = express();
 
