@@ -1,6 +1,6 @@
 import express from 'express';
 import openapi from './openapi.js';
-import dbRoutesPromise from './dbRoutes.js';
+import dbRoutesPromise from './routes/dbRoutes.js';
 
 const port = process.env.PORT || 3000;
 

@@ -1,8 +1,8 @@
 // This file contains the routes for the database operations. Handles all routes for DB operations.
 
 import express from 'express';
-import { createDatabaseConnection } from '../db/config.js';
-import { passwordConfig as SQLAuthentication } from '../db/config.js';
+import { createDatabaseConnection } from '../../db/config.js';
+import { passwordConfig as SQLAuthentication } from '../../db/config.js';
 
 const router = express.Router();
 router.use(express.json());

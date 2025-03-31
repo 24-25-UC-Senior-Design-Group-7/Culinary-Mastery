@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const express = require('express');
 const router = express.Router();
-const YouTubeVideo = require('../model/YouTubeVideo');
+const YouTubeVideo = require('../../model/YouTubeVideo');
 // Enpoint will be: /video/:<pass video id>
 router.get('/video/:videoId', async (req, res) => {
   const { videoId } = req.params; // getting the video add in the req parameter
