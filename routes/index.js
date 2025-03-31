@@ -1,18 +1,20 @@
-// https://learn.microsoft.com/en-us/azure/azure-sql/database/azure-sql-javascript-mssql-quickstart
-
 import express from 'express';
-
-// Import App routes
-import person from './users.js';
 import openapi from './openapi.js';
+import dbRoutesPromise from './dbRoutes.js';
 
 const port = process.env.PORT || 3000;
 
 const app = express();
 
+const setupRoutes = async () => {
+  const dbRoutes = await dbRoutesPromise;
+  app.use('/api', dbRoutes);
+};
+
 // Connect App routes
 app.use('/api-docs', openapi);
-app.use('/users', user);
+setupRoutes();
+
 app.use('*', (_, res) => {
   res.redirect('/api-docs');
 });
