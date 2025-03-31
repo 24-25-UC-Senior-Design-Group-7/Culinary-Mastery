@@ -6,8 +6,8 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
-const setupRoutes = async () => {
-  const dbRoutes = await dbRoutesPromise;
+const setupRoutes = () => {
+  const dbRoutes = dbRoutesPromise;
   app.use('/api', dbRoutes);
 };
 
