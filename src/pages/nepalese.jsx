@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import sidebarImage from '../assets/house-icon.png';
+import NepaleseImage from '../assets/nepalese-flag.png'
 
 
-function Sidebar() {
+function Nepalese() {
   // State to track whether the sidebar is toggled
   const [isToggled, setIsToggled] = useState(false);
 
@@ -36,15 +36,15 @@ function Sidebar() {
       {/* Sidebar */}
       <div className={`border-end bg-white ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="sidebar-wrapper">
         <div className="sidebarTitleContainer">
-          <div className="sidebar-heading border-bottom bg-light sidebarTitle">Course Home<img className="sidebarImage" src={sidebarImage} alt="icon image of a house" /></div>
+          <div className="sidebar-heading border-bottom bg-light nepaleseTitle">Nepalese<img className="nepaleseImage" src={NepaleseImage} alt="picture of the Nepalese Flag" /></div>
         </div>
         <div className="list-group list-group-flush">
-          <Link to="/course-home" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3 sidebar sidebarLink">Course Home</Link>
+          <Link to="/course-home" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3">Course Home</Link>
           <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
           <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3">Produce</Link>
           <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
           <Link to="/sear" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">Sear</Link>
-          <Link to="/nepalese" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">Nepalese</Link>
+          <Link to="/nepalese" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3 nepalese nepaleseLink">Nepalese</Link>
         </div>
       </div>
 
@@ -98,4 +98,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default Nepalese;

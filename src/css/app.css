@@ -57,7 +57,7 @@ button:focus-visible {
 }
 
 /* Course Pages Section */
-#cooking, #produce, #sautee, #sear, #sidebar {
+#cooking, #produce, #sautee, #sear, #sidebar, #nepalese {
   background-color: var(--sunset);
   color: black;
   text-align: center;
@@ -72,7 +72,7 @@ button:focus-visible {
   text-overflow: ellipsis;
 }
 
-#cooking:hover, #produce:hover, #sautee:hover, #sear:hover, #sidebar:hover {
+#cooking:hover, #produce:hover, #sautee:hover, #sear:hover, #sidebar:hover, #nepalese:hover {
   background-color: rgba(239, 200, 139, 0.8);
   text-decoration: underline;
   font-weight: bold;
@@ -80,12 +80,12 @@ button:focus-visible {
   color: black; 
 }
 
-.produceLink, .cookingLink, .sauteeLink, .searLink, .sidebarLink {
+.produceLink, .cookingLink, .sauteeLink, .searLink, .sidebarLink, .nepaleseLink {
   font-weight: bold;
   background-color: rgba(239, 200, 139, 0.8) !important;
 }
 
-.produceTitle, .cookingTitle, .searTitle, .sauteeTitle {
+.produceTitle, .cookingTitle, .searTitle, .sauteeTitle, .nepaleseTitle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,11 +118,12 @@ button:focus-visible {
   color: black;
 }
 
-.produceImage, .searImage, .sauteeImage, .cookingImage {
+.produceImage, .searImage, .sauteeImage, .cookingImage, .nepaleseImage {
   width: 2.5rem;
   height: 2.5rem;
   margin-left: .75rem;
   flex-shrink: 0;
+  font-size: .45rem;
 }
 
 .sidebarImage {

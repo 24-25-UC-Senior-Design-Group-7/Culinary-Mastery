@@ -39,7 +39,7 @@ function Produce() {
                     <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3 produce produceLink">Produce</Link>
                     <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
                     <Link to="/sear" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">Sear</Link>
-                    <a id="broiling" className="list-group-item list-group-item-action list-group-item-light p-3" href="#Broiling!">Broiling</a>
+                    <Link to="/nepalese" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">Nepalese</Link>
                 </div>
             </div>
 
