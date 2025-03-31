@@ -1,21 +1,26 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-require('dotenv').config();
+// app.js
+import createError from 'http-errors';
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import indexRouter from './routes/index.js';
+import dbRouter from './routes/dbRoutes.js';
+import youtubeRouter from './routes/ytRouter.js';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
 
 var indexRouter = require('./api/routes/index');
 var dbRouter = require('./api/routes/dbRoutes');
 // Importing the ytvideo router
 const youtubeRouter = require('./api/routes/ytRouter');
 
+dotenv.config();
+const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-
-var app = express();
-// all routes in the router will be prefixed with '/api/youtube'
-app.use('/api/youtube', youtubeRouter);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -26,16 +31,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Use your routes
 app.use('/', indexRouter);
-app.use('/users', dbRouter);
+app.use('/api/db', dbRouter);
+app.use('/api/youtube', youtubeRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -45,4 +52,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+export default app;
