@@ -89,25 +89,18 @@ const Home = () => {
       </nav>
 
       {/* Hero Section */}
-      <div id="aboutFeaturesCarousel" className="carousel slide hero-section" data-bs-ride="carousel">
+      <div id="aboutFeaturesCarousel" className="carousel slide hero-section">
         <div className="hero-overlay"></div>
         <div className="carousel-inner">
           {slides.map((slide, index) => (
             <div
               key={index}
-              className={`carousel-item ${activeIndex === index
-                ? 'active'
-                : direction === 'next' && activeIndex === (index - 1 + slides.length) % slides.length
-                  ? 'next'
-                  : direction === 'prev' && activeIndex === (index + 1) % slides.length
-                    ? 'prev'
-                    : ''
-                } ${!slide.image ? 'no-image' : ''}`}
+              className={`carousel-item ${activeIndex === index ? 'active' : ''} ${!slide.image ? 'no-image' : ''} ${slide.id === 'about' ? 'about' : ''} ${slide.id === 'features' ? 'features' : ''}`}
             >
               <div className="container d-flex align-items-center justify-content-center">
                 {/* Left Side: Title & Description */}
                 <div className="text-content text-center">
-                  <h1 className={`display-3 mb-4 ${slide.id === 'about' ? 'about-title' : 'feature-title'}`}>
+                  <h1 className={`display-3 mb-4 ${slide.id === 'about' ? 'about-title' : ''} ${slide.id === 'features' ? 'feature-title' : ''}`}>
                     {slide.title}
                   </h1>
                   {typeof slide.description === 'string' ? (
