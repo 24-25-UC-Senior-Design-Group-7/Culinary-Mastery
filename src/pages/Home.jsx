@@ -78,7 +78,6 @@ const Home = () => {
     return () => clearInterval(intervalRef.current);
   }, []);
 
-
   return (
     <div>
       {/* Navigation Bar */}
@@ -178,13 +177,27 @@ const Home = () => {
         </div>
 
         {/* Controls */}
-        <button className="carousel-control-prev" type="button" onClick={() => handleManualChange("prev")}>
+        <button
+          className="carousel-control-prev"
+          type="button"
+          onClick={() => {
+            handleManualChange("prev");
+            document.activeElement.blur();
+          }}
+          aria-label="Previous"
+        >
           <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Previous</span>
         </button>
-        <button className="carousel-control-next" type="button" onClick={() => handleManualChange("next")}>
+        <button
+          className="carousel-control-next"
+          type="button"
+          onClick={() => {
+            handleManualChange("next");
+            document.activeElement.blur();
+          }}
+          aria-label="Next"
+        >
           <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Next</span>
         </button>
       </div>
 
@@ -238,7 +251,7 @@ const Home = () => {
                   className="form-control"
                   id="name"
                   placeholder="Enter your name"
-                  autoComplete="name"  // Enable autocomplete for name
+                  autoComplete="name"
                 />
               </div>
               <div className="form-group">
@@ -248,7 +261,7 @@ const Home = () => {
                   className="form-control"
                   id="email"
                   placeholder="Enter your email"
-                  autoComplete="email"  // Enable autocomplete for email
+                  autoComplete="email"
                 />
               </div>
               <div className="form-group">
@@ -258,7 +271,7 @@ const Home = () => {
                   id="message"
                   rows="4"
                   placeholder="Your message"
-                  autoComplete="off"  // Disable autocomplete for the message box
+                  autoComplete="off"
                 ></textarea>
               </div>
               <button type="submit" className="btn btn-primary">Send Message</button>

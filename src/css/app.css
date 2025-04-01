@@ -316,11 +316,9 @@ button:focus-visible {
 }
 
 .carousel-inner {
-  height: 100%;
+  position: relative;
 }
-
 /* #region This is the arrow region */
-
 /* Custom Thicker Left Arrow */
 .carousel-control-prev-icon {
   background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' fill='white'%3E%3Cpath d='M5.5 0l-4 4 4 4 1-1-3-3 3-3z'/%3E%3C/svg%3E");
@@ -336,13 +334,40 @@ button:focus-visible {
   width: 6rem;
   height: 6rem;
   background-size: contain;
+  transition: transform 0.3s ease-in-out;
+  border-radius: 50%;
 }
 
-.carousel-control-prev:not(:focus):hover .carousel-control-prev-icon,
-.carousel-control-next:not(:focus):hover .carousel-control-next-icon {
-  filter: brightness(1);
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  font-size: 30px;
+  border: none;
+  padding: 10px;
+  background: none;
+  transition: all 0.3s ease;
 }
 
+.carousel-control-prev {
+  left: 10px; 
+}
+
+.carousel-control-next {
+  right: 10px;
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+  transform: scale(1.1);
+}
+
+.carousel-control-prev:focus,
+.carousel-control-next:focus {
+  outline: none;
+}
 /* #endregion */
 
 .carousel-item {
@@ -457,7 +482,7 @@ button:focus-visible {
 }
 
 .carousel-item.features h1 {
-  font-size: 5rem; /* Adjust the font size as needed */
+  font-size: 5rem; 
 }
 
 .hero-overlay {
