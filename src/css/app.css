@@ -56,14 +56,42 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-#courseBtn {
-  color: black !important;
-  background-color: var(--sunset) !important;
+/* Course Section (Home Page) */
+.courseBtn {
+  color: black;
+  background-color: var(--sunset);
+  border: 2px solid rgba(110, 75, 58, 0.5);
   text-align: center;
-  padding-left: 100px;
+  padding: 10px 30px;
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
 }
 
-/* Course Pages Section */
+.courseBtn:hover {
+  background-color: rgba(239, 200, 139, 0.8); 
+  text-decoration: underline;
+  font-weight: bold;
+  transform: scale(1.1);
+  color: black; 
+  border-color: rgba(255, 179, 0, 0.7);
+}
+
+.card {
+  border: 1.5px solid rgba(110, 75, 58, 0.5);
+  transition: border-color 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(255, 179, 0, 0.7);
+}
+
+.card-body {
+  text-align: center;
+}
+
+/* Course Pages Section (Sidebar) */
 #cooking, #produce, #sautee, #sear, #sidebar, #international {
   background-color: var(--sunset);
   color: black;
@@ -204,7 +232,7 @@ button:focus-visible {
 .line {
   width: 100%;
   height: 4px;
-  background-color: #333;  /* Set the color for the lines */
+  background-color: #333;
   transition: transform 0.2s ease, opacity 0.3s ease;
 }
 

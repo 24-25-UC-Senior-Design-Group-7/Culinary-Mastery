@@ -127,28 +127,31 @@ const Home = () => {
         <div className="row">
           <div className="col-md-4">
             <div className="card mb-4">
-              <img src="https://images.unsplash.com/photo-1556911220-dabc1f02913a?q=80&w=2070&auto=format&fit=crop" className="card-img-top" alt="Basic Knife Skills" />
+              <img src="https://images.unsplash.com/photo-1556911220-dabc1f02913a?q=80&w=2070&auto=format&fit=crop" className="card-img-top" alt="Produce Basics" />
               <div className="card-body">
-                <h5 className="card-title">Basic Knife Skills</h5>
-                <Link to="/course-home" className="btn btn-primary">Start Learning</Link>
+                <h5 className="card-title">Produce Basics</h5>
+                <p class="card-text">Discover the essentials of selecting, preparing, and storing fresh produce.</p>
+                <Link to="/course-home" className="btn btn-primary courseBtn">Start Learning</Link>
               </div>
             </div>
           </div>
           <div className="col-md-4">
             <div className="card mb-4">
-              <img src="https://images.unsplash.com/photo-1504693390394-c24671c3e8bb?q=80&w=2070&auto=format&fit=crop" className="card-img-top" alt="Sauce Making" />
+              <img src="https://cdn.shopify.com/s/files/1/0619/7487/2253/files/Anova-Steak-Guide-Sous-Vide-Photos10-copy-flip-sear-1024x682.jpg" className="card-img-top" alt="Searing Basics" />
               <div className="card-body">
-                <h5 className="card-title">Sauce Making</h5>
-                <Link to="/course-home" className="btn btn-primary">Start Learning</Link>
+                <h5 className="card-title">Searing Basics</h5>
+                <p class="card-text">Master the technique of searing to create rich and flavorful crusts on meats or vegetables.</p>
+                <Link to="/course-home" className="btn btn-primary courseBtn">Start Learning</Link>
               </div>
             </div>
           </div>
           <div className="col-md-4">
             <div className="card mb-4">
-              <img src="https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?w=500&auto=format&fit=crop&q=60" className="card-img-top" alt="Baking Basics" />
+              <img src="https://www.bhg.com/thmb/w98FgPUYDih5VuKXn11RDJoL3g0=/4000x0/filters:no_upscale():strip_icc()/BHG-how-to-saute-onions-03-5665975_BdVQC-b5KnZBxtNuR5SHEC-ce9832e411d64dfb99488ad3fe408d2c.jpg" className="card-img-top" alt="Sautee Basics" />
               <div className="card-body">
-                <h5 className="card-title">Baking Basics</h5>
-                <Link to="/course-home" className="btn btn-primary">Start Learning</Link>
+                <h5 className="card-title">Sautee Basics</h5>
+                <p class="card-text">Learn the technique of sautéing to cook ingredients quickly, meanwhile preserving flavor and texture.</p>
+                <Link to="/course-home" className="btn btn-primary courseBtn">Start Learning</Link>
               </div>
             </div>
           </div>
