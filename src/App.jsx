@@ -7,7 +7,7 @@ import Cooking from './pages/cooking.jsx';
 import Produce from './pages/produce.jsx';
 import Sautee from './pages/sautee.jsx';
 import Sear from './pages/sear.jsx';
-import Nepalese from './pages/nepalese.jsx'
+import International from './pages/international.jsx'
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
           <Route path="/produce" element={<Produce />} />
           <Route path="/sautee" element={<Sautee />} />
           <Route path="/sear" element={<Sear />} />
-          <Route path="/nepalese" element={<Nepalese />} />
+          <Route path="/international" element={<International />} />
         </Routes>
       </div>
     </Router>

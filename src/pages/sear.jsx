@@ -43,7 +43,7 @@ function Sear() {
                     <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3">Produce</Link>
                     <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
                     <Link to="/sear" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3 sear searLink">Sear</Link>
-                    <Link to="/nepalese" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">Nepalese</Link>
+                    <Link to="/international" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">International</Link>
                 </div>
             </div>
 
