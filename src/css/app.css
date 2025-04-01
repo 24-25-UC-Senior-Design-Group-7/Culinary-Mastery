@@ -771,6 +771,16 @@ body.sb-sidenav-toggled #page-content-wrapper {
 
 /* #region This is the Home Footer Section */
 .homeFooter {
-  max-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  min-height: 60px;
+  max-height: 100px;
+}
+
+.homeFooter p {
+  margin: 0;
+  text-align: center;
 }
 /* #endregion */

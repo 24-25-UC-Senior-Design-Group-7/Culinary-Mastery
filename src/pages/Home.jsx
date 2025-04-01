@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -47,9 +48,18 @@ const Home = () => {
     setActiveIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
   };
 
-  const handleManualChange = (direction) => {
-    if (direction === "next") nextSlide();
-    if (direction === "prev") prevSlide();
+  const handleManualChange = (direction, targetSlideId = null) => {
+    if (targetSlideId) {
+      const targetIndex = slides.findIndex(slide => slide.id === targetSlideId);
+      setActiveIndex(targetIndex);
+      setDirection('next');
+    } else {
+      if (direction === "next") {
+        nextSlide();
+      } else if (direction === "prev") {
+        prevSlide();
+      }
+    }
 
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -79,10 +89,52 @@ const Home = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item"><Link className="nav-link" to="#about">About</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="#features">Features</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="#courses">Courses</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="#contact">Contact</Link></li>
+            <li className="nav-item">
+              <ScrollLink
+                className="nav-link"
+                to="about"
+                smooth={true}
+                duration={250}
+                offset={-70}
+                onClick={() => handleManualChange('next', 'about')}
+              >
+                About
+              </ScrollLink>
+            </li>
+            <li className="nav-item">
+              <ScrollLink
+                className="nav-link"
+                to="features"
+                smooth={true}
+                duration={250}
+                offset={-70}
+                onClick={() => handleManualChange('next', 'features')}
+              >
+                Features
+              </ScrollLink>
+            </li>
+            <li className="nav-item">
+              <ScrollLink
+                className="nav-link"
+                to="courses"
+                smooth={true}
+                duration={50}
+                offset={-100}
+              >
+                Courses
+              </ScrollLink>
+            </li>
+            <li className="nav-item">
+              <ScrollLink
+                className="nav-link"
+                to="contact"
+                smooth={true}
+                duration={50}
+                offset={-70}
+              >
+                Contact Us
+              </ScrollLink>
+            </li>
             <li className="nav-item"><Link className="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">Login</Link></li>
           </ul>
         </div>
