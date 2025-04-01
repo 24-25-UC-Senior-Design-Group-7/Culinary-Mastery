@@ -303,7 +303,6 @@ button:focus-visible {
 /* #endregion */
 
 /* #region This is the Hero Section */
-/* Hero Section */
 .hero-section {
   position: relative;
   background-image: url('https://images.unsplash.com/photo-1514986888952-8cd320577b68?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
@@ -804,6 +803,13 @@ body.sb-sidenav-toggled #page-content-wrapper {
   transform: scale(1.05);
   color: black;
   border-color: rgba(255, 179, 0, 0.7);
+}
+
+#contact .form-group input:focus,
+#contact .form-group textarea:focus {
+  border-color: rgba(255, 179, 0, 0.7);
+  box-shadow: none !important; 
+  outline: none !important;
 }
 
 #contact label {
