@@ -73,9 +73,9 @@ button:focus-visible {
   background-color: white;
 }
 
-.courseBtn {
+#courses .courseBtn {
   color: black;
-  background-color: var(--sunset);
+  background-color: var(--sunset) !important;
   border: 1.5px solid rgba(110, 75, 58, 0.5);
   text-align: center;
   padding: 0;
@@ -89,8 +89,8 @@ button:focus-visible {
   transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
 }
 
-.courseBtn:hover {
-  background-color: rgba(239, 200, 139, 0.8);
+#courses .courseBtn:hover {
+  background-color: rgba(239, 200, 139, 0.8) !important;
   text-decoration: underline;
   font-weight: bold;
   transform: scale(1.05);
