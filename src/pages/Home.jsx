@@ -1,40 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [intervalId, setIntervalId] = useState(null);
+  const [direction, setDirection] = useState('next');
 
   const slides = [
     {
+      id: "title",
       title: "The Culinary Mastery App",
-      description: "Master the art of cooking with high-quality tutorials and personalized learning paths",
+      description: "Master the art of cooking with high-quality tutorials and personalized learning paths.",
       image: null,
     },
     {
+      id: "about",
       title: "About Culinary Mastery",
       description: "The Culinary Mastery app is designed to teach foundational cooking skills, allowing users to confidently apply each learned skill to a variety of dishes. Our mission is to empower users to become proficient in the kitchen, regardless of their prior experience.",
       image: "https://images.unsplash.com/photo-1514986888952-8cd320577b68?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
+      id: "features",
       title: "Features",
       description: (
-        <ul>
-          <li>High-Quality Video Tutorials: Learn cooking techniques with step-by-step guidance.</li>
-          <li>Personalized Learning Paths: Tailor your learning experience based on your skill level.</li>
-          <li>Diverse & Accessible Content: Subtitles, closed captions, and multilingual support available.</li>
-          <li>Community Forums: Connect with other learners and share your culinary journey.</li>
-        </ul>
+        <>
+          <ul>
+            <li>High-Quality Video Tutorials: Learn cooking techniques with step-by-step guidance.</li>
+            <li>Personalized Learning Paths: Tailor your learning experience based on your skill level.</li>
+            <li>Diverse & Accessible Content: Subtitles, closed captions, and multilingual support available.</li>
+            <li>Community Forums: Connect with other learners and share your culinary journey.</li>
+          </ul>
+        </>
       ),
       image: "https://images.unsplash.com/photo-1518291344630-4857135fb581?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
   ];
 
+  const intervalRef = useRef(null);
+
   const nextSlide = () => {
+    setDirection('next');
     setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
   };
 
   const prevSlide = () => {
+    setDirection('prev');
     setActiveIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
   };
 
@@ -42,22 +51,23 @@ const Home = () => {
     if (direction === "next") nextSlide();
     if (direction === "prev") prevSlide();
 
-    clearInterval(intervalId);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
 
-    const newIntervalId = setInterval(nextSlide, 8000);
-    setIntervalId(newIntervalId);
+    intervalRef.current = setInterval(() => {
+      nextSlide();
+    }, 8000);
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       nextSlide();
     }, 8000);
 
-    setIntervalId(interval);
-
-    return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => clearInterval(intervalRef.current);
   }, []);
+
 
   return (
     <div>
@@ -79,38 +89,50 @@ const Home = () => {
       </nav>
 
       {/* Hero Section */}
-      <div
-        id="aboutFeaturesCarousel"
-        className="carousel slide hero-section"
-        data-bs-ride="carousel"
-      >
+      <div id="aboutFeaturesCarousel" className="carousel slide hero-section" data-bs-ride="carousel">
         <div className="hero-overlay"></div>
         <div className="carousel-inner">
           {slides.map((slide, index) => (
             <div
               key={index}
-              className={`carousel-item ${activeIndex === index ? 'active' : ''} ${!slide.image ? 'no-image' : ''}`}
+              className={`carousel-item ${activeIndex === index
+                ? 'active'
+                : direction === 'next' && activeIndex === (index - 1 + slides.length) % slides.length
+                  ? 'next'
+                  : direction === 'prev' && activeIndex === (index + 1) % slides.length
+                    ? 'prev'
+                    : ''
+                } ${!slide.image ? 'no-image' : ''}`}
             >
-              <div className="container">
-                <div className="row justify-content-center align-items-center">
-                  <div className={`col-md-${slide.image ? '6' : '12'} text-center`}>
-                    <h1 className="display-3 mb-4">{slide.title}</h1>
+              <div className="container d-flex align-items-center justify-content-center">
+                {/* Left Side: Title & Description */}
+                <div className="text-content text-center">
+                  <h1 className={`display-3 mb-4 ${slide.id === 'about' ? 'about-title' : 'feature-title'}`}>
+                    {slide.title}
+                  </h1>
+                  {typeof slide.description === 'string' ? (
                     <p className="lead">{slide.description}</p>
-                  </div>
-                  {slide.image && (
-                    <div className="col-md-6 d-flex justify-content-center align-items-center hero-image-container">
-                      <img
-                        src={slide.image}
-                        className="img-fluid hero-image"
-                        alt={slide.title}
-                      />
-                    </div>
+                  ) : (
+                    slide.description
                   )}
                 </div>
+
+                {/* Right Side: Image */}
+                {slide.image && (
+                  <div className="hero-image-container">
+                    <img
+                      src={slide.image}
+                      className="img-fluid rounded hero-image"
+                      alt={slide.title}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           ))}
         </div>
+
+        {/* Controls */}
         <button className="carousel-control-prev" type="button" onClick={() => handleManualChange("prev")}>
           <span className="carousel-control-prev-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Previous</span>
@@ -125,36 +147,35 @@ const Home = () => {
       <section id="courses" className="container mt-5">
         <h2>Courses</h2>
         <div className="row">
-          <div className="col-md-4">
-            <div className="card mb-4">
-              <img src="https://images.unsplash.com/photo-1556911220-dabc1f02913a?q=80&w=2070&auto=format&fit=crop" className="card-img-top" alt="Produce Basics" />
-              <div className="card-body">
-                <h5 className="card-title">Produce Basics</h5>
-                <p class="card-text">Discover the essentials of selecting, preparing, and storing fresh produce.</p>
-                <Link to="/course-home" className="btn btn-primary courseBtn">Start Learning</Link>
+          {/* Course Cards */}
+          {[
+            {
+              title: 'Produce Basics',
+              description: 'Discover the essentials of selecting, preparing, and storing fresh produce.',
+              image: 'https://images.unsplash.com/photo-1556911220-dabc1f02913a?q=80&w=2070&auto=format&fit=crop',
+            },
+            {
+              title: 'Searing Basics',
+              description: 'Master the technique of searing to create rich and flavorful crusts on meats or vegetables.',
+              image: 'https://cdn.shopify.com/s/files/1/0619/7487/2253/files/Anova-Steak-Guide-Sous-Vide-Photos10-copy-flip-sear-1024x682.jpg',
+            },
+            {
+              title: 'Sautee Basics',
+              description: 'Learn the technique of sautéing to cook ingredients quickly, meanwhile preserving flavor and texture.',
+              image: 'https://www.bhg.com/thmb/w98FgPUYDih5VuKXn11RDJoL3g0=/4000x0/filters:no_upscale():strip_icc()/BHG-how-to-saute-onions-03-5665975_BdVQC-b5KnZBxtNuR5SHEC-ce9832e411d64dfb99488ad3fe408d2c.jpg',
+            }
+          ].map((course, index) => (
+            <div className="col-md-4" key={index}>
+              <div className="card mb-4">
+                <img src={course.image} className="card-img-top" alt={course.title} />
+                <div className="card-body">
+                  <h5 className="card-title">{course.title}</h5>
+                  <p className="card-text">{course.description}</p>
+                  <Link to="/course-home" className="btn btn-primary courseBtn">Start Learning</Link>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card mb-4">
-              <img src="https://cdn.shopify.com/s/files/1/0619/7487/2253/files/Anova-Steak-Guide-Sous-Vide-Photos10-copy-flip-sear-1024x682.jpg" className="card-img-top" alt="Searing Basics" />
-              <div className="card-body">
-                <h5 className="card-title">Searing Basics</h5>
-                <p class="card-text">Master the technique of searing to create rich and flavorful crusts on meats or vegetables.</p>
-                <Link to="/course-home" className="btn btn-primary courseBtn">Start Learning</Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card mb-4">
-              <img src="https://www.bhg.com/thmb/w98FgPUYDih5VuKXn11RDJoL3g0=/4000x0/filters:no_upscale():strip_icc()/BHG-how-to-saute-onions-03-5665975_BdVQC-b5KnZBxtNuR5SHEC-ce9832e411d64dfb99488ad3fe408d2c.jpg" className="card-img-top" alt="Sautee Basics" />
-              <div className="card-body">
-                <h5 className="card-title">Sautee Basics</h5>
-                <p class="card-text">Learn the technique of sautéing to cook ingredients quickly, meanwhile preserving flavor and texture.</p>
-                <Link to="/course-home" className="btn btn-primary courseBtn">Start Learning</Link>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -162,56 +183,51 @@ const Home = () => {
       <section id="contact" className="container mt-5">
         <div className="row align-items-center">
           <div className="col-md-7">
-            <h2 className="contact-title">Contact Us</h2>
+            <h2>Contact Us</h2>
             <p>If you have any questions or need assistance, feel free to reach out to us.</p>
             <form>
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" className="form-control" id="name" placeholder="Enter your name" />
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  placeholder="Enter your name"
+                  autoComplete="name"  // Enable autocomplete for name
+                />
               </div>
               <div className="form-group">
-                <label for="email">Email</label>
-                <input type="email" className="form-control" id="email" placeholder="Enter your email" />
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  placeholder="Enter your email"
+                  autoComplete="email"  // Enable autocomplete for email
+                />
               </div>
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea className="form-control" id="message" rows="4" placeholder="Your message"></textarea>
+              <div className="form-group">
+                <label htmlFor="message">Message</label>
+                <textarea
+                  className="form-control"
+                  id="message"
+                  rows="4"
+                  placeholder="Your message"
+                  autoComplete="off"  // Disable autocomplete for the message box
+                ></textarea>
               </div>
               <button type="submit" className="btn btn-primary">Send Message</button>
             </form>
           </div>
           <div className="col-md-5 d-flex justify-content-end">
-            <img src="https://images.unsplash.com/photo-1586985564259-6211deb4c122?q=80&w=2029&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              className="contact-img img-fluid" alt="Contact us" />
+            <img
+              src="https://images.unsplash.com/photo-1586985564259-6211deb4c122?q=80&w=2029&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              className="contact-img img-fluid"
+              alt="Contact us"
+            />
           </div>
         </div>
       </section>
-
-
-      {/* Login Modal */}
-      <div className="modal fade" id="loginModal" tabIndex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="loginModalLabel">Login</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body">
-              <form>
-                <div className="form-group">
-                  <label htmlFor="username">Username</label>
-                  <input type="text" className="form-control" id="username" placeholder="Enter your username" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="password">Password</label>
-                  <input type="password" className="form-control" id="password" placeholder="Enter your password" />
-                </div>
-                <button type="submit" className="btn btn-primary">Login</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Footer */}
       <footer className="footer bg-dark text-white text-center p-3 homeFooter">
@@ -219,6 +235,6 @@ const Home = () => {
       </footer>
     </div>
   );
-}
+};
 
 export default Home;
