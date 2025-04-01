@@ -44,7 +44,7 @@ function Sidebar() {
           <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3">Produce</Link>
           <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
           <Link to="/sear" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">Sear</Link>
-          <Link to="/nepalese" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">Nepalese</Link>
+          <Link to="/international" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">International</Link>
         </div>
       </div>
 
@@ -61,7 +61,7 @@ function Sidebar() {
               </div>
             </button>
             <div className="navbarTitleContainer">
-              <h1 className='mt-4 navbarTitle'><Link to="/" id="home" className="navbarTitleLink">Culinary Mastery Courses</Link></h1>
+              <h1 className='mt-4 navbarTitle'><Link to="/" id="home" className="navbarTitleLink">Video &#10140; Article &#10140; Quiz &#10140; Profile &#10140; Status </Link></h1>
             </div>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
@@ -80,6 +80,40 @@ function Sidebar() {
             </div>
           </div>
         </nav>
+
+        {/* Courses Section */}
+              <section id="courses" className="container mt-5">
+                <h2>Courses</h2>
+                <div className="row">
+                  <div className="col-md-4">
+                    <div className="card mb-4">
+                      <img src="https://images.unsplash.com/photo-1556911220-dabc1f02913a?q=80&w=2070&auto=format&fit=crop" className="card-img-top" alt="Produce Basics" />
+                      <div className="card-body">
+                        <h5 className="card-title">Produce Basics</h5>
+                        <Link to="/course-home" className="btn btn-primary">Start Learning</Link>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="card mb-4">
+                      <img src="https://images.unsplash.com/photo-1504693390394-c24671c3e8bb?q=80&w=2070&auto=format&fit=crop" className="card-img-top" alt="Searing Basics" />
+                      <div className="card-body">
+                        <h5 className="card-title">Searing Basics</h5>
+                        <Link to="/course-home" className="btn btn-primary">Start Learning</Link>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="card mb-4">
+                      <img src="https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?w=500&auto=format&fit=crop&q=60" className="card-img-top" alt="Sautee Basics" />
+                      <div className="card-body">
+                        <h5 className="card-title">Sautee Basics</h5>
+                        <Link to="/course-home" className="btn btn-primary">Start Learning</Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
 
         {/* Page content */}
         <div className="container-fluid">
