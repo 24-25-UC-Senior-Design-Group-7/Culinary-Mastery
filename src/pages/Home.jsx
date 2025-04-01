@@ -214,7 +214,7 @@ const Home = () => {
       </div>
 
       {/* Footer */}
-      <footer className="footer bg-dark text-white text-center p-3">
+      <footer className="footer bg-dark text-white text-center p-3 homeFooter">
         <p>&copy; 2024-2025 Culinary Mastery Team. All rights reserved.</p>
       </footer>
     </div>

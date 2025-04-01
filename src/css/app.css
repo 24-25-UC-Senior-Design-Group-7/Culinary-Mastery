@@ -727,3 +727,8 @@ body.sb-sidenav-toggled #page-content-wrapper {
     padding-right: 1rem;
   }
 }
+
+/* Home Footer Section */
+.homeFooter {
+  max-height: 40px;
+}
