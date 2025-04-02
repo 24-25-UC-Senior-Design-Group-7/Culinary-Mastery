@@ -787,41 +787,45 @@ body.sb-sidenav-toggled #page-content-wrapper {
 }
 
 .homeNavbarContainer .navbar-toggler:hover {
-  outline: none; /* No outline when hovering */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Apply a shadow on hover as well */
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
 }
 
 .homeNavbarContainer .navbar-toggler:focus {
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Smaller, subtle shadow */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
 }
 
 .homeNavbarContainer .navbar-toggler {
   margin-right: 1rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .homeNavbarContainer {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
-  .navbar-collapse {
+  .homeNavbarContainer .navbar-collapse {
     text-align: right;
   }
 
-  .navbar-nav {
+  .homeNavbarContainer .navbar-nav {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
   }
 }
 
-@media (min-width: 769px) {
-  .navbar-nav {
+@media (min-width: 1025px) {
+  .homeNavbarContainer .navbar-nav {
     display: flex;
     justify-content: flex-end; 
     align-items: center;
+  }
+
+  .homeNavbarContainer .navbar-collapse {
+    justify-content: flex-end;
   }
 }
 
