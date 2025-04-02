@@ -376,7 +376,7 @@ button:focus-visible {
   align-items: center;
   width: 100%;
   height: 100vh;
-  padding: 2rem;
+  padding: 1rem;
   box-sizing: border-box;
 }
 
@@ -408,10 +408,11 @@ button:focus-visible {
 }
 
 .carousel-item .hero-image-container {
-  flex: 1 1 40%;
+  flex: 1 1 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 100%;
 }
 
 .carousel-item img {
@@ -460,9 +461,8 @@ button:focus-visible {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-grow: 2;
-  width: 60%;
-  text-align: center;
+  flex-grow: 2.5;
+  width: 70%;
   padding: 0 1rem;
 }
 
@@ -523,7 +523,7 @@ button:focus-visible {
   }
 
   .carousel-item img {
-    max-width: 80%;
+    max-width: 100%;
     height: auto;
   }
 }
@@ -538,8 +538,12 @@ button:focus-visible {
   }
 
   .carousel-item img {
-    width: 90%;
-    max-width: 300px;
+    width: 100%;
+    height: auto;
+    max-width: 350px; 
+    max-height: 80vh; 
+    object-fit: contain;
+    border-radius: 15px;
   }
 }
 
