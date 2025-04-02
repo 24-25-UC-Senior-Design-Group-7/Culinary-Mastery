@@ -773,8 +773,7 @@ body.sb-sidenav-toggled #page-content-wrapper {
 
 /* #region This is the Home Navbar */
 .homeNavbarContainer {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1rem;
   box-sizing: border-box;
 }
 
@@ -784,20 +783,23 @@ body.sb-sidenav-toggled #page-content-wrapper {
 
 .homeNavbarContainer .navbar-nav {
   padding-right: 2rem;
+  outline: none;
+}
+
+.homeNavbarContainer .navbar-toggler {
+  margin-right: 1rem; 
+  outline: none;
+  border: 1px solid ccc;
+  box-shadow: none;
 }
 
 .homeNavbarContainer .navbar-toggler:hover {
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
+  border-color: #ccc;
 }
 
 .homeNavbarContainer .navbar-toggler:focus {
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
-}
-
-.homeNavbarContainer .navbar-toggler {
-  margin-right: 1rem;
 }
 
 @media (max-width: 1024px) {
@@ -829,14 +831,29 @@ body.sb-sidenav-toggled #page-content-wrapper {
   }
 }
 
-.login-button {
+.homeNavbarContainer .login-button {
   text-decoration: none;
+  padding: 0.5rem 1rem;
   background: none;
-  cursor: pointer; 
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
 }
 
-.login-button:hover {
+.navbar-nav .nav-item .login-button {
+  display: flex;
+  align-items: center;
+}
+
+.homeNavbarContainer .login-button:hover {
   color: #ccc; 
+}
+
+.navbar-nav .nav-link {
+  cursor: pointer;
 }
 /* #endregion */
 
