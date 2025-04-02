@@ -1,9 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
+import LoginModal from '../components/LoginModal';
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const handleLoginClick = () => setShowLoginModal(true);
+  const handleCloseModal = () => setShowLoginModal(false);
 
   const slides = [
     {
@@ -72,7 +77,7 @@ const Home = () => {
     }, 8000);
 
     return () => clearInterval(intervalRef.current);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -131,7 +136,14 @@ const Home = () => {
                 Contact Us
               </ScrollLink>
             </li>
-            <li className="nav-item"><Link className="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">Login</Link></li>
+            <li className="nav-item d-flex align-items-center ms-2">
+              <button
+                className="nav-link btn btn-link p-0 border-0"
+                onClick={handleLoginClick}
+              >
+                Login
+              </button>
+            </li>
           </ul>
         </div>
       </nav>
@@ -283,6 +295,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Login Modal */}
+      <LoginModal show={showLoginModal} onClose={handleCloseModal} />
 
       {/* Footer */}
       <footer className="footer bg-dark text-white text-center p-3 homeFooter">

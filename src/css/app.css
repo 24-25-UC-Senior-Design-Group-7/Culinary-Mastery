@@ -786,6 +786,16 @@ body.sb-sidenav-toggled #page-content-wrapper {
   padding-right: 2rem;
 }
 
+.homeNavbarContainer .navbar-toggler:hover {
+  outline: none; /* No outline when hovering */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Apply a shadow on hover as well */
+}
+
+.homeNavbarContainer .navbar-toggler:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Smaller, subtle shadow */
+}
+
 .homeNavbarContainer .navbar-toggler {
   margin-right: 1rem;
 }
@@ -795,6 +805,48 @@ body.sb-sidenav-toggled #page-content-wrapper {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+
+  .navbar-collapse {
+    text-align: right;
+  }
+
+  .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+@media (min-width: 769px) {
+  .navbar-nav {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+  }
+}
+
+.login-button {
+  text-decoration: none;
+  background: none;
+  cursor: pointer; 
+}
+
+.login-button:hover {
+  color: #ccc; 
+}
+/* #endregion */
+
+/* #region This is the Login Modal Section */
+.modal {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal.show {
+  display: block !important;
+}
+
+.modal.fade {
+  transition: opacity 0.3s ease-in-out;
 }
 /* #endregion */
 
