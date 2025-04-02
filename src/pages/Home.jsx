@@ -4,7 +4,6 @@ import { Link as ScrollLink } from 'react-scroll';
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState('next');
 
   const slides = [
     {
@@ -39,12 +38,10 @@ const Home = () => {
   const intervalRef = useRef(null);
 
   const nextSlide = () => {
-    setDirection('next');
     setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
   };
 
   const prevSlide = () => {
-    setDirection('prev');
     setActiveIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
   };
 
@@ -52,7 +49,6 @@ const Home = () => {
     if (targetSlideId) {
       const targetIndex = slides.findIndex(slide => slide.id === targetSlideId);
       setActiveIndex(targetIndex);
-      setDirection('next');
     } else {
       if (direction === "next") {
         nextSlide();
@@ -76,6 +72,7 @@ const Home = () => {
     }, 8000);
 
     return () => clearInterval(intervalRef.current);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
