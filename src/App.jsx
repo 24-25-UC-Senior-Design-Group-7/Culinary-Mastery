@@ -1,4 +1,3 @@
-import './css/bootstrap.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Sidebar from './pages/sidebar.jsx';
 import Home from './pages/home.jsx'
