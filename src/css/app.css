@@ -914,12 +914,13 @@ body.sb-sidenav-toggled #page-content-wrapper {
 }
 
 .homeNavbarContainer .navbar-brand:hover+.navbar-brand-wrapper {
-  transform: translateX(10px);
+  transform: translateX(25px);
 }
 
 .homeNavbarContainer .navbar-brand:hover {
   color: white;
   transform: scale(1.1);
+  transform-origin: left;
 }
 
 .homeNavbarContainer .navbar-nav {
@@ -967,7 +968,7 @@ body.sb-sidenav-toggled #page-content-wrapper {
 
 .navbar-nav .nav-link:hover {
   color: white;
-  scale: 1.05;
+  transform: scale(1.1);
 }
 
 /* #region This is the resizing css */
