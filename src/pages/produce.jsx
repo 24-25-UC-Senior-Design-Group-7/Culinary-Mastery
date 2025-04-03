@@ -1,62 +1,78 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProduceImage from '../assets/produce.png';
+import LoginModal from '../components/LoginModal';
 
 function Produce() {
     const [isToggled, setIsToggled] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
+
+    const handleLoginClick = () => {
+        setShowLoginModal(true);
+        setIsToggled(false);
+    };
+    const handleCloseModal = () => setShowLoginModal(false);
+
+    const toggleSidebar = () => {
+        setIsToggled(prevState => !prevState);
+    };
 
     useEffect(() => {
         const savedToggleState = localStorage.getItem('sb|sidebar-toggle');
-        // Set initial state based on saved state, default to closed
         if (savedToggleState === 'true') {
             setIsToggled(true);
+        } else {
+            setIsToggled(false);
         }
     }, []);
 
     useEffect(() => {
-        // Apply or remove the body class based on the state
-        if (isToggled) {
-            document.body.classList.add('sb-sidenav-toggled');
-        } else {
-            document.body.classList.remove('sb-sidenav-toggled');
-        }
-        // Save the state in localStorage
         localStorage.setItem('sb|sidebar-toggle', isToggled);
     }, [isToggled]);
 
-    const toggleSidebar = () => {
-        setIsToggled(prevState => !prevState); // Toggle the state
-    };
-
     return (
         <div className={`d-flex ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="wrapper">
-            {/* Produce */}
-            <div className={`border-end bg-white ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="sidebar-wrapper">
-                <div className="sidebar-heading border-bottom bg-light produceTitle">Produce<img className="produceImage" src={ProduceImage} alt="icon image of produce" /></div>
-                <div className="list-group list-group-flush">
-                    <Link to="/course-home" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3">Course Home</Link>
-                    <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
-                    <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3 produce produceLink">Produce</Link>
-                    <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
-                    <Link to="/sear" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">Sear</Link>
-                    <Link to="/international" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">International</Link>
+            <div id="sidebar-wrapper" className={isToggled ? "open" : ""}>
+                {/* Sidebar */}
+                <div className={`border-end bg-white ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="sidebar-content">
+                    <div className="sidebarTitleContainer">
+                        <div className="sidebar-heading border-bottom bg-light produceTitle">
+                            Produce<img className="produceImage" src={ProduceImage} alt="icon image of a house" />
+                        </div>
+                    </div>
+                    <div className="list-group list-group-flush">
+                        <Link to="/course-home" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3">Course Home</Link>
+                        <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
+                        <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3 produce produceLink">Produce</Link>
+                        <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
+                        <Link to="/sear" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">Sear</Link>
+                        <Link to="/international" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">International</Link>
+                    </div>
                 </div>
             </div>
 
             {/* Page content wrapper */}
-            <div id="page-content-wrapper">
+            <div id="page-content-wrapper" className={isToggled ? 'shifted' : ''}>
                 {/* Top navigation */}
                 <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom navbarContainer">
                     <div className="container-fluid">
-                        <button className="hamburger-btn" id="sidebarToggle" onClick={toggleSidebar}>
-                            <div className={`hamburger ${!isToggled ? 'toggled' : ''}`}>
+                        <button
+                            className={`hamburger-btn ${isToggled ? 'right' : ''}`}
+                            id="sidebarToggle"
+                            onClick={toggleSidebar}
+                        >
+                            <div className={`hamburger ${isToggled ? 'toggled' : ''}`}>
                                 <div className="line line-1"></div>
                                 <div className="line line-2"></div>
                                 <div className="line line-3"></div>
                             </div>
                         </button>
                         <div className="navbarTitleContainer">
-                            <h1 className='mt-4 navbarTitle'><Link to="/" id="home" className="navbarTitleLink">Culinary Mastery Courses</Link></h1>
+                            <h1 className='mt-4 navbarTitle'>
+                                <Link to="/" id="home" className="navbarTitleLink">
+                                    Culinary Mastery
+                                </Link>
+                            </h1>
                         </div>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
@@ -64,11 +80,17 @@ function Produce() {
                                 <li className="nav-item"><a className="nav-link" href="#!">Link</a></li>
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                                    <div className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <div className="dropdown-menu dropdown-menu-end" aria-labelled="navbarDropdown">
                                         <a className="dropdown-item" href="#!">Action</a>
                                         <a className="dropdown-item" href="#!">Another action</a>
                                         <div className="dropdown-divider"></div>
-                                        <a className="dropdown-item" href="#!">Something else here</a>
+                                        <button
+                                            className="dropdown-item"
+                                            onClick={handleLoginClick}
+                                            id="login-button"
+                                        >
+                                            Login
+                                        </button>
                                     </div>
                                 </li>
                             </ul>
@@ -88,6 +110,8 @@ function Produce() {
                         ID which will toggle the menu when clicked.
                     </p>
                 </div>
+                {/* Login Modal */}
+                <LoginModal show={showLoginModal} onClose={handleCloseModal} />
             </div>
         </div>
     );

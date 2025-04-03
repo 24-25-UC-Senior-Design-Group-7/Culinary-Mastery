@@ -3,64 +3,78 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/app.css';
 import SearImage from '../assets/sear-icon.png';
+import LoginModal from '../components/LoginModal';
 
 function Sear() {
-
-    // State to track whether the sidebar is toggled
     const [isToggled, setIsToggled] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
 
-    // Check if the sidebar toggle state is saved in localStorage
+    const handleLoginClick = () => {
+        setShowLoginModal(true);
+        setIsToggled(false);
+    };
+    const handleCloseModal = () => setShowLoginModal(false);
+
+    const toggleSidebar = () => {
+        setIsToggled(prevState => !prevState);
+    };
+
     useEffect(() => {
         const savedToggleState = localStorage.getItem('sb|sidebar-toggle');
         if (savedToggleState === 'true') {
             setIsToggled(true);
+        } else {
+            setIsToggled(false);
         }
     }, []);
 
-    // Apply the sb-sidenav-toggled class to the body if the sidebar is toggled
     useEffect(() => {
-        if (isToggled) {
-            document.body.classList.add('sb-sidenav-toggled');
-        } else {
-            document.body.classList.remove('sb-sidenav-toggled');
-        }
-        // Save the new state to localStorage
         localStorage.setItem('sb|sidebar-toggle', isToggled);
     }, [isToggled]);
 
-    // Function to toggle the sidebar
-    const toggleSidebar = () => {
-        setIsToggled(prevState => !prevState);
-    };
     return (
-        <div className="d-flex" id="wrapper">
-            {/* Sidebar */}
-            <div className="border-end bg-white" id="sidebar-wrapper">
-                <div className="sidebar-heading border-bottom bg-light searTitle">Sear<img className='searImage' src={SearImage} alt='icon depicting searing' /></div>
-                <div className="list-group list-group-flush">
-                    <Link to="/course-home" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3">Course Home</Link>
-                    <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
-                    <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3">Produce</Link>
-                    <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
-                    <Link to="/sear" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3 sear searLink">Sear</Link>
-                    <Link to="/international" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">International</Link>
+        <div className={`d-flex ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="wrapper">
+            <div id="sidebar-wrapper" className={isToggled ? "open" : ""}>
+                {/* Sidebar */}
+                <div className={`border-end bg-white ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="sidebar-content">
+                    <div className="sidebarTitleContainer">
+                        <div className="sidebar-heading border-bottom bg-light searTitle">
+                            Sear<img className="searImage" src={SearImage} alt="icon image of a house" />
+                        </div>
+                    </div>
+                    <div className="list-group list-group-flush">
+                        <Link to="/course-home" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3">Course Home</Link>
+                        <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
+                        <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3">Produce</Link>
+                        <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
+                        <Link to="/sear" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3 sear searLink">Sear</Link>
+                        <Link to="/international" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">International</Link>
+                    </div>
                 </div>
             </div>
 
             {/* Page content wrapper */}
-            <div id="page-content-wrapper">
+            <div id="page-content-wrapper" className={isToggled ? 'shifted' : ''}>
                 {/* Top navigation */}
                 <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom navbarContainer">
                     <div className="container-fluid">
-                        <button className="hamburger-btn" id="sidebarToggle" onClick={toggleSidebar}>
-                            <div className={`hamburger ${!isToggled ? 'toggled' : ''}`}>
+                        <button
+                            className={`hamburger-btn ${isToggled ? 'right' : ''}`}
+                            id="sidebarToggle"
+                            onClick={toggleSidebar}
+                        >
+                            <div className={`hamburger ${isToggled ? 'toggled' : ''}`}>
                                 <div className="line line-1"></div>
                                 <div className="line line-2"></div>
                                 <div className="line line-3"></div>
                             </div>
                         </button>
                         <div className="navbarTitleContainer">
-                            <h1 className='mt-4 navbarTitle'><Link to="/" id="home" className="navbarTitleLink">Culinary Mastery Courses</Link></h1>
+                            <h1 className='mt-4 navbarTitle'>
+                                <Link to="/" id="home" className="navbarTitleLink">
+                                    Culinary Mastery
+                                </Link>
+                            </h1>
                         </div>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
@@ -68,11 +82,17 @@ function Sear() {
                                 <li className="nav-item"><a className="nav-link" href="#!">Link</a></li>
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                                    <div className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <div className="dropdown-menu dropdown-menu-end" aria-labelled="navbarDropdown">
                                         <a className="dropdown-item" href="#!">Action</a>
                                         <a className="dropdown-item" href="#!">Another action</a>
                                         <div className="dropdown-divider"></div>
-                                        <a className="dropdown-item" href="#!">Something else here</a>
+                                        <button
+                                            className="dropdown-item"
+                                            onClick={handleLoginClick}
+                                            id="login-button"
+                                        >
+                                            Login
+                                        </button>
                                     </div>
                                 </li>
                             </ul>
@@ -92,6 +112,8 @@ function Sear() {
                         ID which will toggle the menu when clicked.
                     </p>
                 </div>
+                {/* Login Modal */}
+                <LoginModal show={showLoginModal} onClose={handleCloseModal} />
             </div>
         </div>
     );

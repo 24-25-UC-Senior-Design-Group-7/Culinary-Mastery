@@ -9,8 +9,8 @@ function Sidebar() {
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   const handleLoginClick = () => {
-    setShowLoginModal(true);  // Show the login modal
-    setIsToggled(false);     // Close the sidebar
+    setShowLoginModal(true);
+    setIsToggled(false);
   };
   const handleCloseModal = () => setShowLoginModal(false);
 
@@ -34,7 +34,7 @@ function Sidebar() {
   return (
     <div className={`d-flex ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="wrapper">
       <div id="sidebar-wrapper" className={isToggled ? "open" : ""}>
-        {/* Sidebar content here */}
+        {/* Sidebar */}
         <div className={`border-end bg-white ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="sidebar-content">
           <div className="sidebarTitleContainer">
             <div className="sidebar-heading border-bottom bg-light sidebarTitle">
