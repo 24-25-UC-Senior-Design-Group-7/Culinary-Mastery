@@ -100,8 +100,12 @@ const Home = () => {
     <div>
       {/* Navigation Bar */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark homeNavbarContainer">
-        <Link className="navbar-brand" to="/">Culinary Mastery</Link>
-        <img src={BrandLogo} alt='The Culinary Master Logo' className='navbar-brand-image' />
+        <Link className="navbar-brand" to="/">
+          Culinary Mastery
+        </Link>
+        <div className="navbar-brand-wrapper">
+          <img src={BrandLogo} alt="The Culinary Master Logo" className="navbar-brand-image" />
+        </div>
         <button
           className={`navbar-toggler ${isNavbarOpen ? "toggled" : ""}`}
           type="button"
@@ -334,8 +338,10 @@ const Home = () => {
       <LoginModal show={showLoginModal} onClose={handleCloseModal} />
 
       {/* Footer */}
-      <footer className="footer bg-dark text-white text-center p-3 homeFooter">
-        <p>&copy; 2024-2025 Culinary Mastery Team. All rights reserved.</p>
+      <footer className="footer bg-dark p-3 homeFooter">
+        <div className="textContent">
+          <p className="footerP">Developed by Online Senior Design Group 7: Levi Huff, Guy-Leroc Ossebi, Jackson Pinchot, Deepak Baral, and Carrie Louderback. &nbsp;&nbsp;&nbsp;&nbsp;&copy; 2024-2025 Culinary Mastery Team. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );

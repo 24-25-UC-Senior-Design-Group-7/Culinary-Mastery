@@ -893,17 +893,33 @@ body.sb-sidenav-toggled #page-content-wrapper {
 
 .homeNavbarContainer .navbar-brand {
   padding-left: 1rem;
-  flex-grow: 0;
   font-size: 2rem;
+  color: rgba(239, 200, 139, 1);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.homeNavbarContainer .navbar-brand-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .homeNavbarContainer .navbar-brand-image {
   height: 50px;
   width: 50px;
-  display: flex;
-  align-items: center;
-  vertical-align: center;
   border-radius: 5px;
+  display: block;
+}
+
+.homeNavbarContainer .navbar-brand:hover+.navbar-brand-wrapper {
+  transform: translateX(10px);
+}
+
+.homeNavbarContainer .navbar-brand:hover {
+  color: white;
+  transform: scale(1.1);
 }
 
 .homeNavbarContainer .navbar-nav {
@@ -946,6 +962,7 @@ body.sb-sidenav-toggled #page-content-wrapper {
 .navbar-nav .nav-link {
   cursor: pointer;
   font-size: 1.35rem;
+  color: rgba(239, 200, 139, 1)
 }
 
 .navbar-nav .nav-link:hover {
@@ -954,13 +971,15 @@ body.sb-sidenav-toggled #page-content-wrapper {
 }
 
 /* #region This is the resizing css */
-
 @media (max-width: 1400px) and (min-width: 1024px) {
   .homeNavbarContainer {
     width: 100%;
-    /* Adjust the width as needed */
     padding: 0 1rem;
-    /* Add some padding to avoid the content sticking to the edges */
+  }
+
+  .homeNavbarContainer .navbar-brand-image {
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -1305,13 +1324,24 @@ body.sb-sidenav-toggled #page-content-wrapper {
   justify-content: center;
   align-items: center;
   height: auto;
-  min-height: 60px;
-  max-height: 100px;
+  min-height: fit-content;
+  max-height: 150px;
+  padding: 1rem;
 }
 
-.homeFooter p {
+.textContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.textContent .footerP {
   margin: 0;
+  font-family: 'Times New Roman', Times, serif;
   text-align: center;
+  color: white;
+  font-size: 1rem;
 }
 
 /* #endregion */
