@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import LoginModal from '../components/LoginModal';
+import BrandLogo from '../assets/Culinary-Mastery-Logo.png';
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -100,6 +101,7 @@ const Home = () => {
       {/* Navigation Bar */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark homeNavbarContainer">
         <Link className="navbar-brand" to="/">Culinary Mastery</Link>
+        <img src={BrandLogo} alt='The Culinary Master Logo' className='navbar-brand-image'/>
         <button
           className="navbar-toggler"
           type="button"

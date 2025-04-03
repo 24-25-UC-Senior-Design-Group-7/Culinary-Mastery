@@ -895,6 +895,15 @@ body.sb-sidenav-toggled #page-content-wrapper {
   font-size: 2rem;
 }
 
+.homeNavbarContainer .navbar-brand-image {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  vertical-align: center;
+  border-radius: 5px;
+}
+
 .homeNavbarContainer .navbar-nav {
   padding-right: 2rem;
   outline: none;
