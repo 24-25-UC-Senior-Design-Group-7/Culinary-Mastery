@@ -17,7 +17,7 @@ const LoginModal = ({ show, onClose }) => {
                 <label htmlFor="username" className="mb-2 loginLabel">Username:</label>
                 <input
                   type="text"
-                  className="form-control py-2"
+                  className="form-control py-2 loginInput"
                   id="username"
                   placeholder="Enter your username"
                   name="username"
@@ -28,7 +28,7 @@ const LoginModal = ({ show, onClose }) => {
                 <label htmlFor="password" className="mb-2 mt-3 loginLabel">Password:</label>
                 <input
                   type="password"
-                  className="form-control py-2"
+                  className="form-control py-2 loginInput"
                   id="password"
                   placeholder="Enter your password"
                   name="password"

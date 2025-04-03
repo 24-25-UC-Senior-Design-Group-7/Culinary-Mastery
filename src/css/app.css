@@ -1091,6 +1091,19 @@ body.sb-sidenav-toggled #page-content-wrapper {
   border-color: rgba(255, 179, 0, 0.7);
 }
 
+.loginInput {
+  border-color: none;
+}
+
+.loginInput:hover {
+  border-color: rgba(255, 179, 0, 0.7);
+}
+
+.loginInput:focus {
+  border-color: rgba(255, 179, 0, 0.7);
+  box-shadow: none !important;
+}
+
 /* #endregion */
 
 /* #region This is the Home Footer Section */
