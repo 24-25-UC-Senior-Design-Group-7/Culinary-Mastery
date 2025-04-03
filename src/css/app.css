@@ -1094,7 +1094,7 @@ body.sb-sidenav-toggled #page-content-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid var(--sunset);
+  border-bottom: 3px solid var(--sunset);
   padding-bottom: 1rem;
   width: 95%;
   margin: 0 auto;
