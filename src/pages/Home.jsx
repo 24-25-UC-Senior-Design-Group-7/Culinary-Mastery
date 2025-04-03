@@ -212,28 +212,30 @@ const Home = () => {
         </div>
 
         {/* Controls */}
-        <button
-          className="carousel-control-prev"
-          type="button"
-          onClick={() => {
-            handleManualChange("prev");
-            document.activeElement.blur();
-          }}
-          aria-label="Previous"
-        >
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          onClick={() => {
-            handleManualChange("next");
-            document.activeElement.blur();
-          }}
-          aria-label="Next"
-        >
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        </button>
+        <div className="carousel-control-wrapper">
+          <button
+            className="carousel-control-prev"
+            type="button"
+            onClick={() => {
+              handleManualChange("prev");
+              document.activeElement.blur();
+            }}
+            aria-label="Previous"
+          >
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+          <button
+            className="carousel-control-next"
+            type="button"
+            onClick={() => {
+              handleManualChange("next");
+              document.activeElement.blur();
+            }}
+            aria-label="Next"
+          >
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+        </div>
       </div>
 
       {/* Courses Section */}
