@@ -1,74 +1,33 @@
-// Sear.jsx
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import '../css/app.css';
-import SearImage from '../assets/sear-icon.png';
-import LoginModal from '../components/LoginModal';
+import Sidebar from '../components/Sidebar'; // Import the Sidebar component
+import SearImage from '../assets/sear-icon.png'; // Sear image
 
 function Sear() {
-    const [isToggled, setIsToggled] = useState(false);
-    const [showLoginModal, setShowLoginModal] = useState(false);
-
-    const handleLoginClick = () => {
-        setShowLoginModal(true);
-        setIsToggled(false);
-    };
-    const handleCloseModal = () => setShowLoginModal(false);
-
-    const toggleSidebar = () => {
-        setIsToggled(prevState => !prevState);
-    };
-
-    useEffect(() => {
-        const savedToggleState = localStorage.getItem('sb|sidebar-toggle');
-        if (savedToggleState === 'true') {
-            setIsToggled(true);
-        } else {
-            setIsToggled(false);
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('sb|sidebar-toggle', isToggled);
-    }, [isToggled]);
+    // Define the links specific to the Sear page
+    const links = [
+        { path: '/course-home', id: 'sidebar', label: 'Course Home' },
+        { path: '/cooking', id: 'cooking', label: 'Cooking' },
+        { path: '/produce', id: 'produce', label: 'Produce' },
+        { path: '/sautee', id: 'sautee', label: 'Sautee' },
+        { path: '/sear', id: 'sear', label: 'Sear' },
+        { path: '/international', id: 'international', label: 'International' }
+    ];
 
     return (
-        <div className={`d-flex ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="wrapper">
-            <div id="sidebar-wrapper" className={isToggled ? "open" : ""}>
-                {/* Sidebar */}
-                <div className={`border-end bg-white ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="sidebar-content">
-                    <div className="sidebarTitleContainer">
-                        <div className="sidebar-heading border-bottom bg-light searTitle">
-                            Sear<img className="searImage" src={SearImage} alt="icon image of a house" />
-                        </div>
-                    </div>
-                    <div className="list-group list-group-flush">
-                        <Link to="/course-home" id="sidebar" className="list-group-item list-group-item-action list-group-item-light p-3">Course Home</Link>
-                        <Link to="/cooking" id="cooking" className="list-group-item list-group-item-action list-group-item-light p-3">Cooking</Link>
-                        <Link to="/produce" id="produce" className="list-group-item list-group-item-action list-group-item-light p-3">Produce</Link>
-                        <Link to="/sautee" id="sautee" className="list-group-item list-group-item-action list-group-item-light p-3">Sautee</Link>
-                        <Link to="/sear" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3 sear searLink">Sear</Link>
-                        <Link to="/international" id="sear" className="list-group-item list-group-item-action list-group-item-light p-3">International</Link>
-                    </div>
-                </div>
-            </div>
+        <div className="d-flex" id="wrapper">
+            {/* Sidebar Component with specific props */}
+            <Sidebar 
+                title="Sear" 
+                image={SearImage} 
+                links={links}
+            />
 
             {/* Page content wrapper */}
-            <div id="page-content-wrapper" className={isToggled ? 'shifted' : ''}>
+            <div id="page-content-wrapper">
                 {/* Top navigation */}
                 <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom navbarContainer">
                     <div className="container-fluid">
-                        <button
-                            className={`hamburger-btn ${isToggled ? 'right' : ''}`}
-                            id="sidebarToggle"
-                            onClick={toggleSidebar}
-                        >
-                            <div className={`hamburger ${isToggled ? 'toggled' : ''}`}>
-                                <div className="line line-1"></div>
-                                <div className="line line-2"></div>
-                                <div className="line line-3"></div>
-                            </div>
-                        </button>
                         <div className="navbarTitleContainer">
                             <h1 className='mt-4 navbarTitle'>
                                 <Link to="/" id="home" className="navbarTitleLink">
@@ -76,44 +35,15 @@ function Sear() {
                                 </Link>
                             </h1>
                         </div>
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
-                                <li className="nav-item active"><Link to="/home" id="home" className="nav-link">Home</Link></li>
-                                <li className="nav-item"><a className="nav-link" href="#!">Link</a></li>
-                                <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                                    <div className="dropdown-menu dropdown-menu-end" aria-labelled="navbarDropdown">
-                                        <a className="dropdown-item" href="#!">Action</a>
-                                        <a className="dropdown-item" href="#!">Another action</a>
-                                        <div className="dropdown-divider"></div>
-                                        <button
-                                            className="dropdown-item"
-                                            onClick={handleLoginClick}
-                                            id="login-button"
-                                        >
-                                            Login
-                                        </button>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </nav>
 
                 {/* Page content */}
                 <div className="container-fluid">
-                    <h1 className="mt-4"></h1>
-                    <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-                    <p>
-                        Make sure to keep all page content within the
-                        <code>#page-content-wrapper</code>
-                        . The top navbar is optional, and just for demonstration. Just create an element with the
-                        <code>#sidebarToggle</code>
-                        ID which will toggle the menu when clicked.
-                    </p>
+                    <h1 className="mt-4">Sear Techniques</h1>
+                    <p>Learn how to sear meat and other ingredients to perfection in this section. Searing enhances flavors and adds texture.</p>
+                    <p>Explore different methods for searing, from pan-searing to grilling, and master this important cooking technique.</p>
                 </div>
-                {/* Login Modal */}
-                <LoginModal show={showLoginModal} onClose={handleCloseModal} />
             </div>
         </div>
     );
