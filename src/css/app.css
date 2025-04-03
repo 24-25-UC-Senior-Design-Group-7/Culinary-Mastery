@@ -121,6 +121,7 @@ button:focus-visible {
 .card-body {
   text-align: center;
 }
+
 /* #endregion */
 
 /* #region This is the Course Pages Section (Sidebar) */
@@ -300,6 +301,7 @@ button:focus-visible {
 .hamburger.toggled .line-3 {
   transform: translateY(-9px) rotate(-45deg);
 }
+
 /* #endregion */
 
 /* #region Hero Section */
@@ -318,6 +320,7 @@ button:focus-visible {
 .carousel-inner {
   position: relative;
 }
+
 /* #region This is the arrow region */
 /* Custom Thicker Left Arrow */
 .carousel-control-prev-icon {
@@ -352,7 +355,7 @@ button:focus-visible {
 }
 
 .carousel-control-prev {
-  left: 10px; 
+  left: 10px;
 }
 
 .carousel-control-next {
@@ -368,6 +371,7 @@ button:focus-visible {
 .carousel-control-next:focus {
   outline: none;
 }
+
 /* #endregion */
 
 .carousel-item {
@@ -397,7 +401,7 @@ button:focus-visible {
   opacity: 0;
 }
 
-.carousel-item > .container {
+.carousel-item>.container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -417,9 +421,9 @@ button:focus-visible {
 
 .carousel-item img {
   width: 100%;
-  height: auto; 
-  max-width: 90%; 
-  max-height: 60vh; 
+  height: auto;
+  max-width: 90%;
+  max-height: 60vh;
   object-fit: cover;
   border-radius: 15px;
 }
@@ -454,6 +458,7 @@ button:focus-visible {
   text-align: center;
   line-height: 1.5;
 }
+
 /* #endregion */
 
 .carousel-item .text-content {
@@ -474,15 +479,15 @@ button:focus-visible {
 .carousel-item .text-content ul {
   font-size: 1.75rem;
   max-width: 80%;
-  text-align: center; 
+  text-align: center;
   list-style-position: inside;
-  padding-left: 0; 
+  padding-left: 0;
   margin-left: auto;
-  margin-right: auto; 
+  margin-right: auto;
 }
 
 .carousel-item.features h1 {
-  font-size: 5rem; 
+  font-size: 5rem;
 }
 
 .hero-overlay {
@@ -497,6 +502,7 @@ button:focus-visible {
 }
 
 @media (max-width: 992px) {
+
   .carousel-item.no-image .text-content h1,
   .carousel-item .text-content h1 {
     font-size: 3rem;
@@ -540,8 +546,8 @@ button:focus-visible {
   .carousel-item img {
     width: 100%;
     height: auto;
-    max-width: 350px; 
-    max-height: 80vh; 
+    max-width: 350px;
+    max-height: 80vh;
     object-fit: contain;
     border-radius: 15px;
   }
@@ -561,6 +567,7 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
 /* #endregion */
 
 /* #region This is the Sidebar Css */
@@ -653,6 +660,7 @@ body.sb-sidenav-toggled #page-content-wrapper {
   color: inherit !important;
   text-decoration: none !important;
 }
+
 /* #endregion */
 
 /* #region This is the Contact Section */
@@ -705,8 +713,8 @@ body.sb-sidenav-toggled #page-content-wrapper {
 #contact .form-group textarea:hover,
 #contact .form-group input:focus,
 #contact .form-group textarea:focus {
-  border-color: rgba(255, 179, 0, 0.7); 
-  outline: none; 
+  border-color: rgba(255, 179, 0, 0.7);
+  outline: none;
 }
 
 #contact button {
@@ -738,7 +746,7 @@ body.sb-sidenav-toggled #page-content-wrapper {
 #contact .form-group input:focus,
 #contact .form-group textarea:focus {
   border-color: rgba(255, 179, 0, 0.7);
-  box-shadow: none !important; 
+  box-shadow: none !important;
   outline: none !important;
 }
 
@@ -769,16 +777,30 @@ body.sb-sidenav-toggled #page-content-wrapper {
     width: 100%;
   }
 }
+
 /* #endregion */
 
 /* #region This is the Home Navbar */
 .homeNavbarContainer {
   padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   box-sizing: border-box;
 }
 
 .homeNavbarContainer .navbar-brand {
   padding-left: 1rem;
+  flex-grow: 0;
+  font-size: 2rem;
+}
+
+.homeNavbarContainer .navbar-brand:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 0.5px;
+  text-underline-offset: 5px;
+  border-radius: 15px;
 }
 
 .homeNavbarContainer .navbar-nav {
@@ -787,9 +809,9 @@ body.sb-sidenav-toggled #page-content-wrapper {
 }
 
 .homeNavbarContainer .navbar-toggler {
-  margin-right: 1rem; 
+  margin-right: 1rem;
   outline: none;
-  border: 1px solid ccc;
+  border: 1px solid ccc !important;
   box-shadow: none;
 }
 
@@ -799,36 +821,7 @@ body.sb-sidenav-toggled #page-content-wrapper {
 }
 
 .homeNavbarContainer .navbar-toggler:focus {
-  outline: none;
-}
-
-@media (max-width: 1024px) {
-  .homeNavbarContainer {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .homeNavbarContainer .navbar-collapse {
-    text-align: right;
-  }
-
-  .homeNavbarContainer .navbar-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-}
-
-@media (min-width: 1025px) {
-  .homeNavbarContainer .navbar-nav {
-    display: flex;
-    justify-content: flex-end; 
-    align-items: center;
-  }
-
-  .homeNavbarContainer .navbar-collapse {
-    justify-content: flex-end;
-  }
+  outline: none !important;
 }
 
 .homeNavbarContainer .login-button {
@@ -838,7 +831,6 @@ body.sb-sidenav-toggled #page-content-wrapper {
   border: none;
   cursor: pointer;
   font-size: 1rem;
-  color: #fff;
   display: flex;
   align-items: center;
 }
@@ -848,13 +840,174 @@ body.sb-sidenav-toggled #page-content-wrapper {
   align-items: center;
 }
 
-.homeNavbarContainer .login-button:hover {
-  color: #ccc; 
-}
-
 .navbar-nav .nav-link {
   cursor: pointer;
+  font-size: 1.25rem;
 }
+
+/* #region This is the resizing css */
+@media (max-width: 1024px) {
+  .homeNavbarContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .homeNavbarContainer .navbar-toggler {
+    background-color: #343a40;
+    z-index: 10;
+    flex-direction: flex-end;
+    position: relative;
+    margin-right: 35px;
+  }
+
+  .homeNavbarContainer .navbar-nav {
+    flex-direction: column;
+    margin: 0;
+    border-radius: 0.35rem;
+    padding: 0.5rem;
+    align-items: center;
+    background-color: #343a40;
+    text-align: center;
+  }
+
+  .homeNavbarContainer .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.6s ease;
+    overflow: hidden;
+    max-height: 0;
+    position: absolute;
+    top: 100%;
+    right: 15px;
+    z-index: 1000;
+    background-color: transparent;
+  }
+
+  .homeNavbarContainer .navbar-nav .nav-item {
+    margin-bottom: 0.2rem;
+    font-size: .75rem;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.4s ease;
+    background-color: black !important;
+    border-radius: 5px;
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .homeNavbarContainer .navbar-collapse.show {
+    transform: translateY(0);
+    transition: background-color 1s ease, opacity 0.3s ease, transform 0.4s ease;
+    max-height: 500px;
+    opacity: 1;
+  }
+
+  .homeNavbarContainer .navbar-collapse.show .nav-item {
+    opacity: 1;
+    transform: translateY(0);
+    width: 100%;
+  }
+
+  .homeNavbarContainer .navbar-collapse.show .nav-item:nth-child(1) {
+    transition-delay: 0.05s;
+  }
+
+  .homeNavbarContainer .navbar-collapse.show .nav-item:nth-child(2) {
+    transition-delay: 0.10s;
+  }
+
+  .homeNavbarContainer .navbar-collapse.show .nav-item:nth-child(3) {
+    transition-delay: 0.15s;
+  }
+
+  .homeNavbarContainer .navbar-collapse.show .nav-item:nth-child(4) {
+    transition-delay: 0.20s;
+  }
+
+  .homeNavbarContainer .navbar-collapse.show .nav-item:nth-child(5) {
+    transition-delay: 0.25s;
+  }
+
+  .homeNavbarContainer .navbar-collapse.closing {
+    max-height: 500px;
+    opacity: 1;
+    transition: max-height 0.6s ease;
+    background-color: transparent;
+    transition: background-color 0.6s ease 0.5s;
+  }
+
+  .homeNavbarContainer .navbar-collapse.closing .navbar-nav {
+    background-color: transparent;
+    transition: background-color 0.6s ease 0.01s;
+  }
+
+  .homeNavbarContainer .navbar-collapse.closing .nav-item {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.4s ease;
+  }
+
+  .homeNavbarContainer .navbar-collapse.closing .nav-item:nth-child(5) {
+    transition-delay: 0s, 0s;
+    background-color: transparent;
+    transform: translateY(-100px);
+  }
+
+  .homeNavbarContainer .navbar-collapse.closing .nav-item:nth-child(4) {
+    transition-delay: 0.05s, 0.05s;
+    background-color: transparent;
+    transform: translateY(-80px);
+  }
+
+  .homeNavbarContainer .navbar-collapse.closing .nav-item:nth-child(3) {
+    transition-delay: 0.1s, 0.10s;
+    background-color: transparent;
+    transform: translateY(-60px);
+  }
+
+  .homeNavbarContainer .navbar-collapse.closing .nav-item:nth-child(2) {
+    transition-delay: 0.15s, 0.15s;
+    background-color: transparent;
+    transform: translateY(-40px);
+  }
+
+  .homeNavbarContainer .navbar-collapse.closing .nav-item:nth-child(1) {
+    transition-delay: 0.2s, 0.2s;
+    background-color: transparent;
+    transform: translateY(-20px);
+  }
+
+  .homeNavbarContainer .navbar-nav .nav-link {
+    padding: 0.2rem 0;
+  }
+
+  .homeNavbarContainer .navbar-brand {
+    font-size: 1.75rem;
+  }
+
+}
+
+@media (min-width: 1025px) {
+  .homeNavbarContainer .navbar-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .homeNavbarContainer .navbar-collapse {
+    justify-content: flex-end;
+  }
+}
+
+/* #endregion */
 /* #endregion */
 
 /* #region This is the Login Modal Section */
@@ -869,6 +1022,69 @@ body.sb-sidenav-toggled #page-content-wrapper {
 .modal.fade {
   transition: opacity 0.3s ease-in-out;
 }
+
+.modal-title {
+  font-size: 2.5em;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-body .form-group .loginLabel {
+  font-size: 1.25em;
+}
+
+.close {
+  color: black;
+  background-color: var(--sunset) !important;
+  border: 1.5px solid rgba(110, 75, 58, 0.5);
+  text-align: center;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  font-size: 1.15rem;
+  transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  outline: none;
+}
+
+.close:hover {
+  background-color: rgba(239, 200, 139, 0.8) !important;
+  font-weight: bold;
+  transform: scale(1.05);
+  color: black;
+  border-color: rgba(255, 179, 0, 0.7);
+}
+
+.loginBtn {
+  color: black;
+  background-color: var(--sunset) !important;
+  border: 1.5px solid rgba(110, 75, 58, 0.5);
+  text-align: center;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 50px;
+  font-size: 1.15rem;
+  margin: 0 auto;
+  transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+.loginBtn:hover {
+  background-color: rgba(239, 200, 139, 0.8) !important;
+  font-weight: bold;
+  transform: scale(1.05);
+  color: black;
+  border-color: rgba(255, 179, 0, 0.7);
+}
+
 /* #endregion */
 
 /* #region This is the Home Footer Section */
@@ -885,4 +1101,5 @@ body.sb-sidenav-toggled #page-content-wrapper {
   margin: 0;
   text-align: center;
 }
+
 /* #endregion */

@@ -6,6 +6,8 @@ import LoginModal from '../components/LoginModal';
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   const handleLoginClick = () => setShowLoginModal(true);
   const handleCloseModal = () => setShowLoginModal(false);
@@ -41,6 +43,19 @@ const Home = () => {
   ];
 
   const intervalRef = useRef(null);
+
+  const toggleNavbar = () => {
+    if (isNavbarOpen) {
+      setIsClosing(true);
+      setIsNavbarOpen(false);
+      setTimeout(() => {
+        setIsClosing(false); // Reset closing state after the transition completes
+      }, 500); // Adjust timing to match CSS transition duration
+    } else {
+      setIsNavbarOpen(true);
+      setIsClosing(false); // Reset closing state immediately when opening
+    }
+  };
 
   const nextSlide = () => {
     setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
@@ -85,10 +100,20 @@ const Home = () => {
       {/* Navigation Bar */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark homeNavbarContainer">
         <Link className="navbar-brand" to="/">Culinary Mastery</Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          className="navbar-toggler"
+          type="button"
+          aria-controls="navbarNav"
+          aria-expanded={isNavbarOpen ? "true" : "false"}
+          aria-label="Toggle navigation"
+          onClick={toggleNavbar}
+        >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div
+          className={`collapse navbar-collapse ${isNavbarOpen ? 'show' : ''} ${isClosing ? 'closing' : ''}`}
+          id="navbarNav"
+        >
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <ScrollLink
@@ -136,10 +161,11 @@ const Home = () => {
                 Contact Us
               </ScrollLink>
             </li>
-            <li className="nav-item d-flex align-items-center ms-2">
+            <li className="nav-item">
               <button
-                className="nav-link btn btn-link p-0 border-0"
+                className="nav-link"
                 onClick={handleLoginClick}
+                id="login-button"
               >
                 Login
               </button>
