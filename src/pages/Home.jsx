@@ -190,7 +190,7 @@ const Home = () => {
                     {slide.title}
                   </h1>
                   {typeof slide.description === 'string' ? (
-                    <p className="lead">{slide.description}</p>
+                    <p className="lead about-description">{slide.description}</p>
                   ) : (
                     slide.description
                   )}

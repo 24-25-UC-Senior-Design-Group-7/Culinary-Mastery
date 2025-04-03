@@ -394,14 +394,6 @@ button:focus-visible {
   box-sizing: border-box;
 }
 
-.carousel-item.prev {
-  transform: translateX(-100%);
-}
-
-.carousel-item.next {
-  transform: translateX(100%);
-}
-
 .carousel-item.active {
   opacity: 1;
   display: flex;
@@ -511,16 +503,69 @@ button:focus-visible {
   z-index: 0;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1400px) {
 
-  .carousel-item.no-image .text-content h1,
-  .carousel-item .text-content h1 {
+  .carousel-item.features h1 {
+    font-size: 2.5rem;
+  }
+
+  .carousel-item.features li {
+    font-size: 1.25rem;
+  }
+
+  .carousel-item.about .about-title {
+    font-size: 2.5rem;
+  }
+
+  .carousel-item.about .lead {
+    font-size: 1.5rem;
+  }
+
+  .carousel-item.no-image .text-content h1 {
     font-size: 3rem;
   }
 
-  .carousel-item.no-image .text-content p,
-  .carousel-item .text-content p {
+  .carousel-item.no-image .text-content p {
     font-size: 1.5rem;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
+@media (max-width: 1200px) {
+
+  .carousel-item.features h1 {
+    font-size: 2rem;
+  }
+
+  .carousel-item.features li {
+    font-size: 1rem;
+  }
+
+  .carousel-item.about .about-title {
+    font-size: 2rem;
+  }
+
+  .carousel-item.about .lead {
+    font-size: 1rem;
+  }
+
+  .carousel-item.no-image .text-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .carousel-item.no-image .text-content p {
+    font-size: 1rem;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 4rem;
+    height: 4rem;
   }
 }
 
@@ -852,10 +897,20 @@ body.sb-sidenav-toggled #page-content-wrapper {
 
 .navbar-nav .nav-link {
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
 }
 
 /* #region This is the resizing css */
+
+@media (max-width: 1400px) and (min-width: 1024px) {
+  .homeNavbarContainer {
+    width: 100%;
+    /* Adjust the width as needed */
+    padding: 0 1rem;
+    /* Add some padding to avoid the content sticking to the edges */
+  }
+}
+
 @media (max-width: 1024px) {
   .homeNavbarContainer {
     display: flex;
