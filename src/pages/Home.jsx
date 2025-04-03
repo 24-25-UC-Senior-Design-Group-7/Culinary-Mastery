@@ -101,16 +101,20 @@ const Home = () => {
       {/* Navigation Bar */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark homeNavbarContainer">
         <Link className="navbar-brand" to="/">Culinary Mastery</Link>
-        <img src={BrandLogo} alt='The Culinary Master Logo' className='navbar-brand-image'/>
+        <img src={BrandLogo} alt='The Culinary Master Logo' className='navbar-brand-image' />
         <button
-          className="navbar-toggler"
+          className={`navbar-toggler ${isNavbarOpen ? "toggled" : ""}`}
           type="button"
           aria-controls="navbarNav"
           aria-expanded={isNavbarOpen ? "true" : "false"}
           aria-label="Toggle navigation"
           onClick={toggleNavbar}
         >
-          <span className="navbar-toggler-icon"></span>
+          <div className="navbar-toggler-icon">
+            <span className={`line ${isNavbarOpen ? "toggled" : ""}`}></span>
+            <span className={`line ${isNavbarOpen ? "toggled" : ""}`}></span>
+            <span className={`line ${isNavbarOpen ? "toggled" : ""}`}></span>
+          </div>
         </button>
         <div
           className={`collapse navbar-collapse ${isNavbarOpen ? 'show' : ''} ${isClosing ? 'closing' : ''}`}
