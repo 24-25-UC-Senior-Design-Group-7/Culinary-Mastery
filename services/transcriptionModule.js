@@ -27,7 +27,7 @@ export async function transcribeAudioStreaming(audioFilePath, io, socketId) {
     let finalTranscript = "";
 
     const recognizeStream = speechToText.recognizeUsingWebSocket({
-      // Ensure the content type matches your audio file (here we're using MP3)
+      // Ensuring the content type matches Our audio file (here we're using MP3)
       contentType: 'audio/mpeg',
       interimResults: true,
     });
@@ -54,7 +54,7 @@ export async function transcribeAudioStreaming(audioFilePath, io, socketId) {
         finalTranscript += text + " ";
       }
       
-      // Emit the partial text if we have a valid Socket.IO instance and socketId
+      // Emiting the partial text if we have a valid Socket.IO instance and socketId
       if (text && io && socketId) {
         io.to(socketId).emit('transcriptUpdate', text);
       }

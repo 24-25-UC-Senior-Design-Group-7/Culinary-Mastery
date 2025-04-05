@@ -7,8 +7,29 @@ import logger from 'morgan';
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
 import youtubeRouter from './routes/ytRouter.js';
+import routercourses from './routes/courses.js';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
+
+import cors from 'cors';
+
+
+
+// Database
+import { createCoursesTable } from './db/operations.js';
+
+// Check if the table exists and create it if it doesn't
+async function init() {
+  try {
+    await createCoursesTable();
+    console.log("Table check/creation done.");
+  } catch (error) {
+    console.error("Error ensuring table exists:", error);
+  }
+}
+
+init();
+
 
 dotenv.config();
 const app = express();
@@ -26,10 +47,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Use your routes
+// routes and middleware
+app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+// test routes
 app.use('/api/youtube', youtubeRouter);
+// course routes
+app.use('/api/courses', routercourses);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
