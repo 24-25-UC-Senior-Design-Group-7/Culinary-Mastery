@@ -557,16 +557,6 @@ body.sb-sidenav-toggled #page-content-wrapper {
   color: black;
 }
 
-.produceLink,
-.cookingLink,
-.sauteeLink,
-.searLink,
-.sidebarLink,
-.internationalLink {
-  font-weight: bold;
-  background-color: rgba(239, 200, 139, 0.8) !important;
-}
-
 #sidebar-wrapper .produceTitle,
 .cookingTitle,
 .searTitle,
@@ -1223,6 +1213,23 @@ body.sb-sidenav-toggled #page-content-wrapper {
 }
 
 /* #endregion */
+/* #endregion */
+
+
+/* #region This is the sidebar navbar Section */
+
+.navbarContainer .navbar-nav .nav-item > .nav-link {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  transition: background-color 0.2s ease, font-size 0.2s ease;
+  border-radius: 10px; 
+}
+
+.navbarContainer .navbar-nav .nav-item > .nav-link:hover {
+  background-color: rgba(239, 200, 139, 0.8) !important;
+  color: black;
+}
+
 /* #endregion */
 
 /* #region This is the Login Modal Section */

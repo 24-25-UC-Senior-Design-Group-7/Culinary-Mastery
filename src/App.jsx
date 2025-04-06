@@ -1,32 +1,31 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SidebarProvider } from './contexts/SidebarContext';
-import CourseHome from './pages/CourseHome.jsx';
-import Home from './pages/home.jsx';
-import Navbar from './components/Navbar';
-import Cooking from './pages/cooking.jsx';
-import Produce from './pages/produce.jsx';
-import Sautee from './pages/sautee.jsx';
-import Sear from './pages/sear.jsx';
-import International from './pages/international.jsx';
-import Sidebar from './components/Sidebar';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import CourseHome from './pages/CourseHome';
+import Cooking from './pages/cooking';
+import Produce from './pages/produce';
+import Sautee from './pages/sautee';
+import Sear from './pages/sear';
+import International from './pages/international';
+
 
 function App() {
   return (
     <SidebarProvider>
       <Router>
-        <div className="app">
-          {/* Conditionally render Sidebar based on route */}
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/course-home" element={<Sidebar /> && <CourseHome />} />
-            <Route path="/cooking" element={<Sidebar /> && <Cooking />} />
-            <Route path="/produce" element={<Sidebar /> && <Produce />} />
-            <Route path="/sautee" element={<Sidebar /> && <Sautee />} />
-            <Route path="/sear" element={<Sidebar /> && <Sear />} />
-            <Route path="/international" element={<Sidebar /> && <International />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route element={<Layout />}>
+            <Route path="/course-home" element={<CourseHome />} />
+            <Route path="/cooking" element={<Cooking />} />
+            <Route path="/produce" element={<Produce />} />
+            <Route path="/sautee" element={<Sautee />} />
+            <Route path="/sear" element={<Sear />} />
+            <Route path="/international" element={<International />} />
+          </Route>
+        </Routes>
       </Router>
     </SidebarProvider>
   );
