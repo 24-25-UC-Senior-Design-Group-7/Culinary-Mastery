@@ -1,6 +1,5 @@
 {
   "name": "culinary-mastery",
-  "type": "module",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -38,7 +37,7 @@
     "yamljs": "^0.3.0",
     "youtube-dl-exec": "^3.0.19",
     "ytdl": "^1.4.1",
-    "ytdl-core": "^4.11.5"
+    "ytdl-core": "^4.11.5",
     "bootstrap": "^5.3.3",
     "crypto-browserify": "^3.12.1",
     "node": "^23.9.0",
