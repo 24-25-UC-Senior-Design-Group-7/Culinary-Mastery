@@ -1,10 +1,10 @@
-import React, { useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSidebar } from '../contexts/SidebarContext';
 import CourseHomeImage from '../assets/house-icon.png';
 import LoginModal from '../components/LoginModal';
 
-function Sidebar({ title = 'Course Home', image = CourseHomeImage, links = [] }) {
+function Sidebar({ title = 'Course Home', image = CourseHomeImage, links = [], titleClassName = '', imageClassName = '' }) {
   const { isToggled, toggleSidebar } = useSidebar();
   const [showLoginModal, setShowLoginModal] = useState(false);
 
@@ -19,11 +19,11 @@ function Sidebar({ title = 'Course Home', image = CourseHomeImage, links = [] })
     <div className={`d-flex ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="wrapper">
       <div id="sidebar-wrapper" className={isToggled ? 'open' : ''}>
         {/* Sidebar */}
-        <div className={`border-end bg-white ${isToggled ? 'sb-sidenav-toggled' : ''}`} id="sidebar-content">
+        <div className={`${isToggled ? 'sb-sidenav-toggled' : ''}`} id="sidebar-content">
           <div className="sidebarTitleContainer">
-            <div className="sidebar-heading border-bottom bg-light sidebarTitle">
+            <div className={`sidebar-heading border-bottom bg-light ${titleClassName || 'sidebarTitle'}`}>
               {title}
-              <img className="sidebarImage" src={image} alt="sidebar icon" />
+              <img className={`${imageClassName || 'sidebarImage'}`} src={image} alt="Sidebar icon" />
             </div>
           </div>
           <div className="list-group list-group-flush">

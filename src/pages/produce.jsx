@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Sidebar from '../components/Sidebar'; // Reusable Sidebar Component
-import ProduceImage from '../assets/produce.png'; // Produce image
+import Sidebar from '../components/Sidebar';
+import ProduceImage from '../assets/produce.png';
 
 function Produce() {
-    // Define the links specific to the Produce page
     const links = [
         { path: '/course-home', id: 'sidebar', label: 'Course Home' },
         { path: '/cooking', id: 'cooking', label: 'Cooking' },
@@ -21,6 +20,8 @@ function Produce() {
                 title="Produce" 
                 image={ProduceImage} 
                 links={links}
+                titleClassName="produceTitle"
+                imageClassName="produceImage"
             />
 
             {/* Page content wrapper */}

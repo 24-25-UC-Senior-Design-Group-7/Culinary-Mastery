@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Sidebar from '../components/Sidebar'; // Import the Sidebar component
-import SauteeImage from '../assets/saute-icon.png'; // Sautee image
+import Sidebar from '../components/Sidebar'; 
+import SauteeImage from '../assets/saute-icon.png'; 
 
 function Sautee() {
-    // Define the links specific to the Sautee page
     const links = [
         { path: '/course-home', id: 'sidebar', label: 'Course Home' },
         { path: '/cooking', id: 'cooking', label: 'Cooking' },
@@ -21,6 +20,8 @@ function Sautee() {
                 title="Sautee" 
                 image={SauteeImage} 
                 links={links}
+                titleClassName="sauteeTitle"
+                imageClassName="sauteeImage"
             />
 
             {/* Page content wrapper */}

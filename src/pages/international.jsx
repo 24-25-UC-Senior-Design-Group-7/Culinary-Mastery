@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Sidebar from '../components/Sidebar'; // Reusable Sidebar Component
-import internationalImage from '../assets/nepalese-flag.png'; // International image
+import Sidebar from '../components/Sidebar'; 
+import internationalImage from '../assets/nepalese-flag.png'; 
 
 function International() {
-    // Define the links specific to the International page
     const links = [
         { path: '/course-home', id: 'sidebar', label: 'Course Home' },
         { path: '/cooking', id: 'cooking', label: 'Cooking' },
@@ -21,6 +20,8 @@ function International() {
                 title="International" 
                 image={internationalImage} 
                 links={links}
+                titleClassName="internationalTitle"
+                imageClassName="internationalImage"
             />
 
             {/* Page content wrapper */}
