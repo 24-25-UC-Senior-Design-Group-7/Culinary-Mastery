@@ -522,7 +522,6 @@ body.sb-sidenav-toggled #page-content-wrapper {
   }
 }
 
-/* #region This is the Course Pages Section (Sidebar) */
 /* #region This is the Sidebar Links Section */
 #cooking,
 #produce,
@@ -532,13 +531,14 @@ body.sb-sidenav-toggled #page-content-wrapper {
 #international {
   background-color: var(--sunset);
   color: black;
+  align-self: center;
   text-align: center;
   font-size: 1.5rem;
   transition: all 0.25s ease-in;
   border-radius: 1.5rem;
-  margin-top: .5rem;
+  margin-top: .75rem;
   margin-left: 1rem;
-  max-width: 90%;
+  max-width: 85%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -553,7 +553,7 @@ body.sb-sidenav-toggled #page-content-wrapper {
   background-color: rgba(239, 200, 139, 0.8);
   text-decoration: underline;
   font-weight: bold;
-  font-size: 26px;
+  font-size: 1.75;
   color: black;
 }
 
@@ -657,6 +657,7 @@ body.sb-sidenav-toggled #page-content-wrapper {
 }
 
 /* #endregion */
+
 /* #region Hamburger Btn */
 #sidebarToggle.hamburger-btn {
   background-color: var(--sunset);
@@ -722,7 +723,6 @@ body.sb-sidenav-toggled #page-content-wrapper {
 }
 
 
-/* #endregion */
 /* #endregion */
 /* #endregion */
 
@@ -1214,7 +1214,6 @@ body.sb-sidenav-toggled #page-content-wrapper {
 
 /* #endregion */
 /* #endregion */
-
 
 /* #region This is the sidebar navbar Section */
 
