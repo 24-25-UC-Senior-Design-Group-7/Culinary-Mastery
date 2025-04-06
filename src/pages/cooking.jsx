@@ -11,12 +11,18 @@ function Cooking() {
         { path: '/sautee', label: 'Sautee', id: 'sautee' },
         { path: '/sear', label: 'Sear', id: 'sear' },
         { path: '/international', label: 'International', id: 'international' },
-      ];
+    ];
 
     return (
         <div className="d-flex" id="wrapper">
             {/* Sidebar Component */}
-            <Sidebar title="Cooking" image={CookingImage} links={links} />
+            <Sidebar 
+            title="Cooking" 
+            image={CookingImage} 
+            links={links} 
+            titleClassName="cookingTitle"
+            imageClassName="cookingImage"
+            />
 
             {/* Page content wrapper */}
             <div id="page-content-wrapper">

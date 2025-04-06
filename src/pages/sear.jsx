@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Sidebar from '../components/Sidebar'; // Import the Sidebar component
-import SearImage from '../assets/sear-icon.png'; // Sear image
+import Sidebar from '../components/Sidebar';
+import SearImage from '../assets/sear-icon.png'; 
 
 function Sear() {
-    // Define the links specific to the Sear page
     const links = [
         { path: '/course-home', id: 'sidebar', label: 'Course Home' },
         { path: '/cooking', id: 'cooking', label: 'Cooking' },
@@ -21,6 +20,8 @@ function Sear() {
                 title="Sear" 
                 image={SearImage} 
                 links={links}
+                titleClassName="searTitle"
+                imageClassName="searImage"
             />
 
             {/* Page content wrapper */}
