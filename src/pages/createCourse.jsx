@@ -55,6 +55,7 @@ const CreateCourse = () => {
 
       const data = await response.json();
       setCourse(data.course);
+      setCourse(data.course);
     } catch (error) {
       console.error('Error creating course:', error);
       alert('Error creating course. Check console for details.');

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSidebar } from '../contexts/SidebarContext';
 
-function Sidebar({ links = [], handleLoginClick }) {
+function Sidebar({ links = [] }) {
   const { isToggled, sidebarProps } = useSidebar();
 
   return (

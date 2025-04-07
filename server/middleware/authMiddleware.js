@@ -20,7 +20,7 @@ export const authenticateToken = (req, res, next) => {
 
     if (token == null) return res.sendStatus(401).json({ message: 'Unauthorized Access' });
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, window.process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.sendStatus(403).json({ message: 'Forbidden Access' });
         req.user = user;
         next();
