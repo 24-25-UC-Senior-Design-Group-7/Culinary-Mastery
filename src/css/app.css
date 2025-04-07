@@ -1441,3 +1441,15 @@ nav.navbar {
 }
 
 /* #endregion */
+
+/* This is the Page Content Section */
+  .content-wrapper {
+    height: calc(1080px-70px);
+    margin-top: 75px;
+    display: flex;
+  }
+
+  .content-wrapper h1 {
+    align-self: center;
+  }
+/* #endregion */
