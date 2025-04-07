@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import * as marked from 'marked';
 
 // Child Components
 import VideoSection from '../components/VideoSection';
