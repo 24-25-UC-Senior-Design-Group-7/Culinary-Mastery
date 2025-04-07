@@ -448,12 +448,11 @@ button:focus-visible {
 /* #region This is the Sidebar Css */
 #wrapper {
   display: flex;
-  flex-direction: row;
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
   transition: all 0.4s ease-out;
-  margin: 0;
+  position: relative;
 }
 
 #sidebar-wrapper {
@@ -463,7 +462,7 @@ button:focus-visible {
   top: 0;
   left: 0;
   transition: transform 0.4s ease-out;
-  z-index: 1100 !important;
+  z-index: 12 !important;
   margin: 0;
   transform: translateX(-250px);
   border-right: 2px solid #ddd;
@@ -477,13 +476,13 @@ button:focus-visible {
 #page-content-wrapper {
   flex: 1;
   margin-left: 0;
-  width: 100vw;
+  width: 100%;
+  height: auto;
   transition: margin-left 0.4s ease-in-out;
   box-sizing: border-box;
-  height: 100vh;
   overflow-y: auto;
   position: relative;
-  z-index: 100 !important;
+  z-index: 1 !important;
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -495,16 +494,8 @@ button:focus-visible {
   width: 15rem;
 }
 
-#page-content-wrapper.shifted {
-  margin-left: 0px;
-}
-
 body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   transform: translateX(0);
-}
-
-body.sb-sidenav-toggled #page-content-wrapper {
-  margin-left: 0px;
 }
 
 @media (max-width: 768px) {
@@ -729,6 +720,7 @@ body.sb-sidenav-toggled #page-content-wrapper {
 .navbarContainer {
   height: 4.3rem !important;
   width: 100%;
+  z-index: 3;
 }
 
 .navbarTitleContainer {
@@ -737,6 +729,11 @@ body.sb-sidenav-toggled #page-content-wrapper {
   transform: translateX(-50%);
   text-align: center;
   width: max-content;
+}
+
+nav.navbar {
+  position: fixed;
+  z-index: 11 !important;
 }
 
 .navbarTitle {
@@ -881,6 +878,7 @@ body.sb-sidenav-toggled #page-content-wrapper {
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .homeNavbarContainer .navbar-brand {
@@ -1215,18 +1213,19 @@ body.sb-sidenav-toggled #page-content-wrapper {
 /* #endregion */
 /* #endregion */
 
-/* #region This is the sidebar navbar Section */
+/* #region This is the Sidebar Navbar Section */
 
-.navbarContainer .navbar-nav .nav-item > .nav-link {
+.navbarContainer .navbar-nav .nav-item>.nav-link {
   display: inline-block;
   padding: 0.5rem 0.75rem;
-  transition: background-color 0.2s ease, font-size 0.2s ease;
-  border-radius: 10px; 
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease !important;
+  border-radius: 10px;
 }
 
-.navbarContainer .navbar-nav .nav-item > .nav-link:hover {
+.navbarContainer .navbar-nav .nav-item>.nav-link:hover {
   background-color: rgba(239, 200, 139, 0.8) !important;
   color: black;
+  transform: scale(1.05);
 }
 
 /* #endregion */
@@ -1351,6 +1350,94 @@ body.sb-sidenav-toggled #page-content-wrapper {
   text-align: center;
   color: white;
   font-size: 1rem;
+}
+
+/* #endregion */
+
+/* #region This is the Course Home Section */
+.Course-Home-Content {
+  height: calc(1080px-70px);
+  margin-top: 75px;
+}
+
+#course-home-courses {
+  background-color: white;
+  padding-left: 0;
+  padding-right: 0;
+  margin-top: 2rem;
+}
+
+#course-home-courses .d-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+
+#course-home-courses .courseBtn {
+  color: black;
+  background-color: var(--sunset) !important;
+  border: 1.5px solid rgba(110, 75, 58, 0.5);
+  text-align: center;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 50px;
+  font-size: 1.15rem;
+  margin: 0 auto;
+  transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+#course-home-courses .courseBtn:hover {
+  background-color: rgba(239, 200, 139, 0.8) !important;
+  font-weight: bold;
+  transform: scale(1.05);
+  color: black;
+  border-color: rgba(255, 179, 0, 0.7);
+}
+
+.coursehome-card-container {
+  width: 412px;
+  margin: 0;
+}
+
+.coursehome-card {
+  width: 100%;
+  border: 2px solid rgba(110, 75, 58, 0.5);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.coursehome-card:hover {
+  border-color: rgba(255, 179, 0, 0.7);
+  border-width: 3px;
+}
+
+.coursehome-card-body {
+  text-align: center;
+  padding: 1rem;
+}
+
+.coursehome-card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.coursehome-card-text {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.coursehome-card-img-top {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  display: block;
 }
 
 /* #endregion */

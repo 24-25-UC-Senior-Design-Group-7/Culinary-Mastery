@@ -8,7 +8,7 @@ import Produce from './pages/produce';
 import Sautee from './pages/sautee';
 import Sear from './pages/sear';
 import International from './pages/international';
-
+import CreateCourse from './pages/createCourse';
 
 function App() {
   return (
@@ -17,6 +17,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/create-course" element={<CreateCourse />} />
+
           <Route element={<Layout />}>
             <Route path="/course-home" element={<CourseHome />} />
             <Route path="/cooking" element={<Cooking />} />
