@@ -3,15 +3,20 @@ import { Link } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import LoginModal from '../components/LoginModal';
 import BrandLogo from '../assets/Culinary-Mastery-Logo.png';
+import RegisterModal from '../components/RegisterModal';
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
   const handleLoginClick = () => setShowLoginModal(true);
   const handleCloseModal = () => setShowLoginModal(false);
+
+  const handleRegisterClick = () => setShowRegisterModal(true);
+  const handleCloseRegisterModal = () => setShowRegisterModal(false);
 
   const slides = [
     {
@@ -180,6 +185,15 @@ const Home = () => {
                 Login
               </button>
             </li>
+            <li className="nav-item">
+              <button
+                className="nav-link"
+                onClick={handleRegisterClick}
+                id="register-button"
+              >
+                Register
+              </button>
+            </li>
           </ul>
         </div>
       </nav>
@@ -336,6 +350,9 @@ const Home = () => {
 
       {/* Login Modal */}
       <LoginModal show={showLoginModal} onClose={handleCloseModal} />
+
+      {/* Register Modal */}
+      <RegisterModal show={showRegisterModal} onClose={handleCloseRegisterModal} />
 
       {/* Footer */}
       <footer className="footer bg-dark p-3 homeFooter">

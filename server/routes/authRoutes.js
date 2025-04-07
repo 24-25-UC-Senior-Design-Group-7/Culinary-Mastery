@@ -1,9 +1,9 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import nodemailer from "nodemailer";
+// import nodemailer from "nodemailer";
 import { insertUser, verifyUser, findUserByEmail } from '../db/operations.js';
-import {randomBytes} from 'crypto';
+// import {randomBytes} from 'crypto';
 import { sendOtpEmail } from "../services/emailService.js";
 import dotenv from 'dotenv';
 

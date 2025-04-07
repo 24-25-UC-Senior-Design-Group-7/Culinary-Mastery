@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import axios from "axios";
 import env from "../env";
 
-const LoginModal = ({ show, onClose }) => {
-    const baseURL = env.BASE_URL;  // Make sure you have the base URL set in your environment variables
+
+const RegisterModal = ({ show, onClose }) => {
+    const baseURL = env.BASE_URL || "http://localhost:5000";
+    console.log(baseURL);
+
     const [formData, setFormData] = useState({
+        username: "",
         email: "",
         password: ""
     });
+
     const [message, setMessage] = useState("");
 
     const handleChange = (e) => {
@@ -17,15 +22,20 @@ const LoginModal = ({ show, onClose }) => {
     };
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
-        try {
+
+        try{
             const response = await axios.post(
-                `${baseURL}/auth/login`, formData
+                `${baseURL}/auth/register`,formData
             );
             setMessage(response.data.message);
-            // Handle further actions like redirecting the user or storing the authentication token
         } catch (error) {
-            setMessage(error.response?.data?.message || 'Error occurred while logging in');
+            // Ensure that you are accessing the correct error response structure
+        const errorMsg = error.response?.data?.error ? error.response.data.error : "Error registering user. Email might already exist";
+        setMessage(errorMsg);
+        console.log(error.response?.data?.error || 'No specific error message received');
+            
         }
     };
 
@@ -34,13 +44,25 @@ const LoginModal = ({ show, onClose }) => {
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content p-4">
                     <div className="modal-header">
-                        <h5 className="modal-title">Login</h5>
+                        <h5 className="modal-title">Register</h5>
                         <button type="button" className="close" onClick={onClose} aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div className="modal-body">
                         <form onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="username">Full Name:</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="username"
+                                    name="username"
+                                    value={formData.username}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
                             <div className="form-group">
                                 <label htmlFor="email">Email:</label>
                                 <input
@@ -65,7 +87,7 @@ const LoginModal = ({ show, onClose }) => {
                                     required
                                 />
                             </div>
-                            <button type="submit" className="btn btn-primary">Login</button>
+                            <button type="submit" className="btn btn-primary">Register</button>
                         </form>
                         {message && <div className="alert alert-info mt-3">{message}</div>}
                     </div>
@@ -75,4 +97,4 @@ const LoginModal = ({ show, onClose }) => {
     );
 };
 
-export default LoginModal;
+export default RegisterModal
