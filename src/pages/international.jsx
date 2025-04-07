@@ -33,11 +33,11 @@ function International() {
   }, [updateSidebarProps]);
 
   return (
-    <>
+    <div className="content-wrapper">
       <h1 className="mt-4">Explore International Cuisine</h1>
       <p>In this section, you'll learn about the rich and diverse flavors from different cultures around the world.</p>
       <p>We'll dive into recipes, techniques, and unique ingredients that define the culinary traditions of various countries.</p>
-    </>
+    </div>
   );
 }
 
