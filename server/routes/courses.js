@@ -3,7 +3,7 @@ import express from 'express';
 import YouTubeVideo from '../model/YouTubeVideo.js';
 import { transcribeAudioStreaming } from '../services/transcriptionModule.js';
 import { generateArticle, generateQuizFromArticle, translateArticle } from '../services/geminiService.js';
-import { insertCourse, getAllCourses, getCourseById } from '../db/operations.js';
+import { insertCourse, getAllCourses, getCourseById, getCoursesByCulinaryTechnique } from '../db/operations.js';
 
 
 const router = express.Router();
@@ -106,11 +106,22 @@ router.post('/creation', async (req, res) => {
  */
 router.get('/list_of_courses', async (req, res) => {
   
- const courses = await getAllCourses();
-  res.json({
-    message: "List of courses",
-    courses: courses
-  });
+  try{
+    
+  
+      const courses = await getAllCourses();
+      res.json({
+        message: "List of courses",
+        courses: courses
+      });
+    
+  } catch (error) {
+    console.error("Failed to list courses:", error);
+    res.status(500).json({
+      error: "Failed to list courses",
+      details: error.message
+    });
+  }
 });
 
 /**
@@ -169,28 +180,25 @@ router.get('/:id', async (req, res) => {
 });
 
 /**
- * Update an existing course by ID
- * PUT /api/courses/:id
+ * Retrieve courses by culinary technique
+ * GET /api/courses/culinaryTechnique/:culinaryTechnique
  */
-router.put('/:id', (req, res) => {
-  // TODO: Replace with logic to update the course data.
-  res.json({
-    message: "Course updated successfully.",
-    courseId: req.params.id,
-    updatedData: req.body  // Replace with updated course data.
-  });
-});
+router.get('/culinaryTechnique/:culinaryTechnique', async (req, res) => {
 
-/**
- * Delete a course by ID
- * DELETE /api/courses/:id
- */
-router.delete('/:id', (req, res) => {
-  // TODO: Replace with logic to delete the course.
-  res.json({
-    message: "Course deleted successfully.",
-    courseId: req.params.id
-  });
+  try{
+    const course =await getCoursesByCulinaryTechnique(req.params.culinaryTechnique);
+    if(!course){
+      return res.status(404).json({message: "No course found"});
+    }
+    res.json({
+      message: "Courses retrieved successfully.",
+      courses: course
+    })
+  }
+  catch(error){
+    res.status(500).json({ error: "Failed to retrieve course" });
+    console.error("Error retrieving course by ID:", error);
+  }
 });
 
 export default router;

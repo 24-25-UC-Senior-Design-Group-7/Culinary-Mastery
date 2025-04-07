@@ -37,7 +37,7 @@ export async function createCoursesTable() {
 
 // db/operations.js (continued)
 export async function insertCourse(course) {
-    const { id, title, description, videoId, transcript, article, quiz, culinaryTechnique, channelName } = course;
+    const { title, description, videoId, transcript, article, quiz, culinaryTechnique, channelName } = course;
     
     // Convert quiz object to string if it's an object:
     const quizString = typeof quiz === 'object' ? JSON.stringify(quiz) : quiz;
@@ -106,6 +106,33 @@ export async function insertCourse(course) {
       throw error;
     }
   }
+
+  /**
+   * get courses by culinary technique
+   * @param {string} culinaryTechnique
+   * @returns {Promise}
+   */
+  export async function getCoursesByCulinaryTechnique(culinaryTechnique) {
+
+    const query = `
+      SELECT id, title, description, videoId, transcript, article, quiz, culinaryTechnique, channelName
+      FROM Courses
+      WHERE culinaryTechnique = @culinaryTechnique
+    `;
+
+    try{
+      const pool = await getPool();
+      const request = pool.request();
+      request.input('culinaryTechnique', sql.NVarChar(100), culinaryTechnique);
+      const result = await request.query(query);
+      return result.recordset;
+    } catch (error) { 
+      console.error("Error retrieving courses by culinary technique:", error);
+      throw error;
+    }
+
+  }
+   
 
   /**
    * Creates the Users table if it doesn't already exist.
@@ -216,6 +243,16 @@ export async function verifyUser(email, otp) {
  * @throws Will throw an error if the query fails.
  */
 
+/**
+ * Finds a user by their email address.
+ * 
+ * Queries the Users table to retrieve user details matching the provided email.
+ * If a user with the given email exists, returns the user's information; otherwise, returns null.
+ * 
+ * @param {string} email - The email address of the user to find.
+ * @returns {Promise<Object|null>} - A promise that resolves with the user object if found, or null if no user is found.
+ * @throws Will throw an error if the query fails.
+ */
 export async function findUserByEmail(email) {
   try {
       const pool = await getPool();
@@ -233,4 +270,215 @@ export async function findUserByEmail(email) {
       throw error;
   }
 }
+
+/**
+ * Creates the UserCourses table if it doesn't already exist.
+ * 
+ * Queries the database to create the UserCourses table if it doesn't already exist.
+ * The table is used to store the many-to-many relationship between users and courses.
+ * 
+ * @returns {Promise<void>} - A promise that resolves when the table is created or already exists.
+ * @throws Will throw an error if the query fails.
+ */
+export async function CreateUserCoursesTable() {
+
+  // Create the Courses table if it doesn't already exist
+  const createTableQuery =`
+  IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'UserCourses')
+  BEGIN
+      CREATE TABLE userCourses(
+          user_course_id UNIQUEIDENTIFIER PRIMARY KEY,
+          user_id UNIQUEIDENTIFIER NOT NULL,
+          course_id UNIQUEIDENTIFIER NOT NULL,
+          enrolled_at DATETIME DEFAULT GETDATE(),
+          is_completed BIT DEFAULT 0,
+          FOREIGN KEY (user_id) REFERENCES Users(id),
+          FOREIGN KEY (course_id) REFERENCES Courses(id)
+          )
+  END
+  `;
+  try {
+      const pool = await getPool();
+      await pool.request().query(createTableQuery);
+      console.log("UserCourses table created or already exists.");
+  } catch (error) {
+      console.error("Error creating UserCourses table:", error);
+      throw error;
+  }
+
+
+}
+
+/**
+ * Enrolls a user in a specified course.
+ *
+ * Inserts a record into the User_Courses table associating the given user with the specified course.
+ *
+ * @param {string} userId - The unique identifier of the user.
+ * @param {string} courseId - The unique identifier of the course.
+ * @returns {Promise<void>} - A promise that resolves when the enrollment is completed.
+ * @throws Will throw an error if the enrollment process fails.
+ */
+
+export async function enrollUserInCourse(userId, courseId) {
+  const insertQuery = `
+      INSERT INTO User_Courses (user_id, course_id)
+      VALUES (@userId, @courseId)
+  `;
+  try {
+      const pool = await getPool();
+      const request = pool.request();
+      request.input('userId', sql.UniqueIdentifier, userId);
+      request.input('courseId', sql.UniqueIdentifier, courseId);
+      await request.query(insertQuery);
+      console.log("User enrolled in course successfully!");
+  } catch (error) {
+      console.error("Error enrolling user in course:", error);
+      throw error;
+  }
+}
+
+/**
+ * Retrieves all courses that a user is enrolled in.
+ * @param {string} userId - The id of the user to retrieve courses for.
+ * @returns {Promise<Course[]>} - A promise of an array of Course objects.
+ */
+export async function getCoursesForUser(userId) {
+  const query = `
+      SELECT c.*
+      FROM Courses c
+      JOIN User_Courses uc ON uc.course_id = c.id
+      WHERE uc.user_id = @userId
+  `;
+  try {
+      const pool = await getPool();
+      const request = pool.request();
+      request.input('userId', sql.UniqueIdentifier, userId);
+      const result = await request.query(query);
+      return result.recordset;  // Return list of courses
+  } catch (error) {
+      console.error("Error retrieving courses for user:", error);
+      throw error;
+  }
+}
+
+export async function updateCourseCompletion(userId, courseId) {
+
+  const updateQuery = `
+      UPDATE User_Courses
+      SET is_completed = 1
+      WHERE user_id = @userId AND course_id = @courseId
+  `;
+  try {
+      const pool = await getPool();
+      const request = pool.request();
+      request.input('userId', sql.UniqueIdentifier, userId);
+      request.input('courseId', sql.UniqueIdentifier, courseId);
+      await request.query(updateQuery);
+      console.log("Course completion updated successfully!");
+  } catch (error) {
+      console.error("Error updating course completion:", error);
+      throw error;
+  }
+  
+}
+
+/**
+ * Creates the Analytics table if it doesn't already exist.
+ *
+ * This function executes a SQL query to create the Analytics table, which stores 
+ * user analytics data such as quiz scores and completion status for courses. 
+ * It includes foreign keys referencing the Users and Courses tables.
+ *
+ * @returns {Promise<void>} - A promise that resolves when the table is created or already exists.
+ * @throws Will throw an error if the table creation process fails.
+ */
+
+export async function createAnalysisTable() {
+
+  // Create the Analysis table if it doesn't already exist
+  const createTableQuery =`
+  IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Analysis')
+  BEGIN
+      CREATE TABLE Analytics (
+    analytics_id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    user_id UNIQUEIDENTIFIER NOT NULL,
+    course_id UNIQUEIDENTIFIER NOT NULL,
+    quiz_score INT,
+    completed BIT DEFAULT 0,
+    date_taken DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (user_id) REFERENCES Users(id),
+    FOREIGN KEY (course_id) REFERENCES Courses(id)
+);
+
+  end`;
+
+  try{
+      const pool = await getPool();
+      await pool.request().query(createTableQuery);
+      console.log("Analysis table created or already exists.");
+  } catch (error) {  
+      console.error("Error creating Analysis table:", error);
+      throw error;
+  }
+}
+
+/**
+ * Inserts a user's analytics data into the Analytics table.
+ * 
+ * @param {string} user_id - The unique identifier of the user whose analytics data is to be inserted.
+ * @param {string} course_id - The unique identifier of the course associated with the analytics data.
+ * @param {number} quiz_score - The user's score on the course's quiz.
+ * @returns {Promise<void>} - A promise that resolves when the analytics data is inserted successfully.
+ * @throws Will throw an error if the insertion process fails.
+ */
+export async function insertUserAnalytics(user_id, course_id, quiz_score) {
+  const insertQuery = `
+      INSERT INTO Analytics (user_id, course_id, quiz_score, completed)
+      VALUES (@user_id, @course_id, @quiz_score, 1)
+  `;
+  try {
+      const pool = await getPool();
+      const request = pool.request();
+      request.input('user_id', sql.UniqueIdentifier, user_id);
+      request.input('course_id', sql.UniqueIdentifier, course_id);
+      request.input('quiz_score', sql.Int, quiz_score);
+      await request.query(insertQuery);
+      console.log("User analytics inserted successfully!");
+  } catch (error) {
+      console.error("Error inserting user analytics:", error);
+      throw error;
+  }
+}
+
+/**
+ * Retrieves analytics data for a specific user.
+ * 
+ * Queries the Analytics table to retrieve all analytics records associated with the given user ID.
+ * Returns an array of analytics objects, each containing details such as quiz score and completion status.
+ * 
+ * @param {string} userId - The unique identifier of the user whose analytics data is to be retrieved.
+ * @returns {Promise<Array>} - A promise that resolves with an array of analytics objects for the specified user.
+ * @throws Will throw an error if the query fails.
+ */
+
+export async function getAnalyticsForUser(userId) {
+  const query = `
+      SELECT *
+      FROM Analytics
+      WHERE user_id = @userId
+  `;
+  try {
+      const pool = await getPool();
+      const request = pool.request();
+      request.input('userId', sql.UniqueIdentifier, userId);
+      const result = await request.query(query);
+      return result.recordset;  // Return list of analytics
+  } catch (error) {
+      console.error("Error retrieving analytics for user:", error);
+      throw error;
+  }
+} 
+
+
 
