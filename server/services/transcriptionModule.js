@@ -3,6 +3,7 @@ import fs from 'fs';
 import SpeechToTextV1 from 'ibm-watson/speech-to-text/v1.js';
 import { IamAuthenticator } from 'ibm-watson/auth/index.js';
 import dotenv from 'dotenv';
+import { Buffer } from 'buffer';
 dotenv.config();
 
 const speechToText = new SpeechToTextV1({
