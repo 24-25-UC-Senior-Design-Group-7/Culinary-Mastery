@@ -45,6 +45,13 @@ function Layout() {
     }
   };
 
+  const handleLogout = () => {
+    setUserInfo(null);
+    fetch('/api/logout', { method: 'POST' }).catch((err) =>
+      console.error('Logout error:', err)
+    );
+  };
+
   const handleCloseModal = () => setShowLoginModal(false);
 
   const links = [
@@ -113,23 +120,28 @@ function Layout() {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    Dropdown
+                    {userName}
                   </a>
                   <div className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <a className="dropdown-item" href="#!">
-                      Action
-                    </a>
-                    <a className="dropdown-item" href="#!">
-                      Another action
-                    </a>
-                    <div className="dropdown-divider"></div>
-                    <button
-                      className="dropdown-item"
-                      onClick={handleLoginClick}
-                      id="login-button"
-                    >
-                      Login
-                    </button>
+                    {/* Container for dropdown items */}
+                    <div className="dropdown-items-container">
+                      <a className="dropdown-item" href="#!">
+                        Action
+                      </a>
+                      <a className="dropdown-item" href="#!">
+                        Another action
+                      </a>
+                      <div className="dropdown-divider"></div>
+                      {userInfo ? (
+                        <button className="dropdown-item" onClick={handleLogout} id="logout-button">
+                          Logout
+                        </button>
+                      ) : (
+                        <button className="dropdown-item" onClick={handleLoginClick} id="login-button">
+                          Login
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </li>
               </ul>

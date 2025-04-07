@@ -742,7 +742,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   border-bottom: 3px solid #ddd !important;
 }
 
-.navbarTitleContainer {
+.navbarContainer .navbarTitleContainer {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -769,6 +769,46 @@ nav.navbar {
 .navbarTitleLink {
   color: inherit !important;
   text-decoration: none !important;
+}
+
+.navbarContainer .dropdown-items-container {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.navbarContainer .dropdown-menu,
+.navbarContainer .dropdown-item {
+  box-sizing: border-box;
+}
+
+.navbarContainer .dropdown-menu {
+  position: relative;
+  background-color: white;
+  border: 1px solid rgba(110, 75, 58, 0.5);
+  padding: 0.5rem 1rem;
+  width: 200px;
+  min-width: 0;
+}
+
+.navbarContainer .dropdown-item {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: block;
+  max-width: 100%;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.navbarContainer .dropdown-item:hover {
+  background-color: rgba(239, 200, 139, 0.8);
+  font-weight: bold;
+  transform: scale(1.05);
+  color: black;
+  overflow: hidden;
 }
 /* #endregion */
 
