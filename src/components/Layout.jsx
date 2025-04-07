@@ -138,7 +138,7 @@ function Layout() {
         </nav>
 
         {/* Render child routes (e.g., CourseHome, Cooking, etc.) */}
-        <Outlet />
+        <Outlet context={{ userInfo, loading, error }} />
       </div>
 
       {/* Login Modal */}
