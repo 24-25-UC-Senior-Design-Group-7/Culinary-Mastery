@@ -56,6 +56,7 @@ const LoginModal = ({ show, onClose }) => {
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
+                                    placeholder="Ex. John@gmail.com"
                                 />
                             </div>
                             <div className="form-group">

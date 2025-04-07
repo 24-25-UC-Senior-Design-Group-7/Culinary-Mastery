@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import env from "../env";
 
-
 const RegisterModal = ({ show, onClose }) => {
     const baseURL = env.BASE_URL || "http://localhost:5000";
     console.log(baseURL);
@@ -22,20 +21,17 @@ const RegisterModal = ({ show, onClose }) => {
     };
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
 
-        try{
+        try {
             const response = await axios.post(
-                `${baseURL}/auth/register`,formData
+                `${baseURL}/auth/register`, formData
             );
             setMessage(response.data.message);
         } catch (error) {
-            // Ensure that you are accessing the correct error response structure
-        const errorMsg = error.response?.data?.error ? error.response.data.error : "Error registering user. Email might already exist";
-        setMessage(errorMsg);
-        console.log(error.response?.data?.error || 'No specific error message received');
-            
+            const errorMsg = error.response?.data?.error ? error.response.data.error : "Error registering user. Email might already exist";
+            setMessage(errorMsg);
+            console.log(error.response?.data?.error || 'No specific error message received');
         }
     };
 
@@ -52,34 +48,36 @@ const RegisterModal = ({ show, onClose }) => {
                     <div className="modal-body">
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
-                                <label htmlFor="username">Full Name:</label>
+                                <label htmlFor="username" className="loginLabel">Full Name:</label>
                                 <input
                                     type="text"
-                                    className="form-control"
+                                    className="form-control loginInput"
                                     id="username"
                                     name="username"
                                     value={formData.username}
                                     onChange={handleChange}
                                     required
+                                    placeholder="Ex. John Doe"
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="email">Email:</label>
+                                <label htmlFor="email" className="loginLabel">Email:</label>
                                 <input
                                     type="email"
-                                    className="form-control"
+                                    className="form-control loginInput"
                                     id="email"
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
+                                    placeholder="Ex. john@gmail.com"
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="password">Password:</label>
+                                <label htmlFor="password" className="loginLabel">Password:</label>
                                 <input
                                     type="password"
-                                    className="form-control"
+                                    className="form-control loginInput"
                                     id="password"
                                     name="password"
                                     value={formData.password}
@@ -87,7 +85,7 @@ const RegisterModal = ({ show, onClose }) => {
                                     required
                                 />
                             </div>
-                            <button type="submit" className="btn btn-primary">Register</button>
+                            <button type="submit" className="btn loginBtn">Register</button>
                         </form>
                         {message && <div className="alert alert-info mt-3">{message}</div>}
                     </div>
@@ -97,4 +95,4 @@ const RegisterModal = ({ show, onClose }) => {
     );
 };
 
-export default RegisterModal
+export default RegisterModal;
