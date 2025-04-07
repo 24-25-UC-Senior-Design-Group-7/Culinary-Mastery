@@ -93,7 +93,7 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({message: "Please verify your account before logging in."});
         }
 
-        const accessToken = jwt.sign({ id: user.id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+        const accessToken = jwt.sign({ id: user.id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' });
         const refreshToken = jwt.sign({ id: user.id },process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
 
         res.json({message: "Login successful", accessToken, refreshToken});
