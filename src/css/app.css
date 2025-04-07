@@ -1515,12 +1515,12 @@ nav.navbar {
   font-family: Arial, sans-serif;
   background-color: #fff;
   color: #333;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 80px);
   margin-top: 80px;
   padding: 20px;
   text-align: center;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   width: 80%; 
   max-width: 1200px; 
   margin-left: auto;
