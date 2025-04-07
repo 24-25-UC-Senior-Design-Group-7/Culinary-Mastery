@@ -52,7 +52,7 @@ function CourseHome() {
               image: 'https://cdn.shopify.com/s/files/1/0619/7487/2253/files/Anova-Steak-Guide-Sous-Vide-Photos10-copy-flip-sear-1024x682.jpg',
             },
             {
-              title: 'Sautee Basics',
+              title: 'Sauté Basics',
               description: 'Learn the technique of sautéing to cook ingredients quickly, meanwhile preserving flavor and texture.',
               image: 'https://www.bhg.com/thmb/w98FgPUYDih5VuKXn11RDJoL3g0=/4000x0/filters:no_upscale():strip_icc()/BHG-how-to-saute-onions-03-5665975_BdVQC-b5KnZBxtNuR5SHEC-ce9832e411d64dfb99488ad3fe408d2c.jpg',
             }

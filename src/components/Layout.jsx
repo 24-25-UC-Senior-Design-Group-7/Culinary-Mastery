@@ -8,15 +8,13 @@ function Layout() {
   const { isToggled, toggleSidebar, sidebarProps } = useSidebar();
   const [showLoginModal, setShowLoginModal] = useState(false);
 
-  // Handle the login click
   const handleLoginClick = () => {
     setShowLoginModal(true);
     if (isToggled) {
-      toggleSidebar();  // Close the sidebar if it's open
+      toggleSidebar();
     }
   };
 
-  // Close the login modal
   const handleCloseModal = () => setShowLoginModal(false);
 
   const links = [
@@ -37,7 +35,6 @@ function Layout() {
         links={links}
         titleClassName={sidebarProps.titleClassName}
         imageClassName={sidebarProps.imageClassName}
-        handleLoginClick={handleLoginClick}  // Passing handleLoginClick to Sidebar
       />
 
       {/* Page content wrapper */}
@@ -48,7 +45,7 @@ function Layout() {
             <button
               className={`hamburger-btn ${isToggled ? 'right' : ''}`}
               id="sidebarToggle"
-              onClick={toggleSidebar}  // Allow hamburger to toggle sidebar normally
+              onClick={toggleSidebar}
             >
               <div className={`hamburger ${isToggled ? 'toggled' : ''}`}>
                 <div className="line line-1"></div>
@@ -66,14 +63,14 @@ function Layout() {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
                 <li className="nav-item active">
-                  <Link to="/home" id="home" className="nav-link">
-                    Home
+                  <Link to="/course-home" id="course-home" className="nav-link">
+                    Course Home
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#!">
-                    Link
-                  </a>
+                  <Link to="/create-course" id="create" className="nav-link">
+                    Create
+                  </Link>
                 </li>
                 <li className="nav-item dropdown">
                   <a
@@ -96,7 +93,7 @@ function Layout() {
                     <div className="dropdown-divider"></div>
                     <button
                       className="dropdown-item"
-                      onClick={handleLoginClick}  // Call the handleLoginClick function
+                      onClick={handleLoginClick}
                       id="login-button"
                     >
                       Login

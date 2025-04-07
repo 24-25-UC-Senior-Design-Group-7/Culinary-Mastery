@@ -34,10 +34,10 @@ function Sautee() {
   }, [updateSidebarProps]);
 
   return (
-    <>
-      <h1 className="mt-4">Sautee Techniques</h1>
-      <p>Learn the art of sauteeing in this section. It’s a quick-cook technique using a small amount of fat.</p>
-    </>
+    <div className="content-wrapper">
+      <h1 className="mt-4">Sauté Techniques</h1>
+      <p>Learn the art of Sautéing in this section. It’s a quick-cook technique using a small amount of fat.</p>
+    </div>
   );
 }
 

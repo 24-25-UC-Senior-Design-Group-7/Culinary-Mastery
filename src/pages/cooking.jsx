@@ -35,11 +35,11 @@ function Cooking() {
   }, [updateSidebarProps]);
 
   return (
-    <>
+    <div className="content-wrapper">
       <h1 className="mt-4">Cooking</h1>
       <p>Welcome to the Cooking section. Here you will learn the art of cooking.</p>
       <p>Explore various cooking techniques and recipes that will help you master the culinary world.</p>
-    </>
+    </div>
   );
 }
 

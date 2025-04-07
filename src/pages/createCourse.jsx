@@ -9,16 +9,13 @@ const CreateCourse = () => {
   const [updates, setUpdates] = useState([]);
 
   useEffect(() => {
-    // Connect to the Socket.IO server
     const socket = io();
 
-    // Set the socket ID when connected
     socket.on('connect', () => {
       setSocketId(socket.id);
       console.log('Connected. Socket ID:', socket.id);
     });
 
-    // Listen for partial transcription updates
     socket.on('transcriptUpdate', (partialText) => {
       setUpdates((prevUpdates) => [...prevUpdates, partialText]);
     });
@@ -28,16 +25,13 @@ const CreateCourse = () => {
     };
   }, []);
 
-  // Handle form submission
   const handleCreateCourse = async () => {
     const videoId = document.getElementById('videoIdInput').value.trim();
     const culinaryTechnique = document.getElementById('culinaryTechniqueInput').value.trim();
 
-    // Clear previous data
     setUpdates([]);
     setCourse(null);
 
-    // Basic validation
     if (!videoId) {
       alert('Please enter a video ID');
       return;
@@ -48,13 +42,10 @@ const CreateCourse = () => {
     }
 
     try {
-      // Build the body payload
       const payload = { videoId, culinaryTechnique };
 
-      // Build the URL with the socket ID as query param
       const url = `/api/courses/creation?socketId=${socketId}`;
 
-      // Make a POST request with JSON body
       const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -66,7 +57,7 @@ const CreateCourse = () => {
       }
 
       const data = await response.json();
-      setCourse(data.course); // set the final course object
+      setCourse(data.course);
     } catch (error) {
       console.error('Error creating course:', error);
       alert('Error creating course. Check console for details.');
