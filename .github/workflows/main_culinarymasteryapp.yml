@@ -21,6 +21,9 @@ jobs:
         with:
           node-version: '20.x'
 
+      - name: Set Node.js memory limit
+        run: echo "NODE_OPTIONS=--max-old-space-size=4096" >> $GITHUB_ENV
+
       - name: npm install, build, and test
         run: |
           npm install
@@ -44,6 +47,9 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     
     steps:
+      - name: Set Node.js memory limit
+        run: echo "NODE_OPTIONS=--max-old-space-size=4096" >> $GITHUB_ENV
+
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
