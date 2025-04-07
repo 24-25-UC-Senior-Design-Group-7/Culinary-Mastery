@@ -1260,7 +1260,7 @@ nav.navbar {
 }
 
 .modal-body {
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 .modal-body .form-group {
@@ -1385,7 +1385,7 @@ nav.navbar {
 /* #region This is the Course Home Section */
 .Course-Home-Content {
   height: calc(1080px-70px);
-  margin-top: 75px;
+  margin-top: 125px;
 }
 
 #course-home-courses {
@@ -1400,6 +1400,21 @@ nav.navbar {
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 1.5rem;
+}
+
+.Course-Home-Content .user-name {
+  text-decoration: underline;
+  border-radius: 10px;
+  padding: 0 20px 5px;
+  display: inline-block;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.Course-Home-Content .user-name:hover {
+  background-color: rgba(239, 200, 139, 0.8) !important;
+  transform: scale(1.05);
+  color: black;
+  border-color: rgba(255, 179, 0, 0.7);
 }
 
 #course-home-courses .courseBtn {
@@ -1430,6 +1445,13 @@ nav.navbar {
 .coursehome-card-container {
   width: 412px;
   margin: 0;
+}
+
+.coursehome-cards-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
 }
 
 .coursehome-card {
@@ -1466,7 +1488,7 @@ nav.navbar {
 }
 
 .coursehome-card-text {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   margin-bottom: 20px;
 }
 
