@@ -502,7 +502,11 @@ button:focus-visible {
 
 #sidebar-wrapper .list-group-item {
   border: 1.5px solid #d4af7f;
-  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth and fast transitions */
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+  transform: translateY(-3px); /* Slight movement for hover effect */
 }
 
 body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
@@ -536,7 +540,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   align-self: center;
   text-align: center;
   font-size: 1.5rem;
-  transition: all 0.25s ease-in;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
   border-radius: 1.5rem;
   margin-top: .75rem;
   margin-left: 1rem;
@@ -544,6 +548,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  will-change: transform, background-color;
 }
 
 #cooking:hover,
@@ -555,9 +560,8 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   background-color: rgba(239, 200, 139, 0.8);
   text-decoration: underline;
   font-weight: bold;
-  font-size: 1.75;
   color: black;
-  transform: scale(1.05);
+  transform: translateY(-5px); /* Using translate for smoother effect */
 }
 
 #sidebar-wrapper .produceTitle,
@@ -766,7 +770,6 @@ nav.navbar {
   color: inherit !important;
   text-decoration: none !important;
 }
-
 /* #endregion */
 
 /* #region This is the Contact Section */
