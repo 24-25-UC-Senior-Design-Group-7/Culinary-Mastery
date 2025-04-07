@@ -71,9 +71,9 @@ function Layout() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#!">
-                    Link
-                  </a>
+                  <Link to="/create-course" id="create" className="nav-link">
+                    Create
+                  </Link>
                 </li>
                 <li className="nav-item dropdown">
                   <a

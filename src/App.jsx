@@ -15,11 +15,13 @@ function App() {
     <SidebarProvider>
       <Router>
         <Routes>
+          {/* Direct route for Home */}
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/create-course" element={<CreateCourse />} />
 
+          {/* Layout and its child routes including CreateCourse */}
           <Route element={<Layout />}>
+            <Route path="/create-course" element={<CreateCourse />} />
             <Route path="/course-home" element={<CourseHome />} />
             <Route path="/cooking" element={<Cooking />} />
             <Route path="/produce" element={<Produce />} />
