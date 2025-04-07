@@ -1,22 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { useSidebar } from '../contexts/SidebarContext';
 import LoginModal from '../components/LoginModal';
+import CourseHome from '../pages/CourseHome.jsx';
 
 function Layout() {
   const { isToggled, toggleSidebar, sidebarProps } = useSidebar();
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Handle the login click
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch('/api/user');
+
+        if (!response.ok) {
+          throw new Error(`HTTP Error: ${response.status}`);
+        }
+
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error(`Expected JSON, but received ${contentType}`);
+        }
+
+        const data = await response.json();
+        setUserInfo({ name: data.name });
+      } catch (error) {
+        console.error('Error fetching user info:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
+
   const handleLoginClick = () => {
     setShowLoginModal(true);
     if (isToggled) {
-      toggleSidebar();  // Close the sidebar if it's open
+      toggleSidebar();
     }
   };
 
-  // Close the login modal
   const handleCloseModal = () => setShowLoginModal(false);
 
   const links = [
@@ -28,6 +57,8 @@ function Layout() {
     { path: '/international', id: 'international', label: 'International' },
   ];
 
+  const userName = userInfo?.name || 'Guest';
+
   return (
     <div className="d-flex" id="wrapper">
       {/* Sidebar */}
@@ -37,7 +68,6 @@ function Layout() {
         links={links}
         titleClassName={sidebarProps.titleClassName}
         imageClassName={sidebarProps.imageClassName}
-        handleLoginClick={handleLoginClick}  // Passing handleLoginClick to Sidebar
       />
 
       {/* Page content wrapper */}
@@ -48,7 +78,7 @@ function Layout() {
             <button
               className={`hamburger-btn ${isToggled ? 'right' : ''}`}
               id="sidebarToggle"
-              onClick={toggleSidebar}  // Allow hamburger to toggle sidebar normally
+              onClick={toggleSidebar}
             >
               <div className={`hamburger ${isToggled ? 'toggled' : ''}`}>
                 <div className="line line-1"></div>
@@ -96,7 +126,7 @@ function Layout() {
                     <div className="dropdown-divider"></div>
                     <button
                       className="dropdown-item"
-                      onClick={handleLoginClick}  // Call the handleLoginClick function
+                      onClick={handleLoginClick}
                       id="login-button"
                     >
                       Login
@@ -108,9 +138,8 @@ function Layout() {
           </div>
         </nav>
 
-        <div>
-          <Outlet />
-        </div>
+        {/* Pass userInfo, loading, and error to CourseHome */}
+        <CourseHome userInfo={{ name: userName }} loading={loading} error={error} />
       </div>
 
       {/* Login Modal */}

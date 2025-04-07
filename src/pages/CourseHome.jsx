@@ -1,79 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useSidebar } from '../contexts/SidebarContext';
-import CourseHomeImage from '../assets/house-icon.png';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-function CourseHome() {
-  const { updateSidebarProps } = useSidebar();
-  const prevSidebarProps = useRef({});
-
-  const [userName, setUserName] = useState('Guest User');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const response = await fetch('/api/user');
-        
-        if (!response.ok) {
-          throw new Error(`HTTP Error: ${response.status}`);
-        }
-
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-          throw new Error(`Expected JSON, but received ${contentType}`);
-        }
-
-        const data = await response.json();
-        setUserInfo({ name: data.name });
-      } catch (error) {
-        console.error('Error fetching user info:', error);
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUserInfo();
-  }, []);
-
-  useEffect(() => {
-    const newProps = {
-      title: 'Course Home',
-      image: CourseHomeImage,
-      titleClassName: 'sidebarTitle',
-      imageClassName: 'sidebarImage',
-    };
-
-    if (
-      prevSidebarProps.current.title !== newProps.title ||
-      prevSidebarProps.current.image !== newProps.image
-    ) {
-      updateSidebarProps(newProps);
-      prevSidebarProps.current = newProps;
-    }
-
-    return () => {
-      updateSidebarProps({
-        title: '',
-        image: '',
-        titleClassName: '',
-        imageClassName: '',
-      });
-    };
-  }, [updateSidebarProps]);
+function CourseHome({ userInfo, loading, error }) {
+  if (error) {
+    console.error('Error fetching user info:', error); 
+  }
 
   return (
     <div className="Course-Home-Content">
       <h1 className="mt-4 text-center">
-        {loading ? 'Loading, please wait...' : `Welcome to the Course Home, ${userName}`}
+        {loading
+          ? 'Loading, please wait...'
+          : `Welcome to the Course Home, ${userInfo?.name || 'Guest User'}`}
       </h1>
+
       {/* Courses Section */}
       <section id="course-home-courses" className="container">
         <div className="d-flex flex-wrap justify-content-center">
           {/* Course Cards */}
-          {[
+          {[ 
             {
               title: 'Produce Basics',
               description: 'Discover the essentials of selecting, preparing, and storing fresh produce.',
