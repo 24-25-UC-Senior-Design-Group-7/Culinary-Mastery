@@ -6,7 +6,7 @@ import LoginModal from '../components/LoginModal';
 import CourseHome from '../pages/CourseHome.jsx';
 
 function Layout() {
-  const { isToggled, toggleSidebar, sidebarProps } = useSidebar();
+  const { isToggled, toggleSidebar, sidebarProps, updateSidebarProps } = useSidebar();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -38,6 +38,16 @@ function Layout() {
 
     fetchUserInfo();
   }, []);
+
+  // Dynamically update the sidebar properties here
+  useEffect(() => {
+    updateSidebarProps({
+      title: 'Culinary Mastery',
+      image: '/path/to/sidebar-image.jpg',  // Provide an image path here
+      titleClassName: 'navbarTitle',  // Optional custom title class
+      imageClassName: 'navbarImage',  // Optional custom image class
+    });
+  }, [updateSidebarProps]);
 
   const handleLoginClick = () => {
     setShowLoginModal(true);
