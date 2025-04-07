@@ -1,44 +1,68 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useSidebar } from '../contexts/SidebarContext';
 import { Link } from 'react-router-dom';
+import CourseHomeImage from '../assets/house-icon.png';
 
-function CourseHome({ userInfo, loading, error }) {
-  if (error) {
-    console.error('Error fetching user info:', error); 
-  }
+function CourseHome() {
+  const { updateSidebarProps } = useSidebar();
+  const prevSidebarProps = useRef({});
+
+  useEffect(() => {
+    const newProps = {
+      title: 'Course Home',
+      image: CourseHomeImage,
+      titleClassName: 'sidebarTitle',
+      imageClassName: 'sidebarImage',
+    };
+
+    if (
+      prevSidebarProps.current.title !== newProps.title ||
+      prevSidebarProps.current.image !== newProps.image ||
+      prevSidebarProps.current.titleClassName !== newProps.titleClassName ||
+      prevSidebarProps.current.imageClassName !== newProps.imageClassName
+    ) {
+      updateSidebarProps(newProps);
+      prevSidebarProps.current = newProps;
+    }
+
+    // Reset sidebar props on unmount
+    return () => {
+      updateSidebarProps({
+        title: '',
+        image: '',
+        titleClassName: '',
+        imageClassName: '',
+      });
+    };
+  }, [updateSidebarProps]);
 
   return (
     <div className="Course-Home-Content">
-      <h1 className="mt-4 text-center">
-        {loading
-          ? 'Loading, please wait...'
-          : `Welcome to the Course Home, ${userInfo?.name || 'Guest User'}`}
-      </h1>
-
-      {/* Courses Section */}
+      <h1 className="mt-4 text-center">Welcome to the Course Home</h1>
       <section id="course-home-courses" className="container">
         <div className="d-flex flex-wrap justify-content-center">
           {/* Course Cards */}
           {[ 
             {
               title: 'Produce Basics',
-              description: 'Discover the essentials of selecting, preparing, and storing fresh produce.',
+              description: 'Learn how to select, prepare, and store fresh produce.',
               image: 'https://images.unsplash.com/photo-1556911220-dabc1f02913a?q=80&w=2070&auto=format&fit=crop',
               link: '/produce',
-              buttonText: 'Produce Course',
+              buttonText: 'Start Produce',
             },
             {
               title: 'Searing Basics',
-              description: 'Master the technique of searing to create rich and flavorful crusts on meats or vegetables.',
+              description: 'Master the art of searing for perfectly cooked meats.',
               image: 'https://cdn.shopify.com/s/files/1/0619/7487/2253/files/Anova-Steak-Guide-Sous-Vide-Photos10-copy-flip-sear-1024x682.jpg',
               link: '/sear',
-              buttonText: 'Searing Course',
+              buttonText: 'Start Searing',
             },
             {
-              title: 'Sautee Basics',
-              description: 'Learn the technique of sautéing to cook ingredients quickly, meanwhile preserving flavor and texture.',
+              title: 'Sauté Basics',
+              description: 'Learn the techniques for sautéing and preserving flavors.',
               image: 'https://www.bhg.com/thmb/w98FgPUYDih5VuKXn11RDJoL3g0=/4000x0/filters:no_upscale():strip_icc()/BHG-how-to-saute-onions-03-5665975_BdVQC-b5KnZBxtNuR5SHEC-ce9832e411d64dfb99488ad3fe408d2c.jpg',
               link: '/sautee',
-              buttonText: 'Sautee Course',
+              buttonText: 'Start Sautéing',
             }
           ].map((course, index) => (
             <div className="coursehome-card-container" key={index}>

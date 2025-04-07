@@ -3,10 +3,9 @@ import { Outlet, Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { useSidebar } from '../contexts/SidebarContext';
 import LoginModal from '../components/LoginModal';
-import CourseHome from '../pages/CourseHome.jsx';
 
 function Layout() {
-  const { isToggled, toggleSidebar, sidebarProps, updateSidebarProps } = useSidebar();
+  const { isToggled, toggleSidebar, sidebarProps } = useSidebar();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -38,16 +37,6 @@ function Layout() {
 
     fetchUserInfo();
   }, []);
-
-  // Dynamically update the sidebar properties here
-  useEffect(() => {
-    updateSidebarProps({
-      title: 'Culinary Mastery',
-      image: '/path/to/sidebar-image.jpg',  // Provide an image path here
-      titleClassName: 'navbarTitle',  // Optional custom title class
-      imageClassName: 'navbarImage',  // Optional custom image class
-    });
-  }, [updateSidebarProps]);
 
   const handleLoginClick = () => {
     setShowLoginModal(true);
@@ -148,8 +137,8 @@ function Layout() {
           </div>
         </nav>
 
-        {/* Pass userInfo, loading, and error to CourseHome */}
-        <CourseHome userInfo={{ name: userName }} loading={loading} error={error} />
+        {/* Render child routes (e.g., CourseHome, Cooking, etc.) */}
+        <Outlet />
       </div>
 
       {/* Login Modal */}
