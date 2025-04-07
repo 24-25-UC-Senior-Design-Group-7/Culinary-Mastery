@@ -10,7 +10,7 @@ function Sidebar({ links = [], handleLoginClick }) {
       {/* Sidebar */}
       <div id="sidebar-content" className={`${isToggled ? 'sb-sidenav-toggled' : ''}`}>
         <div className="sidebarTitleContainer">
-          <div className={`sidebar-heading border-bottom bg-light ${sidebarProps.titleClassName || 'sidebarTitle'}`}>
+          <div className={`sidebar-heading ${sidebarProps.titleClassName || 'sidebarTitle'}`}>
             {sidebarProps.title}
             {sidebarProps.image && sidebarProps.image !== '' ? (
               <img className={`${sidebarProps.imageClassName || 'sidebarImage'}`} src={sidebarProps.image} alt="Sidebar icon" />

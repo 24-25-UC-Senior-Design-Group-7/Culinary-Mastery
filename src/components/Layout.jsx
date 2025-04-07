@@ -43,7 +43,7 @@ function Layout() {
       {/* Page content wrapper */}
       <div id="page-content-wrapper" className="flex-grow-1">
         {/* Top navigation */}
-        <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom navbarContainer">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light navbarContainer">
           <div className="container-fluid">
             <button
               className={`hamburger-btn ${isToggled ? 'right' : ''}`}
@@ -66,8 +66,8 @@ function Layout() {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
                 <li className="nav-item active">
-                  <Link to="/home" id="home" className="nav-link">
-                    Home
+                  <Link to="/course-home" id="course-home" className="nav-link">
+                    Course Home
                   </Link>
                 </li>
                 <li className="nav-item">
