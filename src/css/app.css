@@ -1393,13 +1393,14 @@ nav.navbar {
   background-color: var(--sunset) !important;
   border: 1.5px solid rgba(110, 75, 58, 0.5);
   text-align: center;
-  padding: 0;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 150px;
+  width: 200px;
+  min-width: fit-content;
   height: 50px;
-  font-size: 1.15rem;
+  font-size: 1.35rem;
   margin: 0 auto;
   transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
 }
@@ -1418,11 +1419,14 @@ nav.navbar {
 }
 
 .coursehome-card {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   border: 2px solid rgba(110, 75, 58, 0.5);
   border-radius: 12px;
   overflow: hidden;
   transition: border-color 0.3s ease;
+  height: 100%;
 }
 
 .coursehome-card:hover {
@@ -1433,15 +1437,19 @@ nav.navbar {
 .coursehome-card-body {
   text-align: center;
   padding: 1rem;
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between; 
+  height: 100%; 
 }
 
 .coursehome-card-title {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 .coursehome-card-text {
-  font-size: 1rem;
+  font-size: 1.25rem;
   margin-bottom: 20px;
 }
 
