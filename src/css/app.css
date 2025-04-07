@@ -1442,7 +1442,7 @@ nav.navbar {
 
 /* #endregion */
 
-/* This is the Page Content Section */
+/* #region This is the Page Content Section */
 .content-wrapper * {
   margin: 0;
   padding: 0;
@@ -1453,7 +1453,7 @@ nav.navbar {
   font-family: Arial, sans-serif;
   background-color: #e0e0e0;
   color: #333;
-  height: calc(100vh - 70px);
+  height: 100%;
   margin-top: 75px;
   display: block;
   padding: 20px;
@@ -1507,5 +1507,177 @@ nav.navbar {
   .content-wrapper .course-page {
     padding: 15px;
   }
+}
+/* #endregion */
+
+/* #region This is the Create Course Section */
+.create-course-page .content-wrapper {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #333;
+  height: calc(100vh - 70px);
+  margin-top: 80px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%; 
+  max-width: 1200px; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.create-course-page h1 {
+  font-size: 2.5rem;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.create-course-page .form-group {
+  margin-bottom: 20px;
+}
+
+.create-course-page label {
+  font-size: 1.5rem;
+  font-weight: bold; 
+  color: #333;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.create-course-page input {
+  width: 80%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  color: #333;
+  background-color: #fff;
+  margin: 0 auto;
+  display: block;
+  max-width: 600px;
+}
+
+.create-course-page input:hover {
+  border-color: var(--sunset); 
+  background-color: #f7f7f7; 
+}
+
+.create-course-page input:focus {
+  border-color: var(--sunset);
+  outline: none;
+  box-shadow: 0 0 5px rgba(239, 200, 139, 0.8); 
+}
+
+.create-course-page button {
+  color: black;
+  background-color: var(--sunset) !important;
+  border: 1.5px solid rgba(110, 75, 58, 0.5);
+  text-align: center;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 180px;
+  height: 50px;
+  font-size: 1.5rem;
+  margin: 20px auto 0 auto;
+  transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+.create-course-page button:hover {
+  background-color: rgba(239, 200, 139, 0.8) !important;
+  font-weight: bold;
+  transform: scale(1.05);
+  color: black;
+  border-color: rgba(255, 179, 0, 0.7);
+}
+
+.create-course-page .btn-secondary {
+  background-color: var(--sunset);
+  border: 1.5px solid rgba(110, 75, 58, 0.5);
+}
+
+.create-course-page .btn-secondary:hover {
+  background-color: rgba(239, 200, 139, 0.8);
+  border-color: rgba(255, 179, 0, 0.7);
+}
+
+.create-course-page .btn-success {
+  background-color: var(--sunset);
+  border: 1.5px solid rgba(110, 75, 58, 0.5);
+}
+
+/* Hover effect for btn-success */
+.create-course-page .btn-success:hover {
+  background-color: rgba(239, 200, 139, 0.8);
+  border-color: rgba(255, 179, 0, 0.7);
+}
+
+.create-course-page .live-updates {
+  margin-top: 30px;
+}
+
+.create-course-page .live-updates h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.create-course-page .updates-box {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  min-height: 75px;
+  max-height: 400px;
+  overflow-y: auto;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.create-course-page .course-details {
+  margin-top: 40px;
+}
+
+.create-course-page .course-video iframe {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.create-course-page .btn-secondary, .create-course-page .btn-success {
+  margin-top: 20px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.create-course-page .btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.create-course-page .btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.create-course-page .btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.create-course-page .btn-success:hover {
+  background-color: #218838;
+}
+
+.create-course-page .article-section, .create-course-page .quiz-section {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.create-course-page .article-content, .create-course-page .quiz-content {
+  white-space: pre-wrap;
 }
 /* #endregion */
