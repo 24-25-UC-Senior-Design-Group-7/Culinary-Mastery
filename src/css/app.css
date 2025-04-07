@@ -1443,14 +1443,69 @@ nav.navbar {
 /* #endregion */
 
 /* This is the Page Content Section */
+.content-wrapper * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.content-wrapper {
+  font-family: Arial, sans-serif;
+  background-color: #e0e0e0;
+  color: #333;
+  height: calc(100vh - 70px);
+  margin-top: 75px;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  background-color: #fff; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content-wrapper h1 {
+  font-size: 2.5rem;
+  color: #007BFF;
+  margin-bottom: 20px;
+}
+
+.content-wrapper p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+  max-width: 800px;
+  line-height: 1.6;
+  margin-left: auto;
+  margin-right: auto; 
+  padding: 0 15px;
+}
+
+.content-wrapper .course-page {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  margin-top: 30px;
+  background-color: #fafafa; 
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 768px) {
   .content-wrapper {
-    height: calc(1080px-70px);
-    margin-top: 75px;
-    display: flex;
+    margin-top: 60px;
+    padding: 15px;
   }
 
   .content-wrapper h1 {
-    align-self: center;
-    
+    font-size: 2rem;
   }
+
+  .content-wrapper p {
+    font-size: 1rem;
+  }
+
+  .content-wrapper .course-page {
+    padding: 15px;
+  }
+}
 /* #endregion */
