@@ -873,7 +873,6 @@ nav.navbar {
 /* #region This is the Home Navbar */
 .homeNavbarContainer {
   padding-left: 1rem;
-  padding-right: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1242,6 +1241,10 @@ nav.navbar {
   transition: opacity 0.3s ease-in-out;
 }
 
+.modal-body .form-group {
+  margin-bottom: 1.5rem;
+}
+
 .modal-title {
   font-size: 2.5em;
   margin-left: -10px;
@@ -1259,6 +1262,8 @@ nav.navbar {
 
 .modal-body .form-group .loginLabel {
   font-size: 1.25em;
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 .close {
@@ -1299,6 +1304,7 @@ nav.navbar {
   height: 50px;
   font-size: 1.5rem;
   margin: 0 auto;
+  margin-top: 1rem;
   transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
 }
 
@@ -1311,7 +1317,8 @@ nav.navbar {
 }
 
 .loginInput {
-  border-color: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  min-height: 40px;
 }
 
 .loginInput:hover {
