@@ -1241,6 +1241,10 @@ nav.navbar {
   transition: opacity 0.3s ease-in-out;
 }
 
+.modal-body {
+  margin-top: 30px;
+}
+
 .modal-body .form-group {
   margin-bottom: 1.5rem;
 }
