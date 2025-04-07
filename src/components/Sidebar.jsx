@@ -4,8 +4,8 @@ import { useSidebar } from '../contexts/SidebarContext';
 import CourseHomeImage from '../assets/house-icon.png';
 import LoginModal from '../components/LoginModal';
 
-function Sidebar({ title = 'Course Home', image = CourseHomeImage, links = [], titleClassName = '', imageClassName = '' }) {
-  const { isToggled, toggleSidebar } = useSidebar();
+function Sidebar({ links = [] }) {  // Make sure `links` is passed as a prop
+  const { isToggled, toggleSidebar, sidebarProps } = useSidebar();
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   const handleLoginClick = () => {
@@ -21,18 +21,21 @@ function Sidebar({ title = 'Course Home', image = CourseHomeImage, links = [], t
         {/* Sidebar */}
         <div className={`${isToggled ? 'sb-sidenav-toggled' : ''}`} id="sidebar-content">
           <div className="sidebarTitleContainer">
-            <div className={`sidebar-heading border-bottom bg-light ${titleClassName || 'sidebarTitle'}`}>
-              {title}
-              <img className={`${imageClassName || 'sidebarImage'}`} src={image} alt="Sidebar icon" />
+            <div className={`sidebar-heading border-bottom bg-light ${sidebarProps.titleClassName || 'sidebarTitle'}`}>
+              {sidebarProps.title}
+              {sidebarProps.image && sidebarProps.image !== '' ? (
+                <img className={`${sidebarProps.imageClassName || 'sidebarImage'}`} src={sidebarProps.image} alt="Sidebar icon" />
+              ) : null}
             </div>
           </div>
           <div className="list-group list-group-flush">
+            {/* Render links dynamically */}
             {links?.map((link, index) => (
               <Link
                 key={index}
                 to={link.path}
                 id={link.id}
-                className="list-group-item list-group-item-action list-group-item-light p-3"
+                className={`list-group-item list-group-item-action list-group-item-light p-3`}
               >
                 {link.label}
               </Link>
