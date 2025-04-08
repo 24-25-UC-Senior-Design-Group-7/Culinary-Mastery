@@ -2011,3 +2011,29 @@ nav.navbar {
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 /* #endregion */
+
+/* #region This is the Article Section */
+.article-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.article-original,
+.article-translated {
+  flex: 1;
+  min-width: 300px;
+}
+
+.article-original {
+  max-width: 60%;
+}
+
+.article-translated {
+  max-width: 40%;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 6px;
+}
+/* #endregion */
