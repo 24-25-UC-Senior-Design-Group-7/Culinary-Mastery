@@ -9,9 +9,8 @@ import { useAuth } from '../contexts/AuthContext'; // Import your auth context
 
 
 function Layout() {
-  const { isToggled, toggleSidebar, sidebarProps } = useSidebar();
+  const { isToggled, toggleSidebar, sidebarProps, setUserInfo, userInfo } = useSidebar();
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { user } = useAuth(); // Use auth context
@@ -20,6 +19,7 @@ function Layout() {
   useEffect(() => {
     setUserInfo(user);
     const fetchUserInfo = async () => {
+<<<<<<< HEAD
         try {
             // Since withCredentials is set to true, the browser will automatically include the HTTP-only cookies with the request
             const response = await axios.get('/users/current-user', {
@@ -34,12 +34,34 @@ function Layout() {
         } finally {
             setLoading(false);
         }
+=======
+      try {
+        const response = await fetch('/api/user');
+        if (!response.ok) {
+          throw new Error(`HTTP Error: ${response.status}`);
+        }
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error(`Expected JSON, but received ${contentType}`);
+        }
+        const data = await response.json();
+        setUserInfo({ name: data.name }); 
+      } catch (error) {
+        console.error('Error fetching user info:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+>>>>>>> f6acbd3e905b89d5a230d0b699653b953b1e6fd4
     };
-
     fetchUserInfo();
+<<<<<<< HEAD
 }, [user]);
 
 
+=======
+  }, [setUserInfo]);
+>>>>>>> f6acbd3e905b89d5a230d0b699653b953b1e6fd4
 
   const handleLoginClick = () => {
     setShowLoginModal(true);
@@ -49,6 +71,7 @@ function Layout() {
   };
 
   const handleLogout = async () => {
+<<<<<<< HEAD
     try {
         await logout(); // Use the logout function
         setUserInfo(null); // Clear user info after successful logout
@@ -58,6 +81,15 @@ function Layout() {
     }
 };
 
+=======
+    setUserInfo(null);
+    try {
+      await fetch('/api/logout', { method: 'POST' });
+    } catch (err) {
+      console.error('Error during logout:', err);
+    }
+  };
+>>>>>>> f6acbd3e905b89d5a230d0b699653b953b1e6fd4
 
   const handleCloseModal = () => setShowLoginModal(false);
 
@@ -74,7 +106,6 @@ function Layout() {
 
   return (
     <div className="d-flex" id="wrapper">
-      {/* Sidebar */}
       <Sidebar
         title={sidebarProps.title}
         image={sidebarProps.image}
@@ -83,9 +114,7 @@ function Layout() {
         imageClassName={sidebarProps.imageClassName}
       />
 
-      {/* Page content wrapper */}
       <div id="page-content-wrapper" className="flex-grow-1">
-        {/* Top navigation */}
         <nav className="navbar navbar-expand-lg navbar-light bg-light navbarContainer">
           <div className="container-fluid">
             <button
@@ -130,11 +159,10 @@ function Layout() {
                     {userName}
                   </a>
                   <div className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    {/* Container for dropdown items */}
                     <div className="dropdown-items-container">
-                      <a className="dropdown-item" href="#!">
-                        Action
-                      </a>
+                      <Link to="/profile" className="dropdown-item">
+                        Profile
+                      </Link>
                       <a className="dropdown-item" href="#!">
                         Another action
                       </a>
@@ -152,11 +180,9 @@ function Layout() {
           </div>
         </nav>
 
-        {/* Render child routes (e.g., CourseHome, Cooking, etc.) */}
         <Outlet context={{ userInfo, loading, error }} />
       </div>
 
-      {/* Login Modal */}
       <LoginModal show={showLoginModal} onClose={handleCloseModal} />
     </div>
   );

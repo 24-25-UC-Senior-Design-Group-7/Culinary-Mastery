@@ -8,7 +8,7 @@ function Sautee() {
 
   useEffect(() => {
     const newProps = {
-      title: 'Sautee',
+      title: 'Sauté',
       image: SauteeImage,
       titleClassName: 'sauteeTitle',
       imageClassName: 'sauteeImage',

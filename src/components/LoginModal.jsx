@@ -53,7 +53,7 @@ const LoginModal = ({ show, onClose }) => {
                     <div className="modal-body">
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
-                                <label htmlFor="email" className="loginLabel">Email:</label>
+                                <label htmlFor="email-login-label" className="loginLabel">Email:</label>
                                 <input
                                     type="email"
                                     className="form-control loginInput"
