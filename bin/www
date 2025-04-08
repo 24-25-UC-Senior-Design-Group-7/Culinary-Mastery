@@ -10,27 +10,22 @@ import http from 'http';
 import { Server } from 'socket.io';
 const debug = debugModule('culinary-mastery:server');
 
-
-
 const server = http.createServer(app);
 const io = new Server(server);
 
 // Now that app is defined, attach io to app.locals so routes can access it
 app.locals.io = io;
 
-
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '8080'); // Changed fallback to 8080
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
-
-
 
 /**
  * Listen on provided port, on all network interfaces.
