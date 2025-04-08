@@ -3,6 +3,10 @@ import { Outlet, Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { useSidebar } from '../contexts/SidebarContext';
 import LoginModal from '../components/LoginModal';
+import { logout } from '../service/auth';
+import axios from '../axiosConfig.js';
+import { useAuth } from '../contexts/AuthContext'; // Import your auth context
+
 
 function Layout() {
   const { isToggled, toggleSidebar, sidebarProps } = useSidebar();
@@ -10,33 +14,32 @@ function Layout() {
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { user } = useAuth(); // Use auth context
+  
 
   useEffect(() => {
+    setUserInfo(user);
     const fetchUserInfo = async () => {
-      try {
-        const response = await fetch('/api/user');
-
-        if (!response.ok) {
-          throw new Error(`HTTP Error: ${response.status}`);
+        try {
+            // Since withCredentials is set to true, the browser will automatically include the HTTP-only cookies with the request
+            const response = await axios.get('/users/current-user', {
+                withCredentials: true
+            });
+            if (response.status === 200) {
+                setUserInfo(response.data.user);
+            }
+        } catch (error) {
+            console.error('Failed to fetch user info:', error);
+            setError(error.response?.data?.message || 'Failed to fetch user information');
+        } finally {
+            setLoading(false);
         }
-
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-          throw new Error(`Expected JSON, but received ${contentType}`);
-        }
-
-        const data = await response.json();
-        setUserInfo({ name: data.name });
-      } catch (error) {
-        console.error('Error fetching user info:', error);
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
     };
 
     fetchUserInfo();
-  }, []);
+}, [user]);
+
+
 
   const handleLoginClick = () => {
     setShowLoginModal(true);
@@ -45,12 +48,16 @@ function Layout() {
     }
   };
 
-  const handleLogout = () => {
-    setUserInfo(null);
-    fetch('/api/logout', { method: 'POST' }).catch((err) =>
-      console.error('Logout error:', err)
-    );
-  };
+  const handleLogout = async () => {
+    try {
+        await logout(); // Use the logout function
+        setUserInfo(null); // Clear user info after successful logout
+        console.log('Logged out successfully');
+    } catch (error) {
+        console.error('Error during logout:', error);
+    }
+};
+
 
   const handleCloseModal = () => setShowLoginModal(false);
 
@@ -133,13 +140,9 @@ function Layout() {
                       </a>
                       <div className="dropdown-divider"></div>
                       {userInfo ? (
-                        <button className="dropdown-item" onClick={handleLogout} id="logout-button">
-                          Logout
-                        </button>
+                        <button className="dropdown-item" onClick={handleLogout} id="logout-button">Logout</button>
                       ) : (
-                        <button className="dropdown-item" onClick={handleLoginClick} id="login-button">
-                          Login
-                        </button>
+                        <button className="dropdown-item" onClick={handleLoginClick} id="login-button">Login</button>
                       )}
                     </div>
                   </div>

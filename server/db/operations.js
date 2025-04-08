@@ -230,18 +230,23 @@ export async function verifyUser(email, otp) {
   }
 }
 
+// find user by id
+export async function findUserById(userId) {
+  try {
+      const pool = await getPool();
+      const request = pool.request();
+      request.input('userId', sql.UniqueIdentifier, userId);
+      const result = await request.query('SELECT * FROM Users WHERE id = @userId');
+      return result.recordset[0];
+  } catch (error) {
+      console.error("Error finding user by ID:", error);
+      throw error;
+  }
+}
 
 
-/**
- * Finds a user by their email address.
- * 
- * Queries the Users table to retrieve user details matching the provided email.
- * If a user with the given email exists, returns the user's information; otherwise, returns null.
- * 
- * @param {string} email - The email address of the user to find.
- * @returns {Promise<Object|null>} - A promise that resolves with the user object if found, or null if no user is found.
- * @throws Will throw an error if the query fails.
- */
+
+
 
 /**
  * Finds a user by their email address.
@@ -398,7 +403,7 @@ export async function createAnalysisTable() {
 
   // Create the Analysis table if it doesn't already exist
   const createTableQuery =`
-  IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Analysis')
+  IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Analytics')
   BEGIN
       CREATE TABLE Analytics (
     analytics_id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),

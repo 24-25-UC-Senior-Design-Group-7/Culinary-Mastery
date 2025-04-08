@@ -93,9 +93,16 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({message: "Please verify your account before logging in."});
         }
 
-        const accessToken = jwt.sign({ id: user.id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' });
+        const accessToken = jwt.sign({ id: user.id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
         const refreshToken = jwt.sign({ id: user.id },process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
 
+        console.log("Setting cookies", accessToken, refreshToken);
+
+        res.cookie('accessToken', accessToken, { secure: process.env.NODE_ENV === 'production', sameSite: 'Strict' });
+        res.cookie('refreshToken', refreshToken, { secure: process.env.NODE_ENV === 'production', sameSite: 'Strict' });
+
+
+        console.log("Login successful");
         res.json({message: "Login successful", accessToken, refreshToken});
     }catch(error){
         console.error("Error logging in:", error);
@@ -103,7 +110,57 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.get("/check-session", (req, res) => {
+    try {
+        const token = req.cookies.accessToken;  // Assuming you have a middleware to verify the token
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ authenticated: false });
+            }
+            return res.status(200).json({ authenticated: true, user: decoded });
+        });
+    } 
+    catch (error) {
+        console.error("Error checking session:", error);
+        res.status(500).json({error: 'Internal server error' });
+    }
+});
 
+// refresh token
+// post /api/refresh
+
+router.post('/refresh-token', (req, res) => {
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) {
+        return res.status(401).json({ message: "No refresh token provided" });
+    }
+    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(403).json({ message: "Invalid refresh token" });
+        }
+        const accessToken = jwt.sign({ id: decoded.id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' });
+        res.cookie('accessToken', accessToken, { httpOnly: true, secure: true, sameSite: 'Strict' });
+        res.json({ success: true });
+    });
+});
+
+
+
+// logout
+router.post('/logout', (req, res) => {
+    
+    try {
+        // Clear the authentication cookies
+    res.cookie('accessToken', '', { expires: new Date(0), httpOnly: true, secure: true, sameSite: 'Strict' });
+    res.cookie('refreshToken', '', { expires: new Date(0), httpOnly: true, secure: true, sameSite: 'Strict' });
+
+    // Send a response indicating logout was successful
+    res.status(200).json({ message: 'Logged out successfully' });
+    } catch (error) {
+        console.error("Error logging out:", error);
+        res.status(500).json({ error: "An error occurred while logging out." });
+    }
+});
 
 
 export default router;

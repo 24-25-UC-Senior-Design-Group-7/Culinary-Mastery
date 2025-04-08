@@ -2,8 +2,8 @@ import express from 'express';
 const router = express.Router();
 import dotenv from 'dotenv';
 dotenv.config();
-import { enrollUserInCourse, getCoursesForUser, updateCourseCompletion, insertUserAnalytics, getAnalyticsForUser } from '../db/operations';{ ,  } from '../db/operations.js';
-import { dot } from 'node:test/reporters';
+import { enrollUserInCourse, getCoursesForUser, updateCourseCompletion, insertUserAnalytics, getAnalyticsForUser } from '../db/operations.js';
+
 
 // Enroll a user in a course
 // post /api/usercourses/enroll
@@ -63,3 +63,4 @@ router.post('/enroll', async (req, res) => {
     }
   });
   
+export default router;

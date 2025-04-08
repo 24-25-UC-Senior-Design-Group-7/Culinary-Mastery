@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
-import env from "../env";
+import { register } from "../service/auth"; // Adjust the import path as needed
+
 
 const RegisterModal = ({ show, onClose }) => {
-    const baseURL = env.BASE_URL || "http://localhost:5000";
-    console.log(baseURL);
+   
 
     const [formData, setFormData] = useState({
         username: "",
@@ -22,12 +21,12 @@ const RegisterModal = ({ show, onClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
-            const response = await axios.post(
-                `${baseURL}/auth/register`, formData
-            );
+            const response = await register(formData.username, formData.email, formData.password);
             setMessage(response.data.message);
+            if (response.status === 201) { // Assuming 201 Created
+                onClose(); // Optionally close modal on successful registration
+            }
         } catch (error) {
             const errorMsg = error.response?.data?.error ? error.response.data.error : "Error registering user. Email might already exist";
             setMessage(errorMsg);

@@ -14,20 +14,23 @@ dotenv.config();
  * @returns {void}
  */
 export const authenticateToken = (req, res, next) => {
+    const token = req.cookies.accessToken;
+    console.log(req.cookies);
+    console.log('acess token');
+    console.log(token);
+    
+    if (!token) {
+        return res.status(401).json({ message: 'Unauthorized Access - No token provided' });
+    }
 
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(403).json({ message: 'Forbidden Access - Token is invalid' });
+        }
 
-    if (token == null) return res.sendStatus(401).json({ message: 'Unauthorized Access' });
-
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if (err){
-            console.log(err);
-            return res.sendStatus(403).json({ message: 'Forbidden Access' });
-        };
-        
-        req.user = user;
+        req.user = decoded; // Assuming your JWT stores user information in payload
         next();
-    })
-}
+    });
+};
+
 

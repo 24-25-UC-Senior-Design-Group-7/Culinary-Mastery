@@ -9,9 +9,11 @@ import Sautee from './pages/sautee';
 import Sear from './pages/sear';
 import International from './pages/international';
 import CreateCourse from './pages/createCourse';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   return (
+    <AuthProvider>
     <SidebarProvider>
       <Router>
         <Routes>
@@ -32,6 +34,7 @@ function App() {
         </Routes>
       </Router>
     </SidebarProvider>
+    </AuthProvider>
   );
 }
 

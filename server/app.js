@@ -12,6 +12,9 @@ import authRouther from './routes/authRoutes.js';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 
+
+dotenv.config();
+
 import cors from 'cors';
 import helmet from 'helmet';
 import { authenticateToken } from './middleware/authMiddleware.js';
@@ -65,7 +68,7 @@ async function init() {
 init();
 
 
-dotenv.config();
+
 const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -92,15 +95,18 @@ app.use(helmet());
 
 
 // routes and middleware
-app.use(cors());
+app.use(cors({
+  credentials: true, // Allows cookies to be sent and received
+  origin: true // Reflects the request origin, or true if the origin is not specified
+  }));
 app.use('/', indexRouter);
 // auth routes endpoint /auth/login, /auth/register and /auth/verify-otp
 app.use('/auth', authRouther);
-app.use('/users', usersRouter);
+app.use('/users/',authenticateToken, usersRouter);
 // test routes
 app.use('/api/youtube', youtubeRouter);
 // course routes
-app.use('/api/courses',authenticateToken,  routercourses);
+app.use('/api/courses',  routercourses);
 // user course routes
 app.use('/api/usercourses',authenticateToken,  userCourseRouter);
 
@@ -109,8 +115,18 @@ app.use((req, res, next) => {
   next(createError(404));
 });
 
+app.use((req, res, next) => {
+    console.log("Received cookies:", req.cookies);
+    next();
+});
+
+
 // error handler
 app.use((err, req, res, next) => {
+  if (res.headersSent) {
+    // If headers are already sent, delegate to the default Express error handler
+    return next(err);
+}
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

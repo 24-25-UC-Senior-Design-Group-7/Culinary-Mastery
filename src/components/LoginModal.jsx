@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
-import env from "../env";
+import { useNavigate } from 'react-router-dom';
+import { login as loginService } from '../service/auth.js'; // Import the login function from AuthService
+import { useAuth } from '../contexts/AuthContext'; // Import the useAuth hook from AuthContext
 
 const LoginModal = ({ show, onClose }) => {
-    const baseURL = env.BASE_URL;
+    const { login } = useAuth(); // Use login method from AuthContext to set user globally
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -12,17 +14,21 @@ const LoginModal = ({ show, onClose }) => {
 
     const handleChange = (e) => {
         setFormData({
-            ...formData, [e.target.name]: e.target.value
+            ...formData,
+            [e.target.name]: e.target.value
         });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(
-                `${baseURL}/auth/login`, formData
-            );
-            setMessage(response.data.message);
+            const response = await loginService(formData.email, formData.password);
+            if (response.status === 200) {
+                login(response.data.user); // Assuming response.data.user contains the user details
+                setMessage("Login successful!");
+                onClose(); // Close the modal
+                navigate('/course-home'); // Redirect user to the course home page
+            }
         } catch (error) {
             setMessage(error.response?.data?.message || 'Error occurred while logging in');
         }
