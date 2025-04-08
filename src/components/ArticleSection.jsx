@@ -28,7 +28,22 @@ const ArticleSection = ({ courseData }) => {
 
   return (
     <div className="content-section my-4">
+       <div className="mt-3">
+        <button
+          id="translateArticleBtn"
+          className="btn btn-secondary"
+          onClick={translateArticle}
+        >
+          Translate Article
+        </button>
+        <select id="languageSelect" className="form-select mt-2" style={{ width: 'auto' }}>
+          <option value="Spanish">Spanish</option>
+          <option value="French">French</option>
+          <option value="German">German</option>
+        </select>
+      </div>
       <h3>{courseData.title}</h3>
+      <div className='d-flex justify-content-between'>
       <div
         id="articleContent"
         dangerouslySetInnerHTML={{ __html: marked(courseData.article) }}
@@ -56,6 +71,7 @@ const ArticleSection = ({ courseData }) => {
           dangerouslySetInnerHTML={{ __html: marked(translatedContent) }}
         />
       )}
+    </div>
     </div>
   );
 };
