@@ -28,12 +28,18 @@ app.set('port', port);
  */
 
 /**
- * Listen on provided port, on all network interfaces.
+ * Add a startup delay to ensure all resources are initialized.
  */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+const startupDelay = 5000; // 5000ms = 5 seconds (adjust as needed)
+console.log(`Delaying server startup by ${startupDelay / 1000} seconds...`);
+setTimeout(() => {
+  /**
+   * Listen on provided port, on all network interfaces.
+   */
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+}, startupDelay);
 
 /**
  * Normalize a port into a number, string, or false.
