@@ -9,7 +9,14 @@ import { enrollUserInCourse, getCoursesForUser, updateCourseCompletion, insertUs
 // post /api/usercourses/enroll
 router.post('/enroll', async (req, res) => {
     try {
+
       const { userId, courseId } = req.body;
+      console.log(userId, courseId);
+
+      if ( await getCoursesForUser(userId).then(courses => courses.find(course => course.id === courseId)) ) {
+        return res.status(200).send('User is already enrolled in the course.');
+      }
+      
       await enrollUserInCourse(userId, courseId);
       res.status(200).send('User enrolled successfully.');
     } catch (error) {

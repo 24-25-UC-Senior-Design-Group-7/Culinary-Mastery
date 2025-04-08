@@ -9,11 +9,10 @@ import Sautee from './pages/sautee';
 import Sear from './pages/sear';
 import International from './pages/international';
 import CreateCourse from './pages/createCourse';
-<<<<<<< HEAD
 import { AuthProvider } from './contexts/AuthContext';
-=======
 import Profile from './pages/profile';
->>>>>>> f6acbd3e905b89d5a230d0b699653b953b1e6fd4
+import CoursePage from './components/CoursePage'; // Import CoursePage
+import MyCourses from './pages/MyCourses';
 
 function App() {
   return (
@@ -24,9 +23,11 @@ function App() {
           {/* Direct route for Home */}
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
+          
 
           {/* Layout and its child routes including CreateCourse and Profile */}
           <Route element={<Layout />}>
+            <Route path="/courses/:id" element={<CoursePage />} />
             <Route path="/create-course" element={<CreateCourse />} />
             <Route path="/course-home" element={<CourseHome />} />
             <Route path="/cooking" element={<Cooking />} />
@@ -34,6 +35,7 @@ function App() {
             <Route path="/sautee" element={<Sautee />} />
             <Route path="/sear" element={<Sear />} />
             <Route path="/international" element={<International />} />
+            <Route path="/my-courses" element={<MyCourses />} />
             <Route path="/profile" element={<Profile />} />
           </Route>
         </Routes>

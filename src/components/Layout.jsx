@@ -9,17 +9,19 @@ import { useAuth } from '../contexts/AuthContext'; // Import your auth context
 
 
 function Layout() {
-  const { isToggled, toggleSidebar, sidebarProps, setUserInfo, userInfo } = useSidebar();
+  const { isToggled, toggleSidebar, sidebarProps } = useSidebar();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { user } = useAuth(); // Use auth context
+  const [userInfo, setUserInfo] = useState(null);
+  
+
   
 
   useEffect(() => {
     setUserInfo(user);
     const fetchUserInfo = async () => {
-<<<<<<< HEAD
         try {
             // Since withCredentials is set to true, the browser will automatically include the HTTP-only cookies with the request
             const response = await axios.get('/users/current-user', {
@@ -27,6 +29,8 @@ function Layout() {
             });
             if (response.status === 200) {
                 setUserInfo(response.data.user);
+                // Store the user ID in localStorage
+          localStorage.setItem('userId', response.data.user.id);
             }
         } catch (error) {
             console.error('Failed to fetch user info:', error);
@@ -34,34 +38,11 @@ function Layout() {
         } finally {
             setLoading(false);
         }
-=======
-      try {
-        const response = await fetch('/api/user');
-        if (!response.ok) {
-          throw new Error(`HTTP Error: ${response.status}`);
-        }
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-          throw new Error(`Expected JSON, but received ${contentType}`);
-        }
-        const data = await response.json();
-        setUserInfo({ name: data.name }); 
-      } catch (error) {
-        console.error('Error fetching user info:', error);
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
->>>>>>> f6acbd3e905b89d5a230d0b699653b953b1e6fd4
     };
     fetchUserInfo();
-<<<<<<< HEAD
 }, [user]);
 
 
-=======
-  }, [setUserInfo]);
->>>>>>> f6acbd3e905b89d5a230d0b699653b953b1e6fd4
 
   const handleLoginClick = () => {
     setShowLoginModal(true);
@@ -71,7 +52,6 @@ function Layout() {
   };
 
   const handleLogout = async () => {
-<<<<<<< HEAD
     try {
         await logout(); // Use the logout function
         setUserInfo(null); // Clear user info after successful logout
@@ -81,20 +61,12 @@ function Layout() {
     }
 };
 
-=======
-    setUserInfo(null);
-    try {
-      await fetch('/api/logout', { method: 'POST' });
-    } catch (err) {
-      console.error('Error during logout:', err);
-    }
-  };
->>>>>>> f6acbd3e905b89d5a230d0b699653b953b1e6fd4
 
   const handleCloseModal = () => setShowLoginModal(false);
 
   const links = [
     { path: '/course-home', id: 'sidebar', label: 'Course Home' },
+    { path: '/my-courses', id: 'sidebar', label: 'My Courses' },
     { path: '/cooking', id: 'cooking', label: 'Cooking' },
     { path: '/produce', id: 'produce', label: 'Produce' },
     { path: '/sautee', id: 'sautee', label: 'Sautee' },
@@ -140,6 +112,11 @@ function Layout() {
                 <li className="nav-item active">
                   <Link to="/course-home" id="course-home" className="nav-link">
                     Course Home
+                  </Link>
+                </li>
+                <li className="nav-item active">
+                  <Link to="/my-courses" id="course-home" className="nav-link">
+                    My Courses
                   </Link>
                 </li>
                 <li className="nav-item">

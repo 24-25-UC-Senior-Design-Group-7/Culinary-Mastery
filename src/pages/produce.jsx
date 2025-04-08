@@ -1,19 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSidebar } from '../contexts/SidebarContext';
-import ProduceImage from '../assets/produce.png';
-import CoursePage from '../components/CoursePage';
+import axios from '../axiosConfig'; // Ensure the path is correct
+import SauteeImage from '../assets/saute-icon.png';
+import { Link } from 'react-router-dom'; // For navigation
 
 function Produce() {
   const { updateSidebarProps } = useSidebar();
   const prevSidebarProps = useRef({});
-  const [courseData, setCourseData] = useState(null);
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const newProps = {
-      title: 'Produce',
-      image: ProduceImage,
-      titleClassName: 'produceTitle',
-      imageClassName: 'produceImage',
+      title: 'Sauté',
+      image: SauteeImage,
+      titleClassName: 'sauteeTitle',
+      imageClassName: 'sauteeImage',
     };
 
     if (
@@ -23,6 +25,20 @@ function Produce() {
       updateSidebarProps(newProps);
       prevSidebarProps.current = newProps;
     }
+
+    // Fetch courses for Sauté
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get(`/api/courses/culinaryTechnique/Produce`);
+        setCourses(response.data.courses);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching Sautee courses:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
 
     return () => {
       updateSidebarProps({
@@ -34,29 +50,29 @@ function Produce() {
     };
   }, [updateSidebarProps]);
 
-  useEffect(() => {
-    const loadCourse = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/api/courses/produce-course-id");
-        const jsonData = await response.json();
-        setCourseData(jsonData.course);
-      } catch (error) {
-        console.error("Error fetching course data:", error);
-      }
-    };
-
-    loadCourse();
-  }, []);
-
   return (
     <div className="content-wrapper">
-      <h1>Explore the World of Produce</h1>
-      <p>In this section, we'll explore various fruits, vegetables, and other plant-based ingredients used in culinary creations.</p>
-
-      {courseData ? (
-        <CoursePage courseData={courseData} />
+      <h1 className="mt-4">Produce Techniques</h1>
+      <p>Produce Techniques are a crucial part of culinary preparation.</p>
+      {loading ? (
+        <p>Loading...</p>
       ) : (
-        <p>Loading course data...</p>
+        <div className="d-flex flex-wrap justify-content-center">
+          {courses.length > 0 ? courses.map((course, index) => (
+            <div className="coursehome-card-container" key={index}>
+              <div className="coursehome-card">
+                <img src={`https://img.youtube.com/vi/${course.videoId}/0.jpg`} className="coursehome-card-img-top" alt={course.title} />
+                <div className="coursehome-card-body">
+                  <h5 className="coursehome-card-title">{course.title}</h5>
+                  <p className="coursehome-card-text">{course.description}</p>
+                  <Link to={`/courses/${course.id}`} className="btn btn-primary courseBtn">Start Course</Link>
+                </div>
+              </div>
+            </div>
+          )) : (
+            <p>No courses found for Sauté techniques.</p>
+          )}
+        </div>
       )}
     </div>
   );

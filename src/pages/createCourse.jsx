@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
-import CreateImage from '../assets/plus-icon.png';
-import { useSidebar } from '../contexts/SidebarContext';
+import axios from '../axiosConfig'; // Ensure this path is correct based on your project structure
 
 const CreateCourse = () => {
-  const { updateSidebarProps } = useSidebar(); // Access sidebar update function
   const [socketId, setSocketId] = useState('Not connected');
   const [course, setCourse] = useState(null);
   const [articleVisible, setArticleVisible] = useState(false);
@@ -26,25 +24,6 @@ const CreateCourse = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const newProps = {
-      title: 'Create',
-      image: CreateImage,
-      titleClassName: 'cookingTitle',
-      imageClassName: 'cookingImage',
-    };
-
-    if (updateSidebarProps) {
-      updateSidebarProps(newProps);
-    }
-
-    return () => {
-      if (updateSidebarProps) {
-        updateSidebarProps({ title: '', image: '', titleClassName: '', imageClassName: '' });
-      }
-    };
-  }, [updateSidebarProps]);
-
   const handleCreateCourse = async () => {
     const videoId = document.getElementById('videoIdInput').value.trim();
     const culinaryTechnique = document.getElementById('culinaryTechniqueInput').value.trim();
@@ -52,12 +31,8 @@ const CreateCourse = () => {
     setUpdates([]);
     setCourse(null);
 
-    if (!videoId) {
-      alert('Please enter a video ID');
-      return;
-    }
-    if (!culinaryTechnique) {
-      alert('Please enter a culinary technique');
+    if (!videoId || !culinaryTechnique) {
+      alert('Please enter both a video ID and a culinary technique.');
       return;
     }
 
@@ -65,18 +40,13 @@ const CreateCourse = () => {
       const payload = { videoId, culinaryTechnique };
       const url = `/api/courses/creation?socketId=${socketId}`;
 
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+      const response = await axios.post(url, payload);
 
-      if (!response.ok) {
+      if (response.status === 201) {
+        setCourse(response.data.course);
+      } else {
         throw new Error(`Server responded with status ${response.status}`);
       }
-
-      const data = await response.json();
-      setCourse(data.course);
     } catch (error) {
       console.error('Error creating course:', error);
       alert('Error creating course. Check console for details.');
@@ -90,15 +60,14 @@ const CreateCourse = () => {
     if (!quiz || !quiz.questions || !quiz.questions.length) {
       return 'No quiz available.';
     }
-    let output = '';
-    quiz.questions.forEach((q) => {
-      output += `Q${q.number}: ${q.question}\n\n`;
-      q.options.forEach((opt, i) => {
-        output += `   ${String.fromCharCode(65 + i)}. ${opt}\n`;
-      });
-      output += '\n';
-    });
-    return output;
+    return quiz.questions.map((q, index) => (
+      <div key={index}>
+        <p>Q{q.number}: {q.question}</p>
+        {q.options.map((opt, i) => (
+          <p key={i}> {String.fromCharCode(65 + i)}. {opt}</p>
+        ))}
+      </div>
+    ));
   };
 
   return (
@@ -163,7 +132,7 @@ const CreateCourse = () => {
               <div className="quiz-section">
                 <h3>Quiz</h3>
                 <div className="quiz-content">
-                  {formatQuiz(course.quiz || {})}
+                  {formatQuiz(course.quiz)}
                 </div>
               </div>
             )}

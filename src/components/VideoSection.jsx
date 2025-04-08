@@ -6,6 +6,8 @@ const VideoSection = ({ courseData }) => {
   return (
     <div className="content-section my-4 text-center">
       <h3>{courseData.title}</h3>
+      
+      
       <div className="ratio ratio-16x9 w-75 h-75 mx-auto">
         <iframe
           id="videoIframe"
@@ -16,9 +18,17 @@ const VideoSection = ({ courseData }) => {
           allowFullScreen
         />
       </div>
-      <div className="mt-3">
+      <div className='d-flex justify-content-center'>
+      
+      
+      <div className="mt-3 mb-3 p-3 bg-light">
+        <h1 className='text-center txt-bold font-weight-bold'>Description</h1>
+        <p id="videoDescription" className="text-start px-3">{courseData.description}</p>
+      </div>
+      <div className="mt-2 w-50">
         <h5>Transcript</h5>
-        <p id="videoTranscript" className="text-start px-3">{courseData.transcript}</p>
+        <p id="videoTranscript" className="text-start px-5">{courseData.transcript}</p>
+      </div>
       </div>
     </div>
   );

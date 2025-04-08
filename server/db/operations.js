@@ -289,7 +289,7 @@ export async function CreateUserCoursesTable() {
 
   // Create the Courses table if it doesn't already exist
   const createTableQuery =`
-  IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'UserCourses')
+  IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'userCourses')
   BEGIN
       CREATE TABLE userCourses(
           user_course_id UNIQUEIDENTIFIER PRIMARY KEY,
@@ -324,15 +324,15 @@ export async function CreateUserCoursesTable() {
  * @returns {Promise<void>} - A promise that resolves when the enrollment is completed.
  * @throws Will throw an error if the enrollment process fails.
  */
-
 export async function enrollUserInCourse(userId, courseId) {
   const insertQuery = `
-      INSERT INTO User_Courses (user_id, course_id)
-      VALUES (@userId, @courseId)
+      INSERT INTO UserCourses (user_course_id, user_id, course_id, enrolled_at, is_completed)
+      VALUES (NEWID(), @userId, @courseId, GETDATE(), 0)
   `;
   try {
       const pool = await getPool();
       const request = pool.request();
+      // Make sure the parameter names here match exactly with those used in the SQL query.
       request.input('userId', sql.UniqueIdentifier, userId);
       request.input('courseId', sql.UniqueIdentifier, courseId);
       await request.query(insertQuery);
@@ -343,6 +343,7 @@ export async function enrollUserInCourse(userId, courseId) {
   }
 }
 
+
 /**
  * Retrieves all courses that a user is enrolled in.
  * @param {string} userId - The id of the user to retrieve courses for.
@@ -352,7 +353,7 @@ export async function getCoursesForUser(userId) {
   const query = `
       SELECT c.*
       FROM Courses c
-      JOIN User_Courses uc ON uc.course_id = c.id
+      JOIN userCourses uc ON uc.course_id = c.id
       WHERE uc.user_id = @userId
   `;
   try {
@@ -370,7 +371,7 @@ export async function getCoursesForUser(userId) {
 export async function updateCourseCompletion(userId, courseId) {
 
   const updateQuery = `
-      UPDATE User_Courses
+      UPDATE userCourses
       SET is_completed = 1
       WHERE user_id = @userId AND course_id = @courseId
   `;
@@ -448,6 +449,9 @@ export async function insertUserAnalytics(user_id, course_id, quiz_score) {
       request.input('user_id', sql.UniqueIdentifier, user_id);
       request.input('course_id', sql.UniqueIdentifier, course_id);
       request.input('quiz_score', sql.Int, quiz_score);
+
+      console.log(`Inserting analytics with user_id: ${user_id}, course_id: ${course_id}, quiz_score: ${quiz_score}`);
+
       await request.query(insertQuery);
       console.log("User analytics inserted successfully!");
   } catch (error) {
@@ -455,6 +459,7 @@ export async function insertUserAnalytics(user_id, course_id, quiz_score) {
       throw error;
   }
 }
+
 
 /**
  * Retrieves analytics data for a specific user.

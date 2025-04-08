@@ -1,28 +1,44 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSidebar } from '../contexts/SidebarContext';
-import CookingImage from '../assets/cooking-icon.png';
+import axios from '../axiosConfig'; // Ensure the path is correct
+import SauteeImage from '../assets/saute-icon.png';
+import { Link } from 'react-router-dom'; // For navigation
 
 function Cooking() {
   const { updateSidebarProps } = useSidebar();
   const prevSidebarProps = useRef({});
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const newProps = {
-      title: 'Cooking',
-      image: CookingImage,
-      titleClassName: 'cookingTitle',
-      imageClassName: 'cookingImage',
+      title: 'Sauté',
+      image: SauteeImage,
+      titleClassName: 'sauteeTitle',
+      imageClassName: 'sauteeImage',
     };
 
     if (
       prevSidebarProps.current.title !== newProps.title ||
-      prevSidebarProps.current.image !== newProps.image ||
-      prevSidebarProps.current.titleClassName !== newProps.titleClassName ||
-      prevSidebarProps.current.imageClassName !== newProps.imageClassName
+      prevSidebarProps.current.image !== newProps.image
     ) {
       updateSidebarProps(newProps);
       prevSidebarProps.current = newProps;
     }
+
+    // Fetch courses for Sauté
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get(`/api/courses/culinaryTechnique/Cooking`);
+        setCourses(response.data.courses);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching Sautee courses:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
 
     return () => {
       updateSidebarProps({
@@ -36,9 +52,28 @@ function Cooking() {
 
   return (
     <div className="content-wrapper">
-      <h1 className="mt-4">Cooking</h1>
-      <p>Welcome to the Cooking section. Here you will learn the art of cooking.</p>
-      <p>Explore various cooking techniques and recipes that will help you master the culinary world.</p>
+      <h1 className="mt-4">Cooking Techniques</h1>
+      <p>Learn the art of cooking and create delicious dishes.</p>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="d-flex flex-wrap justify-content-center">
+          {courses.length > 0 ? courses.map((course, index) => (
+            <div className="coursehome-card-container" key={index}>
+              <div className="coursehome-card">
+                <img src={`https://img.youtube.com/vi/${course.videoId}/0.jpg`} className="coursehome-card-img-top" alt={course.title} />
+                <div className="coursehome-card-body">
+                  <h5 className="coursehome-card-title">{course.title}</h5>
+                  <p className="coursehome-card-text">{course.description}</p>
+                  <Link to={`/courses/${course.id}`} className="btn btn-primary courseBtn">Start Course</Link>
+                </div>
+              </div>
+            </div>
+          )) : (
+            <p>No courses found for Sauté techniques.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }
