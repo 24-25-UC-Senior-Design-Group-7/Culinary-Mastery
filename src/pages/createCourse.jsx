@@ -87,11 +87,15 @@ const CreateCourse = () => {
         <button onClick={handleCreateCourse}>Create Course</button>
 
         <div className="live-updates">
-          <h2>Live Transcription Updates</h2>
+          <h2>Live Transcription Updates:</h2>
           <div className="updates-box">
-            {updates.map((update, index) => (
-              <p key={index}>{update}</p>
-            ))}
+            {updates.length === 0 ? (
+              <p className="text-muted fst-italic">Listening for transcript updates...</p>
+            ) : (
+              updates.map((update, index) => (
+                <p key={index}>{update}</p>
+              ))
+            )}
           </div>
         </div>
 
