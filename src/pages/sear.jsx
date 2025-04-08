@@ -50,6 +50,13 @@ function Sear() {
     };
   }, [updateSidebarProps]);
 
+  const truncateText = (text = '', maxLen = 150) => {
+    if (text.length > maxLen) {
+      return text.slice(0, maxLen) + '...';
+    }
+    return text;
+  };
+
   return (
     <div className="content-wrapper">
       <h1 className="mt-4">Sear Techniques</h1>
@@ -64,7 +71,7 @@ function Sear() {
                 <img src={`https://img.youtube.com/vi/${course.videoId}/0.jpg`} className="coursehome-card-img-top" alt={course.title} />
                 <div className="coursehome-card-body">
                   <h5 className="coursehome-card-title">{course.title}</h5>
-                  <p className="coursehome-card-text">{course.description}</p>
+                  <p className="coursehome-card-text">{truncateText(course.description, 150)}</p>
                   <Link to={`/courses/${course.id}`} className="btn btn-primary courseBtn">Start Course</Link>
                 </div>
               </div>

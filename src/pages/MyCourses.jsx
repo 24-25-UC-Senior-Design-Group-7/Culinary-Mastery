@@ -77,6 +77,13 @@ function MyCourses() {
     return <div className="Course-Home-Content"><h1 className="mt-4 text-center">{error}</h1></div>;
   }
 
+  const truncateText = (text = '', maxLen = 150) => {
+    if (text.length > maxLen) {
+      return text.slice(0, maxLen) + '...';
+    }
+    return text;
+  };
+
   return (
     <div className="Course-Home-Content">
       <h1 className="mt-4 text-center">
@@ -100,7 +107,7 @@ function MyCourses() {
                     />
                     <div className="coursehome-card-body">
                       <h5 className="coursehome-card-title">{course.title}</h5>
-                      <p className="coursehome-card-text">{course.description}</p>
+                      <p className="coursehome-card-text"> {truncateText(course.description, 150)}</p>
                       <Link to={`/courses/${course.id}`} className="btn btn-primary courseBtn">
                         Resume Course
                       </Link>
