@@ -55,14 +55,14 @@ const ArticleSection = ({ courseData }) => {
 
       <h3>{courseData.title}</h3>
 
-      <div className="d-flex article-content-wrapper">
+      <div className="d-flex flex-wrap gap-4 article-content-wrapper">
         <div
           id="articleContent"
-          className="article-original me-4"
+          className="article-column"
           dangerouslySetInnerHTML={{ __html: marked(courseData.article) }}
         />
 
-        <div className="article-translated">
+        <div className="article-column">
           {loading ? (
             <div className="text-muted fst-italic">Translating... please wait.</div>
           ) : translatedContent ? (

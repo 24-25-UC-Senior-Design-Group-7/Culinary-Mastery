@@ -2015,9 +2015,8 @@ nav.navbar {
 /* #region This is the Article Section */
 .article-content-wrapper {
   display: flex;
-  justify-content: space-between;
-  gap: 2rem;
   flex-wrap: wrap;
+  gap: 2rem;
 }
 
 .article-original,
@@ -2028,6 +2027,15 @@ nav.navbar {
 
 .article-original {
   max-width: 60%;
+}
+
+.article-column {
+  flex: 1 1 0;
+  min-width: 300px;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
 }
 
 .article-translated {
