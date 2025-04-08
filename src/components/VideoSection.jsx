@@ -18,17 +18,15 @@ const VideoSection = ({ courseData }) => {
           allowFullScreen
         />
       </div>
-      <div className='d-flex justify-content-center'>
-      
-      
-      <div className="mt-3 mb-3 p-3 bg-light">
-        <h1 className='text-center txt-bold font-weight-bold'>Description</h1>
-        <p id="videoDescription" className="text-start px-3">{courseData.description}</p>
-      </div>
-      <div className="mt-2 w-50">
-        <h5>Transcript</h5>
-        <p id="videoTranscript" className="text-start px-5">{courseData.transcript}</p>
-      </div>
+      <div className='d-flex justify-content-center video-text-wrapper'>
+        <div className="description-section mt-3 mb-3 p-3 bg-light">
+          <h1 className='text-center txt-bold font-weight-bold'>Description</h1>
+          <p id="videoDescription" className="text-start px-3">{courseData.description}</p>
+        </div>
+        <div className="transcript-section mt-3 mb-3 ms-3">
+          <h5>Transcript</h5>
+          <p id="videoTranscript" className="text-start px-3">{courseData.transcript}</p>
+        </div>
       </div>
     </div>
   );
