@@ -1,0 +1,180 @@
+import React, { useEffect, useState } from 'react';
+import { useSidebar } from '../contexts/SidebarContext';
+import ProfileImage from '../assets/person-icon.png';
+
+const Profile = ({ handleLogout }) => {
+  const { userInfo, loading, error, updateSidebarProps } = useSidebar();
+  const [profileData, setProfileData] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    username: '',
+    profilePicture: null,
+  });
+
+  useEffect(() => {
+    // If userInfo is available, use that to set profile data and form data
+    if (userInfo) {
+      setProfileData(userInfo);
+      setFormData({
+        name: userInfo.name || '',
+        username: userInfo.username || '',
+        profilePicture: userInfo.profilePicture || null,
+      });
+    } else {
+      // If no userInfo, set formData to default empty values
+      setFormData({
+        name: '',
+        username: '',
+        profilePicture: null,
+      });
+    }
+
+    // Fetch profile data if needed
+    if (!userInfo) {
+      fetch('/api/user/profile')
+        .then((res) => res.json())
+        .then((data) => {
+          setProfileData(data);
+          setFormData({
+            name: data.name || '',
+            username: data.username || '',
+            profilePicture: data.profilePicture || null,
+          });
+        })
+        .catch((err) => console.error('Error fetching profile data:', err));
+    }
+  }, [userInfo]);
+
+  useEffect(() => {
+    const newProps = {
+      title: 'Profile',
+      image: ProfileImage,
+      titleClassName: 'cookingTitle',
+      imageClassName: 'cookingImage',
+    };
+    if (updateSidebarProps) {
+      updateSidebarProps(newProps);
+    }
+    return () => {
+      if (updateSidebarProps) {
+        updateSidebarProps({ title: '', image: '', titleClassName: '', imageClassName: '' });
+      }
+    };
+  }, [updateSidebarProps]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFormData((prevState) => ({
+        ...prevState,
+        profilePicture: URL.createObjectURL(file),
+      }));
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const updatedProfile = {
+        name: formData.name,
+        username: formData.username,
+        profilePicture: formData.profilePicture,
+      };
+
+      // Make a request to update the profile (mock API endpoint)
+      const response = await fetch('/api/user/updateProfile', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedProfile),
+      });
+
+      if (response.ok) {
+        // Optionally refetch data to display updated information
+        const updatedUserInfo = await response.json();
+        setProfileData(updatedUserInfo);
+        alert('Profile updated successfully!');
+      } else {
+        alert('Failed to update profile.');
+      }
+    } catch (err) {
+      console.error('Error updating profile:', err);
+    }
+  };
+
+  if (loading) {
+    return <div className="loading">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="error">Error: {error}</div>;
+  }
+
+  return (
+    <div className="profile-container">
+      <h2>Profile</h2>
+      <div className="profile-details">
+        <h3>{profileData ? `${profileData.name}'s Profile` : 'Your Profile'}</h3>
+        <form onSubmit={handleSubmit}>
+          <div className="profile-info">
+            <label htmlFor="name">Full Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+            />
+
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleInputChange}
+              required
+            />
+
+            <label htmlFor="profilePicture">Profile Picture:</label>
+            <input
+              type="file"
+              id="profilePicture"
+              name="profilePicture"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+
+            {formData.profilePicture && (
+              <div className="profile-image-preview">
+                <img
+                  src={formData.profilePicture}
+                  alt="Profile Preview"
+                  width="100"
+                  height="100"
+                  style={{ borderRadius: '50%' }}
+                />
+              </div>
+            )}
+          </div>
+          <button type="submit">Save Changes</button>
+        </form>
+      </div>
+      <div className="profile-button-container logoutBtn">
+        <button onClick={handleLogout}>Logout</button>
+      </div>
+    </div>
+  );
+};
+
+export default Profile;

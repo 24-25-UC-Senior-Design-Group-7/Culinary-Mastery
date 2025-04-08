@@ -9,6 +9,7 @@ import Sautee from './pages/sautee';
 import Sear from './pages/sear';
 import International from './pages/international';
 import CreateCourse from './pages/createCourse';
+import Profile from './pages/profile';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
 
-          {/* Layout and its child routes including CreateCourse */}
+          {/* Layout and its child routes including CreateCourse and Profile */}
           <Route element={<Layout />}>
             <Route path="/create-course" element={<CreateCourse />} />
             <Route path="/course-home" element={<CourseHome />} />
@@ -28,6 +29,7 @@ function App() {
             <Route path="/sautee" element={<Sautee />} />
             <Route path="/sear" element={<Sear />} />
             <Route path="/international" element={<International />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
         </Routes>
       </Router>

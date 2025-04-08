@@ -5,9 +5,8 @@ import { useSidebar } from '../contexts/SidebarContext';
 import LoginModal from '../components/LoginModal';
 
 function Layout() {
-  const { isToggled, toggleSidebar, sidebarProps } = useSidebar();
+  const { isToggled, toggleSidebar, sidebarProps, setUserInfo, userInfo } = useSidebar();
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -15,18 +14,15 @@ function Layout() {
     const fetchUserInfo = async () => {
       try {
         const response = await fetch('/api/user');
-
         if (!response.ok) {
           throw new Error(`HTTP Error: ${response.status}`);
         }
-
         const contentType = response.headers.get("content-type");
         if (!contentType || !contentType.includes("application/json")) {
           throw new Error(`Expected JSON, but received ${contentType}`);
         }
-
         const data = await response.json();
-        setUserInfo({ name: data.name });
+        setUserInfo({ name: data.name }); 
       } catch (error) {
         console.error('Error fetching user info:', error);
         setError(error.message);
@@ -34,9 +30,8 @@ function Layout() {
         setLoading(false);
       }
     };
-
     fetchUserInfo();
-  }, []);
+  }, [setUserInfo]);
 
   const handleLoginClick = () => {
     setShowLoginModal(true);
@@ -45,11 +40,13 @@ function Layout() {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setUserInfo(null);
-    fetch('/api/logout', { method: 'POST' }).catch((err) =>
-      console.error('Logout error:', err)
-    );
+    try {
+      await fetch('/api/logout', { method: 'POST' });
+    } catch (err) {
+      console.error('Error during logout:', err);
+    }
   };
 
   const handleCloseModal = () => setShowLoginModal(false);
@@ -67,7 +64,6 @@ function Layout() {
 
   return (
     <div className="d-flex" id="wrapper">
-      {/* Sidebar */}
       <Sidebar
         title={sidebarProps.title}
         image={sidebarProps.image}
@@ -76,9 +72,7 @@ function Layout() {
         imageClassName={sidebarProps.imageClassName}
       />
 
-      {/* Page content wrapper */}
       <div id="page-content-wrapper" className="flex-grow-1">
-        {/* Top navigation */}
         <nav className="navbar navbar-expand-lg navbar-light bg-light navbarContainer">
           <div className="container-fluid">
             <button
@@ -123,11 +117,10 @@ function Layout() {
                     {userName}
                   </a>
                   <div className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    {/* Container for dropdown items */}
                     <div className="dropdown-items-container">
-                      <a className="dropdown-item" href="#!">
-                        Action
-                      </a>
+                      <Link to="/profile" className="dropdown-item">
+                        Profile
+                      </Link>
                       <a className="dropdown-item" href="#!">
                         Another action
                       </a>
@@ -149,11 +142,9 @@ function Layout() {
           </div>
         </nav>
 
-        {/* Render child routes (e.g., CourseHome, Cooking, etc.) */}
         <Outlet context={{ userInfo, loading, error }} />
       </div>
 
-      {/* Login Modal */}
       <LoginModal show={showLoginModal} onClose={handleCloseModal} />
     </div>
   );
