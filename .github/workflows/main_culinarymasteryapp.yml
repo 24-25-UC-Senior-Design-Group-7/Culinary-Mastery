@@ -66,6 +66,6 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: "CulinaryMasteryApp"
-          slot-name: "Production"
+          slot-name: "production"
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B83936E41098423E9C5994A326CFE7D0 }}
