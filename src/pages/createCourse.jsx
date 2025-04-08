@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
+import CreateImage from '../assets/plus-icon.png';
+import { useSidebar } from '../contexts/SidebarContext';
 
 const CreateCourse = () => {
+  const { updateSidebarProps } = useSidebar(); // Access sidebar update function
   const [socketId, setSocketId] = useState('Not connected');
   const [course, setCourse] = useState(null);
   const [articleVisible, setArticleVisible] = useState(false);
@@ -22,6 +25,25 @@ const CreateCourse = () => {
       socket.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    const newProps = {
+      title: 'Create',
+      image: CreateImage,
+      titleClassName: 'cookingTitle',
+      imageClassName: 'cookingImage',
+    };
+
+    if (updateSidebarProps) {
+      updateSidebarProps(newProps);
+    }
+
+    return () => {
+      if (updateSidebarProps) {
+        updateSidebarProps({ title: '', image: '', titleClassName: '', imageClassName: '' });
+      }
+    };
+  }, [updateSidebarProps]);
 
   const handleCreateCourse = async () => {
     const videoId = document.getElementById('videoIdInput').value.trim();
@@ -54,7 +76,6 @@ const CreateCourse = () => {
       }
 
       const data = await response.json();
-      setCourse(data.course);
       setCourse(data.course);
     } catch (error) {
       console.error('Error creating course:', error);
@@ -153,4 +174,4 @@ const CreateCourse = () => {
   );
 };
 
-export default CreateCourse; 
+export default CreateCourse;
