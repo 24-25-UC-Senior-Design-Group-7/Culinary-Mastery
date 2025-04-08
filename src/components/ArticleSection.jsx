@@ -49,7 +49,7 @@ const ArticleSection = ({ courseData }) => {
         dangerouslySetInnerHTML={{ __html: marked(courseData.article) }}
       />
 
-      <div className="mt-3">
+      {/* <div className="mt-3">
         <button
           id="translateArticleBtn"
           className="btn btn-secondary"
@@ -62,7 +62,7 @@ const ArticleSection = ({ courseData }) => {
           <option value="French">French</option>
           <option value="German">German</option>
         </select>
-      </div>
+      </div> */}
 
       {translatedContent && (
         <div
