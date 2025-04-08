@@ -33,7 +33,7 @@ const QuizSection = ({ quizData, courseId }) => {
       await axios.post('/api/usercourses/analytics', { user_id: userId, course_id: courseId, quiz_score: score });
       // Update course completion
       await axios.put('/api/usercourses/course-completion', { userId, courseId });
-      
+
     } catch (error) {
       console.error('Error saving quiz results:', error);
     }
@@ -46,15 +46,23 @@ const QuizSection = ({ quizData, courseId }) => {
   const currentQuestion = quizData.quiz[questionIndex];
 
   return (
-    <div className="content-section my-4">
-      <h3>Quiz</h3>
-      <div className="mb-3 mt-3"> <h1>Score: {score} / {quizData.quiz.length}</h1> </div>  {/* Display the current score */}
+    <div className="content-section my-5 p-4 quiz-section rounded shadow-sm">
+      <h3 className="mb-4">Quiz</h3>
+
+      <div className="score-box mb-4">
+        <h4 className="text-primary">Score: {score} / {quizData.quiz.length}</h4>
+      </div>
+
       {currentQuestion && (
         <>
-          <h5>{`Question ${currentQuestion.number}: ${currentQuestion.question}`}</h5>
-          <div className="mt-3">
+          <div className="question-box mb-3">
+            <h5 className="fw-semibold">{`Question ${currentQuestion.number}:`}</h5>
+            <p className="fs-5">{currentQuestion.question}</p>
+          </div>
+
+          <div className="options-box mb-4">
             {currentQuestion.options.map((option, idx) => (
-              <div className="form-check my-1" key={idx}>
+              <div className="form-check my-2" key={idx}>
                 <input
                   className="form-check-input"
                   type="radio"
@@ -70,15 +78,20 @@ const QuizSection = ({ quizData, courseId }) => {
               </div>
             ))}
           </div>
-          <button className="btn btn-primary mt-3" onClick={handleNextQuestion}>
-            Next Question
-          </button>
+
+          <div className="d-flex gap-3">
+            {questionIndex < quizData.quiz.length - 1 && (
+              <button className="btn btn-primary" onClick={handleNextQuestion}>
+                Next Question
+              </button>
+            )}
+            {questionIndex === quizData.quiz.length - 1 && (
+              <button className="btn btn-success" onClick={finishQuiz}>
+                Finish Quiz
+              </button>
+            )}
+          </div>
         </>
-      )}
-      {questionIndex === quizData.quiz.length - 1 && (
-        <button className="btn btn-success mt-3" onClick={finishQuiz}>
-          Finish Quiz
-        </button>
       )}
     </div>
   );

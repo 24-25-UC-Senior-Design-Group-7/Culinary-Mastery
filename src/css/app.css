@@ -2045,3 +2045,35 @@ nav.navbar {
   border-radius: 6px;
 }
 /* #endregion */
+
+/* #region This is the Quiz Section */
+.quiz-section {
+  background-color: #ffffff;
+  border: 1px solid #e2e6ea;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.score-box {
+  background-color: #f0f8ff;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.question-box {
+  border-left: 4px solid #0d6efd;
+  padding-left: 1rem;
+}
+
+.options-box .form-check-input {
+  cursor: pointer;
+}
+
+.options-box .form-check-label {
+  cursor: pointer;
+}
+
+.btn {
+  min-width: 140px;
+}
+/* #endregion */
