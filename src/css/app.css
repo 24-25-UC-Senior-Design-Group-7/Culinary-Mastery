@@ -1990,3 +1990,24 @@ nav.navbar {
   border-color: black;
 }
 /* #endregion */
+
+/* #region This is the Video Section */
+.video-text-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.description-section {
+  flex: 0 0 60%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.transcript-section {
+  flex: 0 0 40%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+/* #endregion */
