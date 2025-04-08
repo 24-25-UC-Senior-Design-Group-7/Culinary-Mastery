@@ -472,7 +472,7 @@ button:focus-visible {
   margin: 0;
   transform: translateX(-250px);
   border-right: 2px solid #ddd;
-  background-color: white;
+  background-color: #f8f9fa;
 }
 
 #sidebar-wrapper.open {
@@ -581,6 +581,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   text-overflow: ellipsis;
   flex-grow: 1;
   flex-shrink: 1;
+  transition: opacity 0.3s ease-in-out;
 }
 
 #sidebar-wrapper .produceImage,
@@ -594,6 +595,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   font-size: .45rem;
   max-width: 100%;
   max-height: 100%;
+  transition: opacity 0.3s ease-in-out;
 }
 
 @media (max-width: 768px) {
@@ -616,6 +618,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   text-overflow: ellipsis;
   flex-grow: 1;
   flex-shrink: 1;
+  transition: opacity 0.3s ease-in-out;
 }
 
 #sidebar-wrapper .internationalImage {
@@ -626,6 +629,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   font-size: .4rem;
   max-width: 100%;
   max-height: 100%;
+  transition: opacity 0.3s ease-in-out;
 }
 
 @media (max-width: 768px) {
@@ -656,6 +660,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   gap: 0.6rem;
   white-space: nowrap;
   flex-grow: 1;
+  transition: opacity 0.3s ease-in-out;
 }
 
 #sidebar-wrapper .sidebarImage {
@@ -663,6 +668,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   height: 2rem;
   flex-shrink: 1;
   margin-right: 0.8rem;
+  transition: opacity 0.3s ease-in-out;
 }
 
 /* #endregion */
