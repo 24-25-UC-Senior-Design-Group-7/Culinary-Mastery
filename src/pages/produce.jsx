@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSidebar } from '../contexts/SidebarContext';
 import axios from '../axiosConfig'; // Ensure the path is correct
-import SauteeImage from '../assets/saute-icon.png';
+import ProduceImage from '../assets/produce.png';
 import { Link } from 'react-router-dom'; // For navigation
 
 function Produce() {
@@ -12,10 +12,10 @@ function Produce() {
 
   useEffect(() => {
     const newProps = {
-      title: 'Sauté',
-      image: SauteeImage,
-      titleClassName: 'sauteeTitle',
-      imageClassName: 'sauteeImage',
+      title: 'Produce',
+      image: ProduceImage,
+      titleClassName: 'produceTitle',
+      imageClassName: 'produceImage',
     };
 
     if (

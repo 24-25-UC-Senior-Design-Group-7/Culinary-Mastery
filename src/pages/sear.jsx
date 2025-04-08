@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSidebar } from '../contexts/SidebarContext';
-import axios from '../axiosConfig'; // Ensure the path is correct
-import SauteeImage from '../assets/saute-icon.png';
-import { Link } from 'react-router-dom'; // For navigation
+import axios from '../axiosConfig';
+import SearImage from '../assets/sear-icon.png';
+import { Link } from 'react-router-dom';
 
 function Sear() {
   const { updateSidebarProps } = useSidebar();
@@ -12,10 +12,10 @@ function Sear() {
 
   useEffect(() => {
     const newProps = {
-      title: 'Sauté',
-      image: SauteeImage,
-      titleClassName: 'sauteeTitle',
-      imageClassName: 'sauteeImage',
+      title: 'Sear',
+      image: SearImage,
+      titleClassName: 'searTitle',
+      imageClassName: 'searImage',
     };
 
     if (
