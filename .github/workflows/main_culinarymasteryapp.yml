@@ -54,6 +54,11 @@ jobs:
       - name: Wait for App Service to stabilize
         run: sleep 30
 
+      - name: Verify PORT environment variable
+        run: echo "PORT is set to $PORT"
+        env:
+          PORT: 8080
+
       - name: "Deploy to Azure Web App"
         id: deploy-to-webapp
         env:
