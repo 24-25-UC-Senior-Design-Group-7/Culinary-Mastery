@@ -7,29 +7,26 @@ const Profile = ({ handleLogout }) => {
   const [profileData, setProfileData] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
-    username: '',
+    email: '',
     profilePicture: null,
   });
 
   useEffect(() => {
-    // If userInfo is available, use that to set profile data and form data
     if (userInfo) {
       setProfileData(userInfo);
       setFormData({
         name: userInfo.name || '',
-        username: userInfo.username || '',
+        email: userInfo.email || '',
         profilePicture: userInfo.profilePicture || null,
       });
     } else {
-      // If no userInfo, set formData to default empty values
       setFormData({
         name: '',
-        username: '',
+        email: '',
         profilePicture: null,
       });
     }
 
-    // Fetch profile data if needed
     if (!userInfo) {
       fetch('/api/user/profile')
         .then((res) => res.json())
@@ -37,7 +34,7 @@ const Profile = ({ handleLogout }) => {
           setProfileData(data);
           setFormData({
             name: data.name || '',
-            username: data.username || '',
+            email: data.email || '',
             profilePicture: data.profilePicture || null,
           });
         })
@@ -85,7 +82,7 @@ const Profile = ({ handleLogout }) => {
     try {
       const updatedProfile = {
         name: formData.name,
-        username: formData.username,
+        email: formData.email,
         profilePicture: formData.profilePicture,
       };
 
@@ -136,12 +133,12 @@ const Profile = ({ handleLogout }) => {
               required
             />
 
-            <label htmlFor="username">Username:</label>
+            <label htmlFor="email-profile-label">Email:</label>
             <input
               type="text"
-              id="username"
-              name="username"
-              value={formData.username}
+              id="email-profile-input"
+              name="email"
+              value={formData.email}
               onChange={handleInputChange}
               required
             />
