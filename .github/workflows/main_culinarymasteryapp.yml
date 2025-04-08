@@ -19,10 +19,10 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: '20.x'
+          node-version: "20.x"
 
       - name: Set Node.js memory limit
-        run: echo "NODE_OPTIONS=--max-old-space-size=4096" >> $GITHUB_ENV
+        run: echo "NODE_OPTIONS=--max-old-space-size=8192" >> $GITHUB_ENV
 
       - name: npm install, build, and test
         run: |
@@ -43,12 +43,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'Production'
+      name: "Production"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+
     steps:
       - name: Set Node.js memory limit
-        run: echo "NODE_OPTIONS=--max-old-space-size=4096" >> $GITHUB_ENV
+        run: echo "NODE_OPTIONS=--max-old-space-size=8192" >> $GITHUB_ENV
 
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
@@ -57,12 +57,12 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-      
-      - name: 'Deploy to Azure Web App'
+
+      - name: "Deploy to Azure Web App"
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'CulinaryMasteryApp'
-          slot-name: 'Production'
+          app-name: "CulinaryMasteryApp"
+          slot-name: "Production"
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B83936E41098423E9C5994A326CFE7D0 }}
